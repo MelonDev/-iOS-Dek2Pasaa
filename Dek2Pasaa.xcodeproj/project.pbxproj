@@ -15,6 +15,9 @@
 		15BB7FB22247F84100221775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7FB02247F84100221775 /* LaunchScreen.storyboard */; };
 		15BB7FBD2247F84100221775 /* Dek2PasaaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FBC2247F84100221775 /* Dek2PasaaTests.swift */; };
 		15BB7FC82247F84100221775 /* Dek2PasaaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FC72247F84100221775 /* Dek2PasaaUITests.swift */; };
+		3400E367B3B71BD5F23B303C /* Pods_Dek2PasaaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58466A3977A162E09B87DB2 /* Pods_Dek2PasaaUITests.framework */; };
+		6EC2B0EAA4A07CD07BD7D6FF /* Pods_Dek2Pasaa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EFD267ADB3B36F0A8CE026 /* Pods_Dek2Pasaa.framework */; };
+		7E8F152F01475CC3091799BE /* Pods_Dek2PasaaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852145CDCAEE8F6E1445D70 /* Pods_Dek2PasaaTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,15 @@
 		15BB7FC32247F84100221775 /* Dek2PasaaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Dek2PasaaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BB7FC72247F84100221775 /* Dek2PasaaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dek2PasaaUITests.swift; sourceTree = "<group>"; };
 		15BB7FC92247F84100221775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		319B9425B419AACA6B019A19 /* Pods-Dek2PasaaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dek2PasaaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dek2PasaaTests/Pods-Dek2PasaaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		46EFD267ADB3B36F0A8CE026 /* Pods_Dek2Pasaa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dek2Pasaa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6852145CDCAEE8F6E1445D70 /* Pods_Dek2PasaaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dek2PasaaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71065140E612314E52B360D4 /* Pods-Dek2PasaaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dek2PasaaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dek2PasaaTests/Pods-Dek2PasaaTests.release.xcconfig"; sourceTree = "<group>"; };
+		809E14274FF59FDDE31C3895 /* Pods-Dek2Pasaa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dek2Pasaa.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dek2Pasaa/Pods-Dek2Pasaa.release.xcconfig"; sourceTree = "<group>"; };
+		849EB3FE5F686697F6C831C1 /* Pods-Dek2Pasaa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dek2Pasaa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dek2Pasaa/Pods-Dek2Pasaa.debug.xcconfig"; sourceTree = "<group>"; };
+		B58466A3977A162E09B87DB2 /* Pods_Dek2PasaaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dek2PasaaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC29388F85B635312E7FE559 /* Pods-Dek2PasaaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dek2PasaaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dek2PasaaUITests/Pods-Dek2PasaaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FF5FF446DC4D96BE420DC6EC /* Pods-Dek2PasaaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dek2PasaaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dek2PasaaUITests/Pods-Dek2PasaaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EC2B0EAA4A07CD07BD7D6FF /* Pods_Dek2Pasaa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8F152F01475CC3091799BE /* Pods_Dek2PasaaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3400E367B3B71BD5F23B303C /* Pods_Dek2PasaaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +98,8 @@
 				15BB7FBB2247F84100221775 /* Dek2PasaaTests */,
 				15BB7FC62247F84100221775 /* Dek2PasaaUITests */,
 				15BB7FA22247F84000221775 /* Products */,
+				848440A96A76630CFF3215A1 /* Pods */,
+				82C12DFF08A9E9D345CC97E4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +145,29 @@
 			path = Dek2PasaaUITests;
 			sourceTree = "<group>";
 		};
+		82C12DFF08A9E9D345CC97E4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46EFD267ADB3B36F0A8CE026 /* Pods_Dek2Pasaa.framework */,
+				6852145CDCAEE8F6E1445D70 /* Pods_Dek2PasaaTests.framework */,
+				B58466A3977A162E09B87DB2 /* Pods_Dek2PasaaUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		848440A96A76630CFF3215A1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				849EB3FE5F686697F6C831C1 /* Pods-Dek2Pasaa.debug.xcconfig */,
+				809E14274FF59FDDE31C3895 /* Pods-Dek2Pasaa.release.xcconfig */,
+				319B9425B419AACA6B019A19 /* Pods-Dek2PasaaTests.debug.xcconfig */,
+				71065140E612314E52B360D4 /* Pods-Dek2PasaaTests.release.xcconfig */,
+				FF5FF446DC4D96BE420DC6EC /* Pods-Dek2PasaaUITests.debug.xcconfig */,
+				EC29388F85B635312E7FE559 /* Pods-Dek2PasaaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +175,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15BB7FCC2247F84100221775 /* Build configuration list for PBXNativeTarget "Dek2Pasaa" */;
 			buildPhases = (
+				882AC8C8F23F2F3482D428B3 /* [CP] Check Pods Manifest.lock */,
 				15BB7F9D2247F84000221775 /* Sources */,
 				15BB7F9E2247F84000221775 /* Frameworks */,
 				15BB7F9F2247F84000221775 /* Resources */,
+				80FEDECDEFFB31DAA52DD2BA /* [CP] Embed Pods Frameworks */,
+				D22FBC5E95A8780319709DB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,6 +195,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15BB7FCF2247F84100221775 /* Build configuration list for PBXNativeTarget "Dek2PasaaTests" */;
 			buildPhases = (
+				7220989A7537DB6E3EC70633 /* [CP] Check Pods Manifest.lock */,
 				15BB7FB42247F84100221775 /* Sources */,
 				15BB7FB52247F84100221775 /* Frameworks */,
 				15BB7FB62247F84100221775 /* Resources */,
@@ -170,6 +214,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15BB7FD22247F84100221775 /* Build configuration list for PBXNativeTarget "Dek2PasaaUITests" */;
 			buildPhases = (
+				CF2FA7EAE747AA6BB8DA5E80 /* [CP] Check Pods Manifest.lock */,
 				15BB7FBF2247F84100221775 /* Sources */,
 				15BB7FC02247F84100221775 /* Frameworks */,
 				15BB7FC12247F84100221775 /* Resources */,
@@ -253,6 +298,141 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7220989A7537DB6E3EC70633 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dek2PasaaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80FEDECDEFFB31DAA52DD2BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Dek2Pasaa/Pods-Dek2Pasaa-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/CenteredCollectionView/CenteredCollectionView.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/TORoundedTableView/TORoundedTableView.framework",
+				"${BUILT_PRODUCTS_DIR}/UPCarouselFlowLayout/UPCarouselFlowLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CenteredCollectionView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TORoundedTableView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UPCarouselFlowLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dek2Pasaa/Pods-Dek2Pasaa-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		882AC8C8F23F2F3482D428B3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dek2Pasaa-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF2FA7EAE747AA6BB8DA5E80 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dek2PasaaUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D22FBC5E95A8780319709DB9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Dek2Pasaa/Pods-Dek2Pasaa-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dek2Pasaa/Pods-Dek2Pasaa-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		15BB7F9D2247F84000221775 /* Sources */ = {
@@ -434,6 +614,7 @@
 		};
 		15BB7FCD2247F84100221775 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 849EB3FE5F686697F6C831C1 /* Pods-Dek2Pasaa.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,6 +633,7 @@
 		};
 		15BB7FCE2247F84100221775 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 809E14274FF59FDDE31C3895 /* Pods-Dek2Pasaa.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +652,7 @@
 		};
 		15BB7FD02247F84100221775 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 319B9425B419AACA6B019A19 /* Pods-Dek2PasaaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +674,7 @@
 		};
 		15BB7FD12247F84100221775 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71065140E612314E52B360D4 /* Pods-Dek2PasaaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +696,7 @@
 		};
 		15BB7FD32247F84100221775 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF5FF446DC4D96BE420DC6EC /* Pods-Dek2PasaaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +717,7 @@
 		};
 		15BB7FD42247F84100221775 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC29388F85B635312E7FE559 /* Pods-Dek2PasaaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

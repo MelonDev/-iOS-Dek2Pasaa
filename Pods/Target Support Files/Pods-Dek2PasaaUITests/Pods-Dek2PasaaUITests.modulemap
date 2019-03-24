@@ -1,0 +1,6 @@
+framework module Pods_Dek2PasaaUITests {
+  umbrella header "Pods-Dek2PasaaUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
