@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		15BB7FA52247F84000221775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FA42247F84000221775 /* AppDelegate.swift */; };
-		15BB7FA72247F84000221775 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FA62247F84000221775 /* ViewController.swift */; };
 		15BB7FAA2247F84000221775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7FA82247F84000221775 /* Main.storyboard */; };
 		15BB7FAD2247F84000221775 /* Dek2Pasaa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FAB2247F84000221775 /* Dek2Pasaa.xcdatamodeld */; };
 		15BB7FAF2247F84100221775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7FAE2247F84100221775 /* Assets.xcassets */; };
 		15BB7FB22247F84100221775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7FB02247F84100221775 /* LaunchScreen.storyboard */; };
 		15BB7FBD2247F84100221775 /* Dek2PasaaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FBC2247F84100221775 /* Dek2PasaaTests.swift */; };
 		15BB7FC82247F84100221775 /* Dek2PasaaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FC72247F84100221775 /* Dek2PasaaUITests.swift */; };
+		15BB7FE22247FE7800221775 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FE12247FE7800221775 /* MainViewController.swift */; };
+		15BB7FE42248004900221775 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7FE32248004900221775 /* GoogleService-Info.plist */; };
+		15BB7FE7224801BC00221775 /* PrimaryColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FE6224801BC00221775 /* PrimaryColor.swift */; };
+		15BB7FE92248048100221775 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FE82248048100221775 /* Color.swift */; };
+		15BB7FEC2248058700221775 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FEB2248058700221775 /* UIColor.swift */; };
 		3400E367B3B71BD5F23B303C /* Pods_Dek2PasaaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58466A3977A162E09B87DB2 /* Pods_Dek2PasaaUITests.framework */; };
 		6EC2B0EAA4A07CD07BD7D6FF /* Pods_Dek2Pasaa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EFD267ADB3B36F0A8CE026 /* Pods_Dek2Pasaa.framework */; };
 		7E8F152F01475CC3091799BE /* Pods_Dek2PasaaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852145CDCAEE8F6E1445D70 /* Pods_Dek2PasaaTests.framework */; };
@@ -40,7 +44,6 @@
 /* Begin PBXFileReference section */
 		15BB7FA12247F84000221775 /* Dek2Pasaa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dek2Pasaa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BB7FA42247F84000221775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		15BB7FA62247F84000221775 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		15BB7FA92247F84000221775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		15BB7FAC2247F84000221775 /* Dek2Pasaa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dek2Pasaa.xcdatamodel; sourceTree = "<group>"; };
 		15BB7FAE2247F84100221775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +55,11 @@
 		15BB7FC32247F84100221775 /* Dek2PasaaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Dek2PasaaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BB7FC72247F84100221775 /* Dek2PasaaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dek2PasaaUITests.swift; sourceTree = "<group>"; };
 		15BB7FC92247F84100221775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15BB7FE12247FE7800221775 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		15BB7FE32248004900221775 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		15BB7FE6224801BC00221775 /* PrimaryColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryColor.swift; sourceTree = "<group>"; };
+		15BB7FE82248048100221775 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		15BB7FEB2248058700221775 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		319B9425B419AACA6B019A19 /* Pods-Dek2PasaaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dek2PasaaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dek2PasaaTests/Pods-Dek2PasaaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		46EFD267ADB3B36F0A8CE026 /* Pods_Dek2Pasaa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dek2Pasaa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6852145CDCAEE8F6E1445D70 /* Pods_Dek2PasaaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dek2PasaaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,11 +124,13 @@
 		15BB7FA32247F84000221775 /* Dek2Pasaa */ = {
 			isa = PBXGroup;
 			children = (
+				15BB7FEA2248056D00221775 /* CustomClass */,
+				15BB7FE5224801A800221775 /* Tools */,
+				15BB7FD62247FBA700221775 /* Controller */,
+				15BB7FD52247FB9800221775 /* Storyboard */,
 				15BB7FA42247F84000221775 /* AppDelegate.swift */,
-				15BB7FA62247F84000221775 /* ViewController.swift */,
-				15BB7FA82247F84000221775 /* Main.storyboard */,
+				15BB7FE32248004900221775 /* GoogleService-Info.plist */,
 				15BB7FAE2247F84100221775 /* Assets.xcassets */,
-				15BB7FB02247F84100221775 /* LaunchScreen.storyboard */,
 				15BB7FB32247F84100221775 /* Info.plist */,
 				15BB7FAB2247F84000221775 /* Dek2Pasaa.xcdatamodeld */,
 			);
@@ -143,6 +153,56 @@
 				15BB7FC92247F84100221775 /* Info.plist */,
 			);
 			path = Dek2PasaaUITests;
+			sourceTree = "<group>";
+		};
+		15BB7FD52247FB9800221775 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				15BB7FD72247FBBD00221775 /* Main */,
+				15BB7FB02247F84100221775 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		15BB7FD62247FBA700221775 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				15BB7FDC2247FD2100221775 /* Main */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		15BB7FD72247FBBD00221775 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				15BB7FA82247F84000221775 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		15BB7FDC2247FD2100221775 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				15BB7FE12247FE7800221775 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		15BB7FE5224801A800221775 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				15BB7FE6224801BC00221775 /* PrimaryColor.swift */,
+				15BB7FE82248048100221775 /* Color.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		15BB7FEA2248056D00221775 /* CustomClass */ = {
+			isa = PBXGroup;
+			children = (
+				15BB7FEB2248058700221775 /* UIColor.swift */,
+			);
+			path = CustomClass;
 			sourceTree = "<group>";
 		};
 		82C12DFF08A9E9D345CC97E4 /* Frameworks */ = {
@@ -280,6 +340,7 @@
 				15BB7FB22247F84100221775 /* LaunchScreen.storyboard in Resources */,
 				15BB7FAF2247F84100221775 /* Assets.xcassets in Resources */,
 				15BB7FAA2247F84000221775 /* Main.storyboard in Resources */,
+				15BB7FE42248004900221775 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,9 +500,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15BB7FE7224801BC00221775 /* PrimaryColor.swift in Sources */,
+				15BB7FEC2248058700221775 /* UIColor.swift in Sources */,
 				15BB7FAD2247F84000221775 /* Dek2Pasaa.xcdatamodeld in Sources */,
-				15BB7FA72247F84000221775 /* ViewController.swift in Sources */,
 				15BB7FA52247F84000221775 /* AppDelegate.swift in Sources */,
+				15BB7FE92248048100221775 /* Color.swift in Sources */,
+				15BB7FE22247FE7800221775 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +684,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S665H3XLSU;
 				INFOPLIST_FILE = Dek2Pasaa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -639,6 +704,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S665H3XLSU;
 				INFOPLIST_FILE = Dek2Pasaa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -137,7 +137,11 @@ static inline void TORoundedTableViewResizeAccessoryView(UITableViewHeaderFooter
     // content so it won't look too strange on big screens such as iPad Pro. Since we're
     // manually controlling the content insets, we don't need this.
     if ([self respondsToSelector:NSSelectorFromString(@"setCellLayoutMarginsFollowReadableWidth:")]) {
-        self.cellLayoutMarginsFollowReadableWidth = NO;
+        if (@available(iOS 9.0, *)) {
+            self.cellLayoutMarginsFollowReadableWidth = NO;
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
 
