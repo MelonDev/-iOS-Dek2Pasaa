@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15934D932248256600377349 /* SukhumvitSet.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 15934D912248256600377349 /* SukhumvitSet.ttc */; };
+		15934D942248256600377349 /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15934D922248256600377349 /* UPCarouselFlowLayout.swift */; };
+		15934D9622482A0600377349 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15934D9522482A0600377349 /* UILabel.swift */; };
 		15BB7FA52247F84000221775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FA42247F84000221775 /* AppDelegate.swift */; };
 		15BB7FAA2247F84000221775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15BB7FA82247F84000221775 /* Main.storyboard */; };
 		15BB7FAD2247F84000221775 /* Dek2Pasaa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FAB2247F84000221775 /* Dek2Pasaa.xcdatamodeld */; };
@@ -19,6 +22,22 @@
 		15BB7FE7224801BC00221775 /* PrimaryColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FE6224801BC00221775 /* PrimaryColor.swift */; };
 		15BB7FE92248048100221775 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FE82248048100221775 /* Color.swift */; };
 		15BB7FEC2248058700221775 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FEB2248058700221775 /* UIColor.swift */; };
+		15BB7FEE22480A1C00221775 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FED22480A1C00221775 /* UIView.swift */; };
+		15BB7FF022480A4800221775 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FEF22480A4800221775 /* UIDevice.swift */; };
+		15BB7FF822480AE200221775 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FF722480AE200221775 /* UIScrollView.swift */; };
+		15BB7FFA22480AF500221775 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FF922480AF500221775 /* UIImageView.swift */; };
+		15BB7FFC22480B1B00221775 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FFB22480B1B00221775 /* UINavigationController.swift */; };
+		15BB7FFE22480B3D00221775 /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FFD22480B3D00221775 /* StringProtocol.swift */; };
+		15BB800022480BC500221775 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FFF22480BC500221775 /* AppConfig.swift */; };
+		15BB800222480C5C00221775 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB800122480C5C00221775 /* UIButton.swift */; };
+		15BB800422480E3F00221775 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB800322480E3F00221775 /* UIViewController.swift */; };
+		15FFD7AE2248B29C00DCCB30 /* MenuStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFD7AD2248B29C00DCCB30 /* MenuStruct.swift */; };
+		15FFD7B12248B40800DCCB30 /* MenuString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFD7B02248B40800DCCB30 /* MenuString.swift */; };
+		15FFD7B62248B4C500DCCB30 /* MenuCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFD7B42248B4C500DCCB30 /* MenuCVCell.swift */; };
+		15FFD7B72248B4C500DCCB30 /* MenuCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD7B52248B4C500DCCB30 /* MenuCVCell.xib */; };
+		15FFD7BD2248D08C00DCCB30 /* TS-SOM TUM-np.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD7BA2248D08C00DCCB30 /* TS-SOM TUM-np.ttf */; };
+		15FFD7BE2248D08C00DCCB30 /* TS-Som tum -A-NP.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD7BB2248D08C00DCCB30 /* TS-Som tum -A-NP.ttf */; };
+		15FFD7BF2248D08C00DCCB30 /* TS-Som tum-B-NP.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD7BC2248D08C00DCCB30 /* TS-Som tum-B-NP.ttf */; };
 		3400E367B3B71BD5F23B303C /* Pods_Dek2PasaaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58466A3977A162E09B87DB2 /* Pods_Dek2PasaaUITests.framework */; };
 		6EC2B0EAA4A07CD07BD7D6FF /* Pods_Dek2Pasaa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EFD267ADB3B36F0A8CE026 /* Pods_Dek2Pasaa.framework */; };
 		7E8F152F01475CC3091799BE /* Pods_Dek2PasaaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6852145CDCAEE8F6E1445D70 /* Pods_Dek2PasaaTests.framework */; };
@@ -42,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15934D912248256600377349 /* SukhumvitSet.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = SukhumvitSet.ttc; sourceTree = "<group>"; };
+		15934D922248256600377349 /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
+		15934D9522482A0600377349 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		15BB7FA12247F84000221775 /* Dek2Pasaa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dek2Pasaa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BB7FA42247F84000221775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15BB7FA92247F84000221775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +82,22 @@
 		15BB7FE6224801BC00221775 /* PrimaryColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryColor.swift; sourceTree = "<group>"; };
 		15BB7FE82248048100221775 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		15BB7FEB2248058700221775 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		15BB7FED22480A1C00221775 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		15BB7FEF22480A4800221775 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		15BB7FF722480AE200221775 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
+		15BB7FF922480AF500221775 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		15BB7FFB22480B1B00221775 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		15BB7FFD22480B3D00221775 /* StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
+		15BB7FFF22480BC500221775 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		15BB800122480C5C00221775 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		15BB800322480E3F00221775 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		15FFD7AD2248B29C00DCCB30 /* MenuStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStruct.swift; sourceTree = "<group>"; };
+		15FFD7B02248B40800DCCB30 /* MenuString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuString.swift; sourceTree = "<group>"; };
+		15FFD7B42248B4C500DCCB30 /* MenuCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCVCell.swift; sourceTree = "<group>"; };
+		15FFD7B52248B4C500DCCB30 /* MenuCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCVCell.xib; sourceTree = "<group>"; };
+		15FFD7BA2248D08C00DCCB30 /* TS-SOM TUM-np.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TS-SOM TUM-np.ttf"; sourceTree = "<group>"; };
+		15FFD7BB2248D08C00DCCB30 /* TS-Som tum -A-NP.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TS-Som tum -A-NP.ttf"; sourceTree = "<group>"; };
+		15FFD7BC2248D08C00DCCB30 /* TS-Som tum-B-NP.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TS-Som tum-B-NP.ttf"; sourceTree = "<group>"; };
 		319B9425B419AACA6B019A19 /* Pods-Dek2PasaaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dek2PasaaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dek2PasaaTests/Pods-Dek2PasaaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		46EFD267ADB3B36F0A8CE026 /* Pods_Dek2Pasaa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dek2Pasaa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6852145CDCAEE8F6E1445D70 /* Pods_Dek2PasaaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dek2PasaaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +137,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15934D902248253700377349 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				15934D912248256600377349 /* SukhumvitSet.ttc */,
+				15934D922248256600377349 /* UPCarouselFlowLayout.swift */,
+				15FFD7BB2248D08C00DCCB30 /* TS-Som tum -A-NP.ttf */,
+				15FFD7BC2248D08C00DCCB30 /* TS-Som tum-B-NP.ttf */,
+				15FFD7BA2248D08C00DCCB30 /* TS-SOM TUM-np.ttf */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		15BB7F982247F84000221775 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +174,10 @@
 		15BB7FA32247F84000221775 /* Dek2Pasaa */ = {
 			isa = PBXGroup;
 			children = (
+				15FFD7B22248B48D00DCCB30 /* Cells */,
+				15FFD7AF2248B3F400DCCB30 /* Strings */,
+				15FFD7AC2248B27B00DCCB30 /* Structs */,
+				15934D902248253700377349 /* Resource */,
 				15BB7FEA2248056D00221775 /* CustomClass */,
 				15BB7FE5224801A800221775 /* Tools */,
 				15BB7FD62247FBA700221775 /* Controller */,
@@ -193,6 +247,7 @@
 			children = (
 				15BB7FE6224801BC00221775 /* PrimaryColor.swift */,
 				15BB7FE82248048100221775 /* Color.swift */,
+				15BB7FFF22480BC500221775 /* AppConfig.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -201,8 +256,50 @@
 			isa = PBXGroup;
 			children = (
 				15BB7FEB2248058700221775 /* UIColor.swift */,
+				15BB7FED22480A1C00221775 /* UIView.swift */,
+				15BB7FEF22480A4800221775 /* UIDevice.swift */,
+				15BB7FF722480AE200221775 /* UIScrollView.swift */,
+				15BB7FF922480AF500221775 /* UIImageView.swift */,
+				15BB7FFB22480B1B00221775 /* UINavigationController.swift */,
+				15BB7FFD22480B3D00221775 /* StringProtocol.swift */,
+				15BB800122480C5C00221775 /* UIButton.swift */,
+				15BB800322480E3F00221775 /* UIViewController.swift */,
+				15934D9522482A0600377349 /* UILabel.swift */,
 			);
 			path = CustomClass;
+			sourceTree = "<group>";
+		};
+		15FFD7AC2248B27B00DCCB30 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				15FFD7AD2248B29C00DCCB30 /* MenuStruct.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		15FFD7AF2248B3F400DCCB30 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				15FFD7B02248B40800DCCB30 /* MenuString.swift */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		15FFD7B22248B48D00DCCB30 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				15FFD7B32248B49600DCCB30 /* Menu */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		15FFD7B32248B49600DCCB30 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				15FFD7B42248B4C500DCCB30 /* MenuCVCell.swift */,
+				15FFD7B52248B4C500DCCB30 /* MenuCVCell.xib */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		82C12DFF08A9E9D345CC97E4 /* Frameworks */ = {
@@ -338,8 +435,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				15BB7FB22247F84100221775 /* LaunchScreen.storyboard in Resources */,
+				15FFD7BF2248D08C00DCCB30 /* TS-Som tum-B-NP.ttf in Resources */,
 				15BB7FAF2247F84100221775 /* Assets.xcassets in Resources */,
+				15FFD7BE2248D08C00DCCB30 /* TS-Som tum -A-NP.ttf in Resources */,
 				15BB7FAA2247F84000221775 /* Main.storyboard in Resources */,
+				15FFD7BD2248D08C00DCCB30 /* TS-SOM TUM-np.ttf in Resources */,
+				15FFD7B72248B4C500DCCB30 /* MenuCVCell.xib in Resources */,
+				15934D932248256600377349 /* SukhumvitSet.ttc in Resources */,
 				15BB7FE42248004900221775 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +501,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/TORoundedTableView/TORoundedTableView.framework",
 				"${BUILT_PRODUCTS_DIR}/UPCarouselFlowLayout/UPCarouselFlowLayout.framework",
@@ -416,6 +519,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TORoundedTableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UPCarouselFlowLayout.framework",
@@ -500,12 +604,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15934D9622482A0600377349 /* UILabel.swift in Sources */,
 				15BB7FE7224801BC00221775 /* PrimaryColor.swift in Sources */,
 				15BB7FEC2248058700221775 /* UIColor.swift in Sources */,
 				15BB7FAD2247F84000221775 /* Dek2Pasaa.xcdatamodeld in Sources */,
+				15BB7FFA22480AF500221775 /* UIImageView.swift in Sources */,
+				15BB7FEE22480A1C00221775 /* UIView.swift in Sources */,
 				15BB7FA52247F84000221775 /* AppDelegate.swift in Sources */,
+				15FFD7B12248B40800DCCB30 /* MenuString.swift in Sources */,
 				15BB7FE92248048100221775 /* Color.swift in Sources */,
 				15BB7FE22247FE7800221775 /* MainViewController.swift in Sources */,
+				15BB7FFE22480B3D00221775 /* StringProtocol.swift in Sources */,
+				15BB7FFC22480B1B00221775 /* UINavigationController.swift in Sources */,
+				15BB800022480BC500221775 /* AppConfig.swift in Sources */,
+				15BB800222480C5C00221775 /* UIButton.swift in Sources */,
+				15BB7FF822480AE200221775 /* UIScrollView.swift in Sources */,
+				15BB7FF022480A4800221775 /* UIDevice.swift in Sources */,
+				15934D942248256600377349 /* UPCarouselFlowLayout.swift in Sources */,
+				15FFD7B62248B4C500DCCB30 /* MenuCVCell.swift in Sources */,
+				15BB800422480E3F00221775 /* UIViewController.swift in Sources */,
+				15FFD7AE2248B29C00DCCB30 /* MenuStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

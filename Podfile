@@ -20,7 +20,7 @@ pod 'Alamofire', '~> 4.7'
 pod 'TORoundedTableView'
 
 pod 'Hero'
-
+pod 'Kingfisher', '~> 5.0'
 pod 'CenteredCollectionView'
 pod 'UPCarouselFlowLayout'
 
