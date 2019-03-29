@@ -2,44 +2,104 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var mainView: UIView!
+    //@IBOutlet weak var mainView: UIView!
     let primaryColor :PrimaryColor = PrimaryColor()
-    @IBOutlet weak var iconImage: UIImageView!
-    @IBOutlet weak var langImage: UIImageView!
-    @IBOutlet weak var textTitle: UILabel!
-    @IBOutlet weak var langImageLeft: UIImageView!
-    @IBOutlet weak var menuCollectionView: UICollectionView!
+    //@IBOutlet weak var iconImage: UIImageView!
+    //@IBOutlet weak var langImage: UIImageView!
+    //@IBOutlet weak var textTitle: UILabel!
+    //@IBOutlet weak var langImageLeft: UIImageView!
+    //@IBOutlet weak var menuCollectionView: UICollectionView!
+    
+    var collectionView :UICollectionView? = nil
+    var collectionViewConstraint :Constraint? = nil
+    var bottomViewConstraint :Constraint? = nil
+
+    
+    var bottomView :UIView? = nil
+    var blurTitleView :UIVisualEffectView? = nil
+    
+    var blurInView :UIView? = nil
+    var blurInViewConstraint :Constraint? = nil
+    
+    var labelTitle :UILabel? = nil
+    var labelTitleConstraint :Constraint? = nil
+    
+    var appIconImageView :UIImageView? = nil
+    var appIconImageViewConstraint :Constraint? = nil
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rotateLangAction()
         
         self.hero.isEnabled = true
 
-        
+        /*
         if(UIDevice().isIpad()){
             textTitle.fontSize(size: 54)
         }else {
             textTitle.fontSize(size: 46)
         }
+        */
         
         //print(UIDevice().isIpad())
         
         self.view.backgroundColor = UIColor.white
-        self.mainView.backgroundColor = UIColor.white
+        //self.mainView.backgroundColor = UIColor.white.withAlphaComponent(0.0)
         
-        iconImage.setStyleImage(cornerRadius: 27)
-        langImage.setStyleImage(cornerRadius: 27)
-        langImageLeft.setStyleImage(cornerRadius: 27)
+        //iconImage.setStyleImage(cornerRadius: 27)
+        //langImage.setStyleImage(cornerRadius: 27)
+        //langImageLeft.setStyleImage(cornerRadius: 27)
         
-        menuCollectionView.dataSource = self
+        /*menuCollectionView.dataSource = self
         menuCollectionView.delegate = self
         
-        menuCollectionView.register(UINib.init(nibName: "MenuCVCell", bundle: nil), forCellWithReuseIdentifier: "MenuCVC")
+        menuCollectionView.register(UINib.init(nibName: "MenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MenuCVC")
+ */
+        //menuCollectionView.isHidden = true
+        //let cellReuseIdentifier = "collectionCell"
+
+ 
+        let flowLayout = UICollectionViewFlowLayout()
+
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: flowLayout)
+        
+        
+        
+        //collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
+        
+        collectionView!.register(UINib.init(nibName: "MenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionCell")
+        //collectionView.register(UINib.init(nibName: "MenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "collectionCell")
+        
+        collectionView!.delegate = self
+        collectionView!.dataSource = self
+        collectionView!.backgroundColor = UIColor.white.withAlphaComponent(0.0)
+        collectionView!.showsHorizontalScrollIndicator = false
+        collectionView!.showsVerticalScrollIndicator = false
+        
+        //self.view.addSubview(collectionView!)
+        self.view.insertSubview(collectionView!, at: 0)
+        
+        //collectionView!.configConstraints()
+        
+        collectionViewConstraint = collectionView!.setupConstraint()
+        
+        
+        
+        
+        rotateBlur()
+        
+        rotateSafe()
+        rotateLangAction()
+        
+
+        
+        
+        
         
         self.automaticallyAdjustsScrollViewInsets = false
 
+        
         
         
         /*let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -51,17 +111,242 @@ class MainViewController: UIViewController {
         layout.minimumLineSpacing = 0
         menuCollectionView.collectionViewLayout = layout
 */
+ 
+ 
     }
     
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
+        rotateBlur()
+
+        rotateSafe()
         rotateLangAction()
+
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        rotateBlur()
+
+        rotateSafe()
         rotateLangAction()
+
+        
+    }
+    
+    func rotateBlur(){
+        //blurTitleView = UIVisualEffectView(frame:CGRect(x: 0,y: 0, width: UIScreen.main.bounds.width, height: 50))
+        
+        if(blurTitleView != nil){
+            blurTitleView?.removeFromSuperview()
+        }
+        
+        blurTitleView = UIVisualEffectView()
+        blurTitleView?.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.width, height: UIDevice.topSafeArea() + 64)
+        //blurTitleView?.backgroundColor = UIColor.red.withAlphaComponent(0.4)
+        blurTitleView?.effect = UIBlurEffect(style: .light)
+        
+        self.view.addSubview(blurTitleView!)
         
         
+        
+        blurInView = UIView()
+        //blurInView?.backgroundColor = UIColor.red
+        blurInViewConstraint = blurInView?.setupConstraint()
+        
+        blurTitleView?.contentView.addSubview(blurInView!)
+
+        
+        blurInViewConstraint?.setup(type: Constraint.heightAnchor, actionTo: nil, value: 60)
+        blurInViewConstraint?.setup(type: Constraint.bottomAnchor, actionTo: blurTitleView, value: 0)
+        blurInViewConstraint?.setup(type: Constraint.leadingAnchor, actionTo: blurTitleView, value: 0)
+        blurInViewConstraint?.setup(type: Constraint.trailingAnchor, actionTo: blurTitleView, value: 0)
+        
+        
+        
+        labelTitle = UILabel()
+        labelTitle?.text = "ทดสอบ"
+        //labelTitle?.backgroundColor = UIColor.blue
+        labelTitle!.font = UIFont (name: "TS-SOM TUM-np", size: 52)
+        labelTitle?.textColor = UIColor.darkText
+        labelTitle!.center = (blurTitleView?.contentView.center)!
+        
+        
+        labelTitleConstraint = labelTitle?.setupConstraint()
+        
+        blurInView?.addSubview(labelTitle!)
+        
+        
+        
+        
+        if(appIconImageView != nil){
+            appIconImageView = nil
+        }
+        
+        if(appIconImageView == nil){
+            appIconImageView = UIImageView()
+            appIconImageView?.setStyleImage(cornerRadius: 25)
+            
+            appIconImageView!.image = #imageLiteral(resourceName: "ImageIcon")
+            appIconImageView?.backgroundColor = UIColor.red
+            appIconImageView?.contentMode = .scaleAspectFill
+            
+            appIconImageViewConstraint = appIconImageView?.setupConstraint()
+            
+            //blurInView?.backgroundColor = UIColor.red
+            blurInView?.addSubview(appIconImageView!)
+        }
+        
+        appIconImageViewConstraint?.setup(type: Constraint.centerYAnchor, actionTo: blurInView, value: nil)
+        appIconImageViewConstraint?.setup(type: Constraint.heightAnchor, actionTo: nil, value: 50)
+        appIconImageViewConstraint?.setup(type: Constraint.widthAnchor, actionTo: nil, value: 50)
+        appIconImageViewConstraint?.setup(type: Constraint.leadingAnchor, actionTo: blurInView, value: Int(UIDevice.leftSafeArea()) + 20)
+        
+        
+        
+        
+        
+        
+
+        if(!UIDevice.init().isIpad() && UIDevice.init().isLandscape()){
+            labelTitle!.textAlignment = .left
+
+            
+            labelTitleConstraint?.setup(type: Constraint.centerXAnchor, actionTo: blurInView, value: nil)
+            labelTitleConstraint?.setup(type: Constraint.centerYAnchor, actionTo: blurInView, value: nil)
+            
+            labelTitleConstraint?.setup(type: Constraint.leadingAnchor, actionTo: appIconImageView, value:  50 + 20)
+            labelTitleConstraint?.setup(type: Constraint.trailingAnchor, actionTo: blurInView, value: 20)
+            
+        }else if(!UIDevice.init().isIpad()) {
+            labelTitle!.textAlignment = .center
+
+            labelTitleConstraint?.setup(type: Constraint.centerXAnchor, actionTo: blurInView, value: nil)
+            labelTitleConstraint?.setup(type: Constraint.centerYAnchor, actionTo: blurInView, value: nil)
+            
+            labelTitleConstraint?.setup(type: Constraint.leadingAnchor, actionTo: blurInView, value: 20)
+            labelTitleConstraint?.setup(type: Constraint.trailingAnchor, actionTo: blurInView, value: 20)
+        }else {
+            
+        }
+    
+      
+       
+        
+        
+        
+        /*
+        if(blurTitleView != nil){
+            blurTitleView?.removeFromSuperview()
+            blurTitleView = nil
+        }
+        
+        blurTitleView = UIVisualEffectView()
+        blurTitleView?.frame = CGRect(x: 0,y: 0, width: UIScreen.main.bounds.width, height: UIDevice.topSafeArea() + 64)
+        //blurTitleView?.backgroundColor = UIColor.red.withAlphaComponent(0.4)
+        blurTitleView?.effect = UIBlurEffect(style: .light)
+        
+        
+    
+        //blurTitleView?.backgroundColor = UIColor.blue
+        self.view.addSubview(blurTitleView!)
+        
+        if(blurInViewConstraint == nil){
+            blurInView = UIView()
+            blurInView?.backgroundColor = UIColor.clear
+            blurInViewConstraint = blurInView?.setupConstraint()
+        }
+
+        //blurTitleView?.contentView.addSubview(blurInView!)
+
+        
+        
+        blurInViewConstraint?.setup(type: Constraint.heightAnchor, actionTo: nil, value: 60)
+        blurInViewConstraint?.setup(type: Constraint.bottomAnchor, actionTo: blurTitleView, value: 0)
+        blurInViewConstraint?.setup(type: Constraint.leadingAnchor, actionTo: blurTitleView, value: 0)
+        blurInViewConstraint?.setup(type: Constraint.trailingAnchor, actionTo: blurTitleView, value: 0)
+        
+        
+        if(labelTitleConstraint != nil){
+            labelTitleConstraint = nil
+            labelTitle?.removeFromSuperview()
+        }
+        
+        labelTitle = UILabel()
+        labelTitle?.text = "ทดสอบ"
+        //labelTitle?.backgroundColor = UIColor.red
+        labelTitle!.font = UIFont (name: "TS-SOM TUM-np", size: 52)
+        labelTitle?.textColor = UIColor.darkText
+        labelTitle!.textAlignment = .center
+        labelTitle!.center = (blurTitleView?.contentView.center)!
+        labelTitleConstraint = labelTitle?.setupConstraint()
+        
+
+        
+        //labelTitleConstraint?.setup(type: Constraint.leadingAnchor, actionTo: blurInView, value: 50)
+        //labelTitleConstraint?.setup(type: Constraint.trailingAnchor, actionTo: blurInView, value: 50)
+        
+        blurInView?.addSubview(labelTitle!)
+        
+        labelTitleConstraint?.setup(type: Constraint.centerXAnchor, actionTo: blurInView, value: nil)
+        labelTitleConstraint?.setup(type: Constraint.centerYAnchor, actionTo: blurInView, value: nil)
+        
+        //labelTitleConstraint?.setup(type: Constraint.heightAnchor, actionTo: nil, value: 60)
+        //labelTitleConstraint?.setup(type: Constraint.widthAnchor, actionTo: nil, value: 60)
+        
+        labelTitleConstraint?.setup(type: Constraint.leadingAnchor, actionTo: blurInView, value: 20)
+        labelTitleConstraint?.setup(type: Constraint.trailingAnchor, actionTo: blurInView, value: 20)
+        
+        //print(UIDevice.bottomSafeArea())
+ */
+    }
+    
+    func rotateSafe() {
+        //collectionView!.leadingAnchor(mainView: self.view, length: 0)
+        //collectionView!.trailingAnchor(mainView: self.view, length: 0)
+        //collectionView!.topAnchor(mainView: self.view, length:0)
+        
+        collectionViewConstraint!.setup(type: Constraint.leadingAnchor, actionTo: self.view, value: 0)
+        collectionViewConstraint!.setup(type: Constraint.trailingAnchor, actionTo: self.view, value: 0)
+        collectionViewConstraint!.setup(type: Constraint.topAnchor, actionTo: self.view, value: 0)
+        
+        if(UIDevice.hasNotch()){
+            if(bottomView != nil){
+                bottomView?.removeFromSuperview()
+                bottomViewConstraint = nil
+            }
+            
+            
+            //bottomView = UIView(frame:CGRect(x: 0,y: UIScreen.main.bounds.height - 50, width: UIScreen.main.bounds.width, height: 50))
+            bottomView = UIView()
+            //bottomView!.backgroundColor = UIColor.red
+            self.view.insertSubview(bottomView!, at: 0)
+            bottomViewConstraint = bottomView!.setupConstraint()
+
+        }
+        
+        if(UIDevice.hasNotch()){
+            
+            //bottomView!.configConstraints()
+            //bottomView!.leadingAnchor(mainView: self.view, length: 0)
+            bottomViewConstraint!.setup(type: Constraint.leadingAnchor, actionTo: self.view, value: 0)
+            //bottomView!.trailingAnchor(mainView: self.view, length: 0)
+            bottomViewConstraint!.setup(type: Constraint.trailingAnchor, actionTo: self.view, value: 0)
+            //bottomView!.topAnchor(mainView: self.view, length:0)
+            //bottomView!.heightAnchor(length: 50)
+            bottomViewConstraint!.setup(type: Constraint.heightAnchor, actionTo: nil, value: 50)
+            
+            //bottomView!.bottomAnchor(mainView: self.view, length: 0)
+            bottomViewConstraint!.setup(type: Constraint.bottomAnchor, actionTo: self.view, value: 0)
+            
+            //collectionView!.bottomAnchor(mainView: bottomView!, length: 0)
+            collectionViewConstraint!.setup(type: Constraint.bottomAnchor, actionTo: bottomView!, value: 0)
+            
+        }else {
+            collectionViewConstraint!.setup(type: Constraint.bottomAnchor, actionTo: self.view, value: 0)
+            //collectionView!.bottomAnchor(mainView: self.view, length: 0)
+        }
+        
+      
     }
     
     
@@ -70,42 +355,65 @@ class MainViewController: UIViewController {
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
+        //collectionView!.layer.frame.size.width = UIScreen.main.bounds.width
+        //collectionView!.layer.frame.size.height = UIScreen.main.bounds.height
+        
         if(!UIDevice().isIpad() && UIDevice().isLandscape()){
         
-            langImageLeft.showWithAnimation(duration: 0.1)
+            //langImageLeft.showWithAnimation(duration: 0.1)
             
-            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-            layout.itemSize = CGSize(width: 220, height: menuCollectionView.bounds.height - 20)
+            if(UIDevice.hasNotch()){
+                //collectionView!.layer.frame.size.height = UIScreen.main.bounds.height - ((bottomView!.bounds.height - 20) )
+                //collectionView?.anchor(mainView: bottomView!, top: 0, bottom: 0, leading: 0, trailing: 0)
+                
+                //collectionView!.topAnchor(mainView: self.view, length:20)
+                collectionViewConstraint!.setup(type: Constraint.bottomAnchor, actionTo: bottomView!, value: 0)
+                collectionViewConstraint!.setup(type: Constraint.topAnchor, actionTo: bottomView!, value: 80)
+                
+                layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+                layout.itemSize = CGSize(width: 220, height: collectionView!.bounds.height - 25 - 80)
+                
+                //collectionView!.backgroundColor = UIColor.blue
+                
+
+
+            }else {
+                layout.sectionInset = UIEdgeInsets(top: 120, left: 10, bottom: 40, right: 10)
+                layout.itemSize = CGSize(width: 220, height: collectionView!.bounds.height - 100)
+            }
+            
+            //collectionView!.anchor(mainView: self.view, top: 20, bottom: 0, leading: 20, trailing: 20)
+            
             //layout.itemSize = CGSize(width: 250, height: menuCollectionView.bounds.height - 10)
             layout.scrollDirection = .horizontal
             layout.minimumInteritemSpacing = 0
             layout.minimumLineSpacing = 0
         }else if(!UIDevice().isIpad()) {
-            langImageLeft.hideWithAnimation(duration: 0.0)
+            //langImageLeft.hideWithAnimation(duration: 0.0)
             
-            layout.sectionInset = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
-            layout.itemSize = CGSize(width: menuCollectionView.bounds.width - 20, height: 400)
+            layout.sectionInset = UIEdgeInsets(top: 100, left: 0, bottom: 40, right: 0)
+            layout.itemSize = CGSize(width: collectionView!.bounds.width - 20, height: collectionView!.bounds.height * 0.6)
             //layout.itemSize = CGSize(width: 250, height: menuCollectionView.bounds.height - 10)
             layout.scrollDirection = .vertical
             layout.minimumInteritemSpacing = 50
             layout.minimumLineSpacing = 10
         }else {
             
-            langImageLeft.hideWithAnimation(duration: 0.0)
+            //langImageLeft.hideWithAnimation(duration: 0.0)
             
-            let totalCellWidth = 80 * menuCollectionView.numberOfItems(inSection: 0)
-            let totalSpacingWidth = 10 * (menuCollectionView.numberOfItems(inSection: 0) - 1)
-            let leftInset = (menuCollectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+            let totalCellWidth = 80 * collectionView!.numberOfItems(inSection: 0)
+            let totalSpacingWidth = 10 * (collectionView!.numberOfItems(inSection: 0) - 1)
+            let leftInset = (collectionView!.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
             let rightInset = leftInset
             
             if(UIDevice().isLandscape()){
-                layout.sectionInset = UIEdgeInsets(top: 40, left: leftInset/5.5, bottom: 40, right: rightInset/5.5)
+                layout.sectionInset = UIEdgeInsets(top: 80, left: leftInset/5.5, bottom: 60, right: rightInset/5.5)
             }else {
-                layout.sectionInset = UIEdgeInsets(top: 40, left: leftInset/3, bottom: 40, right: rightInset/3)
+                layout.sectionInset = UIEdgeInsets(top: 80, left: leftInset/3, bottom: 60, right: rightInset/3)
             }
             
             
-            var width = menuCollectionView.bounds.width / 2.5
+            var width = collectionView!.bounds.width / 2.5
             //print(width)
             
             if(width > 300){
@@ -121,8 +429,12 @@ class MainViewController: UIViewController {
         }
         
         layout.invalidateLayout()
-        menuCollectionView.collectionViewLayout = layout
-        menuCollectionView.reloadData()
+        
+        collectionView!.collectionViewLayout = layout
+        collectionView!.reloadData()
+        
+        //menuCollectionView.collectionViewLayout = layout
+        //menuCollectionView.reloadData()
     
 
     }
@@ -131,10 +443,10 @@ class MainViewController: UIViewController {
         
         return [
 
-            MenuStruct(title: "บทเรียน", image: nil,color :primaryColor.colorRedDark,colorBg :primaryColor.color_game_red_dark),
-            MenuStruct(title: "แบบทดสอบ", image: nil,color :primaryColor.color_game_blue,colorBg :primaryColor.color_game_blue_dark),
-            MenuStruct(title: "แข่งขัน", image: nil,color :primaryColor.color_game_green,colorBg :primaryColor.color_game_green_dark),
-            MenuStruct(title: "ตั้งค่า", image: nil,color :primaryColor.color_game_black,colorBg :primaryColor.color_game_black_dark),
+            MenuStruct(title: "บทเรียน", image: nil,imageCover: #imageLiteral(resourceName: "BookMenu") ,color :primaryColor.colorRedDark,colorBg :primaryColor.menuColorBook),
+            MenuStruct(title: "แบบทดสอบ", image: nil,imageCover: nil,color :primaryColor.color_game_blue,colorBg :primaryColor.color_game_blue_dark),
+            MenuStruct(title: "แข่งขัน", image: nil,imageCover: nil,color :primaryColor.color_game_green,colorBg :primaryColor.color_game_green_dark),
+            MenuStruct(title: "ตั้งค่า", image: nil,imageCover: nil,color :primaryColor.color_game_black,colorBg :primaryColor.color_game_black_dark),
             
 
             //MenuStruct(imageBg: nil, title: "หมวดหมู่", image: #imageLiteral(resourceName: "bookshelf"),color :RGBTOCOLOR(red: 186, green: 50, blue: 50, alpha: 255),description :"อุปกรณ์การทดลองวิทยาศาสตร์",colorLabel :UIColor.white),
@@ -154,32 +466,43 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = menuCollectionView.dequeueReusableCell(withReuseIdentifier: "MenuCVC", for: indexPath) as! MenuCVCell
         
+        //let cell = menuCollectionView.dequeueReusableCell(withReuseIdentifier: "MenuCVC", for: indexPath) as! MenuCollectionViewCell
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! MenuCollectionViewCell
+    
+        
+        //print(indexPath.row)
         let slot = data()[indexPath.row]
         
         cell.cellBgView.backgroundColor = slot.colorBg
         cell.cellBgInsideView.backgroundColor = slot.color
         
-        cell.cellTitleLabel.text = slot.title
+        //cell.cellTitleLabel.text = slot.title
 
-        print(menuCollectionView.bounds.width)
+        //print(menuCollectionView.bounds.width)
         
         if(UIDevice.init().isIpad()){
             if(UIDevice.init().isPortrait()){
-                cell.cellTitleLabel.fontSize(size: Int((menuCollectionView.bounds.height / 10 )/1.7))
+                //cell.cellTitleLabel.fontSize(size: Int((menuCollectionView.bounds.height / 10 )/1.7))
             }else {
-                cell.cellTitleLabel.fontSize(size: Int((menuCollectionView.bounds.width / 10 )/1.8))
+                //cell.cellTitleLabel.fontSize(size: Int((menuCollectionView.bounds.width / 10 )/1.8))
             }
         }else {
             if(UIDevice.init().isPortrait()){
-                cell.cellTitleLabel.fontSize(size: Int((menuCollectionView.bounds.height / 10 )/1.2))
+                //cell.cellTitleLabel.fontSize(size: Int((menuCollectionView.bounds.height / 10 )/1.2))
             }else {
-                cell.cellTitleLabel.fontSize(size: Int((menuCollectionView.bounds.width / 10 )/1.7))
+                //cell.cellTitleLabel.fontSize(size: Int((menuCollectionView.bounds.width / 10 )/1.7))
             }
         }
         
         
+        cell.coverImageView.image = slot.imageCover
+    
+      
+        
+        //cell.blurView.bounds.width = width
+        //cell.blurView.bounds.height = height
 
         return cell
     }

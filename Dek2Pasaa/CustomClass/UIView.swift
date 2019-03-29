@@ -3,10 +3,12 @@ import UIKit
 extension UIView {
     
     func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         layer.mask = mask
+        
     }
     
     func hideWithAnimation(duration :Float = 0.2,delay :Float = 0){
@@ -46,9 +48,86 @@ extension UIView {
         layer.cornerRadius = CGFloat(cornerRadius)
     }
     
+    func setAdvanceStyle(maskToBound :Bool = false,shadowRadius :Float,shadowOpacity :Float,positionWidth :Int,positionHeight :Int,cornerRadius :Float) {
+        layer.masksToBounds = maskToBound
+        layer.shadowOffset = CGSize(width: positionWidth, height: positionHeight)
+        layer.shadowRadius = CGFloat(shadowRadius)
+        layer.shadowOpacity = shadowOpacity
+        layer.cornerRadius = CGFloat(cornerRadius)
+    }
+    
     func onClick(tap :UITapGestureRecognizer){
         addGestureRecognizer(tap)
     }
+    
+    func topAnchor(mainView :UIView,length :Int) {
+        //let margin = mainView.layoutMarginsGuide
+        print(topAnchor)
+
+        //topAnchor.constraint(equalTo: margin.topAnchor, constant: CGFloat(length)).isActive = true
+        
+        topAnchor.constraint(equalTo: mainView.topAnchor, constant: CGFloat(length)).isActive = true
+    }
+    
+    func bottomAnchor(mainView :UIView,length :Int) {
+        //let margin = mainView.layoutMarginsGuide
+
+        bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: CGFloat(length)).isActive = true
+    }
+    
+    func leadingAnchor(mainView :UIView,length :Int) {
+        //let margin = mainView.layoutMarginsGuide
+        leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: CGFloat(length)).isActive = true
+        
+      
+    }
+    
+    func trailingAnchor(mainView :UIView,length :Int) {
+        //let margin = mainView.layoutMarginsGuide
+
+        trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: CGFloat(length)).isActive = true
+    }
+    
+    func configConstraints(){
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func widthAnchor(length :Int) {
+        widthAnchor.constraint(equalToConstant: CGFloat(length)).isActive = true
+    }
+    
+    func heightAnchor(length :Int) {
+        heightAnchor.constraint(equalToConstant: CGFloat(length)).isActive = true
+    }
+    
+    func centerXAnchor(mainView :UIView,length :Int) {
+        centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
+    }
+    
+    func centerYAnchor(mainView :UIView,length :Int) {
+        centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true
+    }
+    
+    func anchor(mainView :UIView ,top :Int?,bottom :Int?,leading :Int?,trailing :Int?) {
+        if(top != nil){
+            topAnchor(mainView: mainView, length: top!)
+        }
+        if(bottom != nil){
+            bottomAnchor(mainView: mainView, length: bottom!)
+        }
+        if(leading != nil){
+            leadingAnchor(mainView: mainView, length: leading!)
+        }
+        if(trailing != nil){
+            trailingAnchor(mainView: mainView, length: trailing!)
+        }
+        
+    }
+    
+    func setupConstraint() -> Constraint {
+        return Constraint(view: self)
+    }
+
     
 }
 

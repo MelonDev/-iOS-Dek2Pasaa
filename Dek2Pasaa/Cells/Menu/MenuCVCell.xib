@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,54 +23,17 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="273" height="332"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atp-CA-VMb">
-                        <rect key="frame" x="10" y="2" width="253" height="314"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xro-rh-2kq">
-                                <rect key="frame" x="10" y="10" width="233" height="294"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ข้อความ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb4-f4-Rgu">
-                                        <rect key="frame" x="20" y="236" width="193" height="33"/>
-                                        <fontDescription key="fontDescription" name="TS-SOMTUM-np" family="TS-SOM TUM-np" pointSize="33"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.32458074860000002" blue="0.35504508839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="cb4-f4-Rgu" firstAttribute="leading" secondItem="xro-rh-2kq" secondAttribute="leading" constant="20" id="XYr-81-CP9"/>
-                                    <constraint firstAttribute="trailing" secondItem="cb4-f4-Rgu" secondAttribute="trailing" constant="20" id="jd5-jn-jft"/>
-                                    <constraint firstItem="cb4-f4-Rgu" firstAttribute="centerX" secondItem="xro-rh-2kq" secondAttribute="centerX" id="pPd-2D-PcV"/>
-                                    <constraint firstAttribute="bottom" secondItem="cb4-f4-Rgu" secondAttribute="bottom" constant="25" id="twg-kO-VFH"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.55634254220000001" green="0.97934550050000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" red="0.2901960784" green="0.21176470589999999" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="xro-rh-2kq" secondAttribute="bottom" constant="10" id="E4f-y8-tQB"/>
-                            <constraint firstItem="xro-rh-2kq" firstAttribute="top" secondItem="atp-CA-VMb" secondAttribute="top" constant="10" id="FRY-rg-vbx"/>
-                            <constraint firstItem="xro-rh-2kq" firstAttribute="leading" secondItem="atp-CA-VMb" secondAttribute="leading" constant="10" id="nWH-vu-AcI"/>
-                            <constraint firstAttribute="trailing" secondItem="xro-rh-2kq" secondAttribute="trailing" constant="10" id="xli-Yg-V3S"/>
-                        </constraints>
-                    </view>
-                </subviews>
             </view>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="atp-CA-VMb" secondAttribute="trailing" constant="10" id="8GO-K1-JkC"/>
-                <constraint firstItem="atp-CA-VMb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="AgK-pG-drr"/>
-                <constraint firstItem="atp-CA-VMb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="XRh-GT-FhM"/>
-                <constraint firstAttribute="bottom" secondItem="atp-CA-VMb" secondAttribute="bottom" constant="16" id="ZC9-a4-7Qw"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="273" height="332"/>
-            <connections>
-                <outlet property="cellBgInsideView" destination="xro-rh-2kq" id="L3t-Fi-kqa"/>
-                <outlet property="cellBgView" destination="atp-CA-VMb" id="DgB-GM-TdM"/>
-                <outlet property="cellTitleLabel" destination="cb4-f4-Rgu" id="67Y-QR-63Y"/>
-            </connections>
-            <point key="canvasLocation" x="316" y="280.65967016491754"/>
+            <point key="canvasLocation" x="410" y="152"/>
         </collectionViewCell>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ข้อความ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="YmA-nb-0jF">
+            <rect key="frame" x="0.0" y="0.0" width="213" height="33"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" name="TS-SOMTUM-np" family="TS-SOM TUM-np" pointSize="33"/>
+            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <nil key="highlightedColor"/>
+        </label>
     </objects>
 </document>

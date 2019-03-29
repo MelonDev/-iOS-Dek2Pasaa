@@ -15,4 +15,13 @@ extension UILabel {
         font = font.withSize(CGFloat(size))
     }
     
+    func textDropShadow(maskToBound :Bool = false,positionWidth :Int,positionHeight :Int,shadowRadius :Float,shadowOpacity :Float,color :UIColor = UIColor.black) {
+        layer.masksToBounds = maskToBound
+        layer.shadowRadius = CGFloat(shadowRadius)
+        layer.shadowOpacity = shadowOpacity
+        layer.shadowOffset = CGSize(width: positionWidth, height: positionHeight)
+        
+        layer.shadowColor = color.cgColor
+    }
+    
 }

@@ -9,17 +9,23 @@
 import UIKit
 
 class MenuCVCell: UICollectionViewCell {
-    
-    @IBOutlet weak var cellBgView: UIView!
-    @IBOutlet weak var cellBgInsideView: UIView!
-    @IBOutlet weak var cellTitleLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        /*
         cellBgView.setStyle()
-        cellBgInsideView.setStyle(shadowRadius :0,shadowOpacity :0,cornerRadius :12)
+        cellBgInsideView.setStyle(shadowRadius :0,shadowOpacity :0,cornerRadius :16)
+        coverImageView.setStyleImage(cornerRadius: 16)
+ 
+ */
+        //blurView.roundCorners(corners: [.topLeft, .topRight], radius: 16)
         
+        
+        
+        
+        //gradient.cornerRadius = radius
+        //gradient.maskedCorners = corner
     }
 
 }

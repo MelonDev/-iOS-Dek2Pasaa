@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15504AB8224D00AB000BD2DC /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15504AB6224D00AB000BD2DC /* MenuCollectionViewCell.swift */; };
+		15504AB9224D00AB000BD2DC /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15504AB7224D00AB000BD2DC /* MenuCollectionViewCell.xib */; };
+		15504ABB224D4D87000BD2DC /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15504ABA224D4D87000BD2DC /* Constraint.swift */; };
 		15934D932248256600377349 /* SukhumvitSet.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 15934D912248256600377349 /* SukhumvitSet.ttc */; };
 		15934D942248256600377349 /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15934D922248256600377349 /* UPCarouselFlowLayout.swift */; };
 		15934D9622482A0600377349 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15934D9522482A0600377349 /* UILabel.swift */; };
@@ -61,6 +64,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15504AB6224D00AB000BD2DC /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		15504AB7224D00AB000BD2DC /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		15504ABA224D4D87000BD2DC /* Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
 		15934D912248256600377349 /* SukhumvitSet.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = SukhumvitSet.ttc; sourceTree = "<group>"; };
 		15934D922248256600377349 /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		15934D9522482A0600377349 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
@@ -248,6 +254,7 @@
 				15BB7FE6224801BC00221775 /* PrimaryColor.swift */,
 				15BB7FE82248048100221775 /* Color.swift */,
 				15BB7FFF22480BC500221775 /* AppConfig.swift */,
+				15504ABA224D4D87000BD2DC /* Constraint.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -298,6 +305,8 @@
 			children = (
 				15FFD7B42248B4C500DCCB30 /* MenuCVCell.swift */,
 				15FFD7B52248B4C500DCCB30 /* MenuCVCell.xib */,
+				15504AB6224D00AB000BD2DC /* MenuCollectionViewCell.swift */,
+				15504AB7224D00AB000BD2DC /* MenuCollectionViewCell.xib */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -441,6 +450,7 @@
 				15BB7FAA2247F84000221775 /* Main.storyboard in Resources */,
 				15FFD7BD2248D08C00DCCB30 /* TS-SOM TUM-np.ttf in Resources */,
 				15FFD7B72248B4C500DCCB30 /* MenuCVCell.xib in Resources */,
+				15504AB9224D00AB000BD2DC /* MenuCollectionViewCell.xib in Resources */,
 				15934D932248256600377349 /* SukhumvitSet.ttc in Resources */,
 				15BB7FE42248004900221775 /* GoogleService-Info.plist in Resources */,
 			);
@@ -612,6 +622,7 @@
 				15BB7FEE22480A1C00221775 /* UIView.swift in Sources */,
 				15BB7FA52247F84000221775 /* AppDelegate.swift in Sources */,
 				15FFD7B12248B40800DCCB30 /* MenuString.swift in Sources */,
+				15504AB8224D00AB000BD2DC /* MenuCollectionViewCell.swift in Sources */,
 				15BB7FE92248048100221775 /* Color.swift in Sources */,
 				15BB7FE22247FE7800221775 /* MainViewController.swift in Sources */,
 				15BB7FFE22480B3D00221775 /* StringProtocol.swift in Sources */,
@@ -621,6 +632,7 @@
 				15BB7FF822480AE200221775 /* UIScrollView.swift in Sources */,
 				15BB7FF022480A4800221775 /* UIDevice.swift in Sources */,
 				15934D942248256600377349 /* UPCarouselFlowLayout.swift in Sources */,
+				15504ABB224D4D87000BD2DC /* Constraint.swift in Sources */,
 				15FFD7B62248B4C500DCCB30 /* MenuCVCell.swift in Sources */,
 				15BB800422480E3F00221775 /* UIViewController.swift in Sources */,
 				15FFD7AE2248B29C00DCCB30 /* MenuStruct.swift in Sources */,

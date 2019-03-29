@@ -38,5 +38,7 @@ class PrimaryColor {
     let color_game_black = UIColor.init(rgb: 0x455A64 )
     let color_game_black_dark = UIColor.init(rgb: 0x263238 )
     
+    let menuColorBook = UIColor.init(rgb: 0x815e49)
+    
 }
 

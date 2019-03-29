@@ -7,6 +7,7 @@ struct MenuStruct {
     //let rating: Int?
     let title: String
     let image: UIImage?
+    let imageCover :UIImage?
     let color: UIColor
     let colorBg : UIColor
     //let description: String?

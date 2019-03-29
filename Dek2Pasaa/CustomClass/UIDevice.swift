@@ -159,8 +159,8 @@ public extension UIDevice {
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
         
-        func mapToDevice(identifier: String) -> Bool { // swiftlint:disable:this cyclomatic_complexity
-            #if os(iOS)
+        func mapToDevice(identifier: String) -> Bool {
+            //#if os(iOS)
             switch identifier {
             case "iPod5,1":                                 return false
             case "iPod7,1":                                 return false
@@ -189,10 +189,59 @@ public extension UIDevice {
             default:                                        return true
             }
             
-            #endif
+            //#endif
         }
         
         return mapToDevice(identifier: identifier)
     }()
+    
+    static func hasNotch() -> Bool {
+        if #available(iOS 11.0, *) {
+            let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+            //print(bottom)
+            return bottom > 0
+
+        } else {
+            return false
+        }
+    }
+    
+    static func topSafeArea() -> CGFloat{
+        if #available(iOS 11.0, *) {
+            let top = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
+            return top
+        }else {
+            return 0
+        }
+    }
+    
+    static func bottomSafeArea() -> CGFloat{
+        if #available(iOS 11.0, *) {
+            let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+            //print("bottom \(bottom)")
+            return bottom
+        }else {
+            return 0
+        }
+    }
+    
+    static func leftSafeArea() -> CGFloat{
+        if #available(iOS 11.0, *) {
+            let left = UIApplication.shared.keyWindow?.safeAreaInsets.left ?? 0
+            return left
+        }else {
+            return 0
+        }
+    }
+    
+    static func rightSafeArea() -> CGFloat{
+        if #available(iOS 11.0, *) {
+            let right = UIApplication.shared.keyWindow?.safeAreaInsets.right ?? 0
+            return right
+        }else {
+            return 0
+        }
+    }
+    
     
 }
