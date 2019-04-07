@@ -41,6 +41,11 @@ extension UIViewController {
         view.hero.id = "VIEW"
     }
     
+    func initVC(name :String){
+        hero.isEnabled = true
+        view.hero.id = name.uppercased()
+    }
+    
     func dismissAction(){
         dismiss(animated: true, completion: nil)
     }

@@ -7,19 +7,31 @@ public extension UIDevice {
     }
     
     func isPortrait() -> Bool {
-        switch UIDevice.current.orientation{
-        case .portrait:
+        /*  switch UIDevice.current.orientation{
+         case .portrait:
+         return true
+         case .portraitUpsideDown:
+         return true
+         case .landscapeLeft:
+         return false
+         case .landscapeRight:
+         return false
+         default:
+         return true
+         }
+         */
+        
+        let size = UIScreen.main.bounds.size
+        if size.width < size.height {
             return true
-        case .portraitUpsideDown:
-            return true
-        case .landscapeLeft:
+        } else {
             return false
-        case .landscapeRight:
-            return false
-        default:
-            return true
         }
+        
+        //return UIDevice.current.orientation.isPortrait
     }
+    
+    
     
     func isPortraitUpsideDown() -> Bool {
         if(isPortrait()){
@@ -33,22 +45,31 @@ public extension UIDevice {
             }
             
         } else {
-                return false
+            return false
         }
     }
     
     func isLandscape() -> Bool {
-        switch UIDevice.current.orientation{
-        case .portrait:
+        /*
+         switch UIDevice.current.orientation{
+         case .portrait:
+         return false
+         case .portraitUpsideDown:
+         return false
+         case .landscapeLeft:
+         return true
+         case .landscapeRight:
+         return true
+         default:
+         return false
+         }
+         */
+        //return UIDevice.current.orientation.isLandscape
+        let size = UIScreen.main.bounds.size
+        if size.width < size.height {
             return false
-        case .portraitUpsideDown:
-            return false
-        case .landscapeLeft:
+        } else {
             return true
-        case .landscapeRight:
-            return true
-        default:
-            return false
         }
     }
     
@@ -200,7 +221,7 @@ public extension UIDevice {
             let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
             //print(bottom)
             return bottom > 0
-
+            
         } else {
             return false
         }
@@ -243,5 +264,27 @@ public extension UIDevice {
         }
     }
     
+    func inspectDeviceOrientation() {
+        let orientation = UIDevice.current.orientation
+        switch UIDevice.current.orientation {
+        case .portrait:
+            print("portrait")
+        case .landscapeLeft:
+            print("landscapeLeft")
+        case .landscapeRight:
+            print("landscapeRight")
+        case .portraitUpsideDown:
+            print("portraitUpsideDown")
+        case .faceUp:
+            print("faceUp")
+        case .faceDown:
+            print("faceDown")
+        default: // .unknown
+            print("unknown")
+        }
+        if orientation.isPortrait { print("isPortrait") }
+        if orientation.isLandscape { print("isLandscape") }
+        if orientation.isFlat { print("isFlat") }
+    }
     
 }

@@ -31,6 +31,8 @@ class Constraint {
     static let heightAnchor = "heightAnchor"
     static let centerXAnchor = "centerXAnchor"
     static let centerYAnchor = "centerYAnchor"
+    static let equalWidth = "equalWidth"
+    static let equalHeight = "equalHeight"
 
     
     init(view :UIView) {
@@ -106,6 +108,30 @@ class Constraint {
                 update(type: type, value: value)
             }
             break
+            
+        case Constraint.equalHeight:
+            if(height == nil){
+                if(value != nil){
+                    height = view!.heightAnchor.constraint(equalTo: actionTo!.heightAnchor, multiplier: 1.0)
+                    height!.isActive = true
+                    
+                }
+            }else {
+                update(type: type, value: value)
+            }
+            break
+        case Constraint.equalWidth:
+            if(width == nil){
+                if(value != nil){
+                    width = view!.widthAnchor.constraint(equalTo: actionTo!.widthAnchor, multiplier: 1.0)
+                    width!.isActive = true
+                    
+                }
+            }else {
+                update(type: type, value: value)
+            }
+            break
+            
         case Constraint.centerXAnchor:
             if(centerX == nil){
                 if(actionTo != nil){
@@ -117,6 +143,7 @@ class Constraint {
                 update(type: type, value: value)
             }
             break
+    
         case Constraint.centerYAnchor:
             if(centerY == nil){
                 if(actionTo != nil){

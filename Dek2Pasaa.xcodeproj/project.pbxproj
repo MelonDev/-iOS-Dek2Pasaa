@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151D6990224FC9A80087D26E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D698F224FC9A80087D26E /* ViewController.swift */; };
+		151D6992224FCA4E0087D26E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D6991224FCA4E0087D26E /* GameViewController.swift */; };
+		151D6994224FCCD10087D26E /* CallCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D6993224FCCD10087D26E /* CallCenter.swift */; };
+		154CDE982253743C001DB159 /* NewMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154CDE972253743C001DB159 /* NewMainViewController.swift */; };
 		15504AB8224D00AB000BD2DC /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15504AB6224D00AB000BD2DC /* MenuCollectionViewCell.swift */; };
 		15504AB9224D00AB000BD2DC /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15504AB7224D00AB000BD2DC /* MenuCollectionViewCell.xib */; };
 		15504ABB224D4D87000BD2DC /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15504ABA224D4D87000BD2DC /* Constraint.swift */; };
@@ -64,6 +68,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		151D698F224FC9A80087D26E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		151D6991224FCA4E0087D26E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		151D6993224FCCD10087D26E /* CallCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallCenter.swift; sourceTree = "<group>"; };
+		154CDE972253743C001DB159 /* NewMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMainViewController.swift; sourceTree = "<group>"; };
 		15504AB6224D00AB000BD2DC /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		15504AB7224D00AB000BD2DC /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		15504ABA224D4D87000BD2DC /* Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
@@ -244,6 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				15BB7FE12247FE7800221775 /* MainViewController.swift */,
+				151D6991224FCA4E0087D26E /* GameViewController.swift */,
+				154CDE972253743C001DB159 /* NewMainViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -251,10 +261,12 @@
 		15BB7FE5224801A800221775 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				151D6993224FCCD10087D26E /* CallCenter.swift */,
 				15BB7FE6224801BC00221775 /* PrimaryColor.swift */,
 				15BB7FE82248048100221775 /* Color.swift */,
 				15BB7FFF22480BC500221775 /* AppConfig.swift */,
 				15504ABA224D4D87000BD2DC /* Constraint.swift */,
+				151D698F224FC9A80087D26E /* ViewController.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -618,9 +630,12 @@
 				15BB7FE7224801BC00221775 /* PrimaryColor.swift in Sources */,
 				15BB7FEC2248058700221775 /* UIColor.swift in Sources */,
 				15BB7FAD2247F84000221775 /* Dek2Pasaa.xcdatamodeld in Sources */,
+				151D6992224FCA4E0087D26E /* GameViewController.swift in Sources */,
 				15BB7FFA22480AF500221775 /* UIImageView.swift in Sources */,
 				15BB7FEE22480A1C00221775 /* UIView.swift in Sources */,
 				15BB7FA52247F84000221775 /* AppDelegate.swift in Sources */,
+				154CDE982253743C001DB159 /* NewMainViewController.swift in Sources */,
+				151D6990224FC9A80087D26E /* ViewController.swift in Sources */,
 				15FFD7B12248B40800DCCB30 /* MenuString.swift in Sources */,
 				15504AB8224D00AB000BD2DC /* MenuCollectionViewCell.swift in Sources */,
 				15BB7FE92248048100221775 /* Color.swift in Sources */,
@@ -635,6 +650,7 @@
 				15504ABB224D4D87000BD2DC /* Constraint.swift in Sources */,
 				15FFD7B62248B4C500DCCB30 /* MenuCVCell.swift in Sources */,
 				15BB800422480E3F00221775 /* UIViewController.swift in Sources */,
+				151D6994224FCCD10087D26E /* CallCenter.swift in Sources */,
 				15FFD7AE2248B29C00DCCB30 /* MenuStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

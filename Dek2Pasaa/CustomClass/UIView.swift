@@ -11,6 +11,24 @@ extension UIView {
         
     }
     
+    func newRoundCorners(width :CGFloat,height :CGFloat, corners: UIRectCorner, radius: CGFloat) {
+        
+        print(frame.width)
+        
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = frame
+        //let a = rectShape.bounds
+        //rectShape.bounds.width = width
+        //rectShape.bounds.height = height
+        rectShape.position = center
+        rectShape.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius)).cgPath
+        
+        //layer.backgroundColor = UIColor.green.cgColor
+        //Here I'm masking the textView's layer with rectShape layer
+        layer.mask = rectShape
+        
+    }
+    
     func hideWithAnimation(duration :Float = 0.2,delay :Float = 0){
         UIView.animate(withDuration: TimeInterval(duration), delay: TimeInterval(delay), options: [], animations: {
             self.alpha = 0
@@ -58,6 +76,10 @@ extension UIView {
     
     func onClick(tap :UITapGestureRecognizer){
         addGestureRecognizer(tap)
+    }
+    
+    func onClick(tap :UITapGestureRecognizer,view :UIView){
+        view.addGestureRecognizer(tap)
     }
     
     func topAnchor(mainView :UIView,length :Int) {
