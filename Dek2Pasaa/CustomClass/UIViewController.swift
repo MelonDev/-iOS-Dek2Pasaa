@@ -49,5 +49,14 @@ extension UIViewController {
     func dismissAction(){
         dismiss(animated: true, completion: nil)
     }
+    
+    func alert(title :String?,message :String) {
+        let alert = UIAlertController(title: title != nil ? title! : "Alert", message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        //alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        present(alert, animated: true)
+    }
 
 }

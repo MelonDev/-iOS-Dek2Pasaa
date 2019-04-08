@@ -12,9 +12,11 @@ import CoreData
 import Firebase
 import Firebase
 import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate  {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     var window: UIWindow?
@@ -24,7 +26,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate  {
 
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
+        
+        /*
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+ 
+        try GIDSignIn.sharedInstance().signOut()
+        //try FBSDKLoginManager().logOut()
+        */
+
+        if(Auth.auth().currentUser == nil){
+            let vc = AppConfig.init().requireViewController(storyboard: CallCenter.init().MainStoryboard, viewController: CallCenter.init().LoginViewController) as! LoginViewController
+            
+            self.window?.rootViewController = vc
+        }else {
+            let vc = AppConfig.init().requireViewController(storyboard: CallCenter.init().MainStoryboard, viewController: CallCenter.init().MainViewController) as! MainViewController
+            
+            self.window?.rootViewController = vc
+        }
+        
+        
+        
+        //GIDSignIn.sharedInstance().delegate = self
         
         return true
     }
@@ -36,21 +62,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate  {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        // ...
+        /*print("1")
         if error != nil {
-            // ...
             return
         }
         
         guard let authentication = user.authentication else { return }
-        _ = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
+        
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            if let error = error {
+                // ...
+                return
+            }
+            // User is signed in
+            // ...
+        }
         // ...
+ */
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
         // ...
+        print("2")
+
     }
   
 

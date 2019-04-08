@@ -24,6 +24,9 @@ pod 'Kingfisher', '~> 5.0'
 pod 'CenteredCollectionView'
 pod 'UPCarouselFlowLayout'
 
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+
   target 'Dek2PasaaTests' do
     inherit! :search_paths
     # Pods for testing

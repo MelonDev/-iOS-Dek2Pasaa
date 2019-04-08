@@ -1,4 +1,6 @@
 import UIKit
+import FirebaseAuth
+import FBSDKLoginKit
 
 class MainViewController: UIViewController {
     
@@ -33,12 +35,26 @@ class MainViewController: UIViewController {
     var cellWidth: CGFloat!
     var cellHeight :CGFloat!
     
+    var lastPosition :Int? = nil
+    
+    var langCoreData :LangCoreData? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         self.hero.isEnabled = true
+        
+        self.langCoreData = LangCoreData()
+        
+        
+        
+        
+        //print("UID : \(Auth.auth().currentUser?.uid)")
+        //print("Name : \(Auth.auth().currentUser?.displayName)")
+        
+        
         
         /*
          if(UIDevice().isIpad()){
@@ -91,7 +107,7 @@ class MainViewController: UIViewController {
         
         
         
-        print("Life Cycle : viewDidLoad")
+        //print("Life Cycle : viewDidLoad")
         
         rotateBlur()
         
@@ -119,21 +135,46 @@ class MainViewController: UIViewController {
          */
         
         
+        //print("Lang : \(langCoreData!.now())")
+        
+        //initLangIcon()
+
+        
+        
+        
+        
+        
+    }
+    
+    private func initLangIcon(){
+        labelTitle?.hero.id = "AppName"
+        if(langCoreData!.now() == LangCoreData.Language.Thai){
+            langIconImageView?.image = #imageLiteral(resourceName: "ThaiFlagOn")
+            labelTitle?.text = "เด็กสองภาษา"
+            
+        }else {
+            langIconImageView?.image = #imageLiteral(resourceName: "EngFlagOn")
+            labelTitle?.text = "Dek2Pasaa"
+
+        }
+        
+        collectionView?.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
-        print("Life Cycle : viewDidAppear")
+        //print("Life Cycle : viewDidAppear")
         rotateBlur()
         
         rotateSafe()
         
         rotateLangAction()
+    
         
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        print("Life Cycle : didRotate")
+        //print("Life Cycle : didRotate")
         rotateBlur()
         
         rotateSafe()
@@ -201,13 +242,19 @@ class MainViewController: UIViewController {
             
             appIconImageViewConstraint = appIconImageView?.setupConstraint()
             
+            appIconImageView?.hero.id = "AppIcon"
+            
             //blurInView?.backgroundColor = UIColor.red
             blurInView?.addSubview(appIconImageView!)
             
             
             langIconImageView = UIImageView()
-            langIconImageView!.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(langImageTapped(_:))))
-
+            
+            //langIconImageView!.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(langImageTapped(_:))))
+            
+            blurTitleView!.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(langImageTapped(_:))))
+            
+            
             langIconImageView?.setStyleImage(cornerRadius: 25)
             
             langIconImageView!.image = #imageLiteral(resourceName: "ThaiFlagOn")
@@ -431,6 +478,9 @@ class MainViewController: UIViewController {
     
     func rotateLangAction(){
         
+        initLangIcon()
+
+        
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
@@ -551,10 +601,10 @@ class MainViewController: UIViewController {
         
         return [
             
-            MenuStruct(title: "บทเรียน", image: #imageLiteral(resourceName: "BookMenuIcon"),imageCover: #imageLiteral(resourceName: "BookMenu") ,color :primaryColor.colorRedDark,colorBg :primaryColor.color_game_red_dark),
-            MenuStruct(title: "แบบทดสอบ", image: #imageLiteral(resourceName: "Supplies"),imageCover: #imageLiteral(resourceName: "ExamMenu"),color :primaryColor.color_game_blue,colorBg :primaryColor.color_game_blue_dark),
-            MenuStruct(title: "แข่งขัน", image: #imageLiteral(resourceName: "Muscles"),imageCover: #imageLiteral(resourceName: "ChallengeMenu"),color :primaryColor.color_game_green,colorBg :primaryColor.color_game_green_dark),
-            MenuStruct(title: "ตั้งค่า", image: #imageLiteral(resourceName: "Setting"),imageCover: #imageLiteral(resourceName: "SettingsMenu"),color :primaryColor.color_game_black,colorBg :primaryColor.color_game_black_dark),
+            MenuStruct(titleThai: "บทเรียน",titleEng: "Lessons", image: #imageLiteral(resourceName: "BookMenuIcon"),imageCover: #imageLiteral(resourceName: "BookMenu") ,color :primaryColor.colorRedDark,colorBg :primaryColor.color_game_red_dark),
+            MenuStruct(titleThai: "แบบทดสอบ",titleEng: "Tests", image: #imageLiteral(resourceName: "Supplies"),imageCover: #imageLiteral(resourceName: "ExamMenu"),color :primaryColor.color_game_blue,colorBg :primaryColor.color_game_blue_dark),
+            MenuStruct(titleThai: "แข่งขัน",titleEng: "Competition", image: #imageLiteral(resourceName: "Muscles"),imageCover: #imageLiteral(resourceName: "ChallengeMenu"),color :primaryColor.color_game_green,colorBg :primaryColor.color_game_green_dark),
+            MenuStruct(titleThai: "ตั้งค่า",titleEng: "Settings", image: #imageLiteral(resourceName: "Setting"),imageCover: #imageLiteral(resourceName: "SettingsMenu"),color :primaryColor.color_game_black,colorBg :primaryColor.color_game_black_dark),
             
             
             //MenuStruct(imageBg: nil, title: "หมวดหมู่", image: #imageLiteral(resourceName: "bookshelf"),color :RGBTOCOLOR(red: 186, green: 50, blue: 50, alpha: 255),description :"อุปกรณ์การทดลองวิทยาศาสตร์",colorLabel :UIColor.white),
@@ -563,6 +613,13 @@ class MainViewController: UIViewController {
             
         ]
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        //lastPosition = collectionView.
+        //print(lastPosition)
     }
     
     /*
@@ -624,7 +681,15 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
         cell.cellBgView.backgroundColor = slot.colorBg
         cell.cellBgInsideView.backgroundColor = slot.color
         
-        cell.titleLabel.text = slot.title
+        
+        if(langCoreData?.now() == LangCoreData.Language.Thai){
+            cell.titleLabel.text = slot.titleThai
+
+        }else {
+            cell.titleLabel.text = slot.titleEng
+            
+        }
+        
         
         //cell.titleBgBlur.roundCorners(corners: [.bottomLeft,.bottomRight], radius: 16)
         
@@ -644,7 +709,7 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
             if(UIDevice.init().isPortrait()){
                 cell.titleLabel.fontSize(size: Int((collectionView.bounds.height / 10 )/1.3))
             }else {
-                cell.titleLabel.fontSize(size: Int((collectionView.bounds.width / 10 )/1.8))
+                cell.titleLabel.fontSize(size: Int((collectionView.bounds.width / 10 )/2))
             }
         }
         
@@ -698,7 +763,7 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        if indexPath.row == 0 || indexPath.row == 1 {
+        if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2 {
             //showLoadingDialog()
             
             
@@ -710,7 +775,12 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
             
             vc.bgColor = data()[indexPath.row].color
             vc.toID = indexPath.row
-            vc.titleText = data()[indexPath.row].title
+            if(langCoreData?.now() == LangCoreData.Language.Thai){
+                vc.titleText = data()[indexPath.row].titleThai
+
+            }else {
+                vc.titleText = data()[indexPath.row].titleEng
+            }
             
             
             self.actionVC(this: self, viewController: vc)
@@ -721,14 +791,14 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
              MainConfig().actionNavVC(this: self, viewController: vc)
              */
         }/*else if(indexPath.row == 1){
-         let vc = MainConfig().requireViewController(storyboard: CallCenter.init().AppStoryboard, viewController: CallCenter.init().CategoryViewController) as! CategoryViewController
-         MainConfig().actionVC(this: self, viewController: vc)
-         
-         }else if(indexPath.row == 2){
-         let vc = MainConfig().requireViewController(storyboard: CallCenter.init().AppStoryboard, viewController: CallCenter.init().HistoryViewController) as! HistoryViewController
-         MainConfig().actionVC(this: self, viewController: vc)
-         
-         }*/
+             let vc = MainConfig().requireViewController(storyboard: CallCenter.init().AppStoryboard, viewController: CallCenter.init().CategoryViewController) as! CategoryViewController
+             MainConfig().actionVC(this: self, viewController: vc)
+             
+             }else if(indexPath.row == 2){
+             let vc = MainConfig().requireViewController(storyboard: CallCenter.init().AppStoryboard, viewController: CallCenter.init().HistoryViewController) as! HistoryViewController
+             MainConfig().actionVC(this: self, viewController: vc)
+             
+             }*/
         else {
             showActionSheet()
         }
@@ -737,31 +807,77 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func showActionSheet(){
-        let alertController = UIAlertController(title: "Action Sheet", message: "What would you like to do?", preferredStyle: .actionSheet)
         
-        let sendButton = UIAlertAction(title: "Send now", style: .default, handler: { (action) -> Void in
-            print("Ok button tapped")
+        var title = ""
+        var message = ""
+        var cancel = ""
+        
+        if(langCoreData?.now() == LangCoreData.Language.Thai){
+            title = "ภาษา"
+            message = "กรุณาเลือกภาษาที่คุณต้องการ"
+            cancel = "ยกเลิก"
+        }else {
+            title = "Language"
+            message = "Choose the language you want"
+            cancel = "Cancel"
+        }
+        
+        var alertController :UIAlertController? = nil
+        
+        if(UIDevice().isIpad()){
+            alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+
+        }else {
+            alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+
+        }
+        
+        
+        /*
+         let sendButton = UIAlertAction(title: "Send now", style: .default, handler: { (action) -> Void in
+         
+         })
+         
+         let  deleteButton = UIAlertAction(title: "Delete forever", style: .destructive, handler: { (action) -> Void in
+         print("Delete button tapped")
+         })
+         
+         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+         print("Cancel button tapped")
+         })
+         */
+        
+        
+        
+        let thaiButton = UIAlertAction(title: "ภาษาไทย", style: .default, handler: { (action) -> Void in
+            self.langCoreData?.update(lang: .Thai)
+            self.initLangIcon()
         })
         
-        let  deleteButton = UIAlertAction(title: "Delete forever", style: .destructive, handler: { (action) -> Void in
-            print("Delete button tapped")
+        let englishButton = UIAlertAction(title: "English", style: .default, handler: { (action) -> Void in
+            self.langCoreData?.update(lang: .English)
+            self.initLangIcon()
         })
         
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
-            print("Cancel button tapped")
+        let cancelButton = UIAlertAction(title: cancel, style: .cancel, handler: { (action) -> Void in
         })
         
+        alertController!.addAction(thaiButton)
+        alertController!.addAction(englishButton)
+        alertController!.addAction(cancelButton)
         
-        alertController.addAction(sendButton)
-        alertController.addAction(deleteButton)
-        alertController.addAction(cancelButton)
         
-        self.present(alertController, animated: true, completion: nil)
+        
+        self.present(alertController!, animated: true, completion: nil)
     }
     
     @objc func langImageTapped(_ sender:UITapGestureRecognizer?){
-        print("TAPPED")
+        //print("TAPPED")
+        showActionSheet()
     }
+    
+    
     
     
     

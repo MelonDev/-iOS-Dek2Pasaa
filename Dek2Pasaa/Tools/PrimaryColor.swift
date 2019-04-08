@@ -40,5 +40,7 @@ class PrimaryColor {
     
     let menuColorBook = UIColor.init(rgb: 0x815e49)
     
+    let splashColer = UIColor.init(rgb: 0xfbf39f)
+    
 }
 

@@ -5,7 +5,8 @@ import UIKit
 struct MenuStruct {
     //let imageBg: UIImage?
     //let rating: Int?
-    let title: String
+    let titleThai: String
+    let titleEng:String
     let image: UIImage?
     let imageCover :UIImage?
     let color: UIColor
