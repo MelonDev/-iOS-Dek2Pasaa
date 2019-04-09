@@ -149,6 +149,22 @@ extension UIView {
     func setupConstraint() -> Constraint {
         return Constraint(view: self)
     }
+    
+    func layerGradient(color :[UIColor]) {
+        let layers : CAGradientLayer = CAGradientLayer()
+        //layer.frame.size = self.frame.size
+        //layer.frame.origin = CGPoint(x: 0,y :0)
+        //layer.cornerRadius = CGFloat(frame.width / 20)
+        
+        
+        layers.locations = [0.0 , 1.0]
+        layers.startPoint = CGPoint(x: 0.0, y: 1.0)
+        layers.endPoint = CGPoint(x: 1.0, y: 1.0)
+        layers.frame = CGRect(x: 0.0, y: 0.0, width: frame.size.width, height: frame.size.height)
+        
+        layer.insertSublayer(layers, at: 0)
+        //layer.addSublayer(layer)
+    }
 
     
 }
@@ -171,6 +187,8 @@ extension CACornerMask {
     func bottomRight() -> CACornerMask {
         return CACornerMask.layerMaxXMaxYCorner
     }
+    
+    
     
     
 }

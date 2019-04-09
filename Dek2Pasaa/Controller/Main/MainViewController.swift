@@ -774,7 +774,9 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
             let vc = AppConfig.init().requireViewController(storyboard: CallCenter.init().MainStoryboard, viewController: CallCenter.init().GameViewController) as! GameViewController
             
             vc.bgColor = data()[indexPath.row].color
+            vc.bgColorDark = data()[indexPath.row].colorBg
             vc.toID = indexPath.row
+            vc.id = indexPath.row
             if(langCoreData?.now() == LangCoreData.Language.Thai){
                 vc.titleText = data()[indexPath.row].titleThai
 

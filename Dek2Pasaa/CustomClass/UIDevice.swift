@@ -216,6 +216,44 @@ public extension UIDevice {
         return mapToDevice(identifier: identifier)
     }()
     
+    static let isFourInch: Bool = {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        
+        func mapToDevice(identifier: String) -> Bool {
+            //#if os(iOS)
+            
+            var iden = identifier
+            
+            if iden.contains("i386") || iden.contains("x86_64"){
+                iden = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"
+            }
+            
+            
+            switch iden {
+            case "iPod5,1":                                 return true
+            case "iPod7,1":                                 return true
+            case "iPhone3,1", "iPhone3,2", "iPhone3,3":     return true
+            case "iPhone4,1":                               return true
+            case "iPhone5,1", "iPhone5,2":                  return true
+            case "iPhone5,3", "iPhone5,4":                  return true
+            case "iPhone6,1", "iPhone6,2":                  return true
+            case "iPhone8,4":                               return true
+            default:                                        return false
+            }
+            
+            
+            //#endif
+        }
+        
+        return mapToDevice(identifier: identifier)
+    }()
+    
     static func hasNotch() -> Bool {
         if #available(iOS 11.0, *) {
             let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
