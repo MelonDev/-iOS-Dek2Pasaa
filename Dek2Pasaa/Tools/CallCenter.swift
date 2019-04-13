@@ -20,6 +20,8 @@ class CallCenter {
     let MainViewController :String = "MainVC"
     
     let GameViewController :String = "GameVC"
+    let LessonViewController :String = "LessonVC"
+
     let LoginViewController :String = "LoginVC"
     
     //let ScanViewController :String = "ScanVC"

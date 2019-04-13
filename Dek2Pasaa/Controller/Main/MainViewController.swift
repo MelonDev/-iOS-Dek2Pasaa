@@ -496,7 +496,7 @@ class MainViewController: UIViewController {
             
             //langImageLeft.showWithAnimation(duration: 0.1)
             //print("1")
-            if(UIDevice.isNotch){
+            if(UIDevice.hasNotch()){
                 //collectionView!.layer.frame.size.height = UIScreen.main.bounds.height - ((bottomView!.bounds.height - 20) )
                 //collectionView?.anchor(mainView: bottomView!, top: 0, bottom: 0, leading: 0, trailing: 0)
                 
@@ -515,7 +515,7 @@ class MainViewController: UIViewController {
                 
                 
                 layout.sectionInset = UIEdgeInsets(top: 30, left: 10, bottom: 0, right: 10)
-                layout.itemSize = CGSize(width: 220, height: collectionView!.bounds.height - 25 - 90)
+                layout.itemSize = CGSize(width: 220, height: collectionView!.bounds.height - 25 - 80)
                 
                 
                 

@@ -14,7 +14,6 @@ class GameViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scoreView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     var loadingAlert :UIAlertController? = nil
     
@@ -31,6 +30,7 @@ class GameViewController: UIViewController {
     
     var isInitCollectionView = false
     var lessonKey :String? = nil
+    
     
     
     var langCoreData :LangCoreData? = nil
@@ -50,8 +50,10 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
         self.langCoreData = LangCoreData()
         initBackBtn()
+        
         
         
         self.scoreView.layer.cornerRadius = self.scoreView.bounds.height / 2
@@ -63,12 +65,24 @@ class GameViewController: UIViewController {
         self.scoreLabel.text = ""
         self.scoreView.isHidden = true
         
+        self.contentView.hero.id = "CONTENT_VIEW"
+        
         
         
         setUpCollectionView()
         isInitCollectionView = true
-        loadFirebase()
         
+        run(after: 0, completion: {
+            self.showLoadingAlert()
+        })
+        
+        run(after: 1, completion: {
+            self.loadFirebase()
+            })
+        
+        run(after: 5, completion: {
+            self.hideLoadingAlert()
+        })
         
         
         
@@ -91,7 +105,13 @@ class GameViewController: UIViewController {
         
         
         self.initVC(name: "VIEW_\(toID ?? 0)")
-        self.titleLabel.hero.id = "TITLE_\(toID ?? 0)"
+        
+        if self.id == 0 || self.id == 1 {
+            self.titleLabel.hero.id = "TITLE_\(toID ?? 0)"
+        }
+        
+        self.backBtn.hero.id = "BACK_\(self.id! + 10)"
+        
         
         self.titleLabel.text = titleText != nil ? titleText : ""
         
@@ -172,6 +192,7 @@ class GameViewController: UIViewController {
             
             self.scoreView.isHidden = false
             if(LangCoreData().now() == LangCoreData.Language.Thai){
+                
                 self.scoreLabel.text = "\(self.score ?? 0) คะแนน"
                 
             }else {
@@ -182,15 +203,14 @@ class GameViewController: UIViewController {
     
     func showLoadingAlert() {
         //print("asfjwaefijdfgsdafgk,")
-        
-        loadingAlert = UIAlertController(title: "TEST" , message:"Loading", preferredStyle: .alert)
-        
+
+        loadingAlert = UIAlertController(title: nil , message:"Loading..", preferredStyle: .alert)
         
         if(LangCoreData().now() == LangCoreData.Language.Thai){
-            loadingAlert?.message = "กำลังโหลดข้อมูล"
+            loadingAlert?.message = "กำลังโหลดข้อมูล.."
             //loadingAlert = UIAlertController(title: nil , message:"กำลังโหลดข้อมูล", preferredStyle: .alert)
         }else {
-            loadingAlert?.message = "Loading"
+            loadingAlert?.message = "Loading.."
             
         }
         
@@ -207,21 +227,36 @@ class GameViewController: UIViewController {
     }
     
     func hideLoadingAlert() {
+
         loadingAlert?.dismissAction()
+        
     }
     
     func loadFirebase() {
         
         //showLoadingAlert()
         
+        //Database.database().isPersistenceEnabled = true
+        
         let ref = Database.database().reference()
+        //ref.keepSynced(true)
         //self.showLoadingDialog()
         
-        self.indicator.isHidden = false
+        
+        let group = DispatchGroup()
+        group.enter() // wait
+        
+        var notLoad = false
+
+        
+        
         
         
         if self.id! == 0 || self.id! == 1 {
             
+            
+            
+            //self.showLoadingAlert()
             
             
             ref.child("Lessons").observe(.value, with: {(snapshot) in
@@ -229,7 +264,11 @@ class GameViewController: UIViewController {
                 
                 self.data.removeAll()
                 
+
+                
                 if(snapshot.hasChildren()){
+                    
+                    
                     
                     for lesson in snapshot.children {
                         let lessonDataSnapshot = lesson as! DataSnapshot
@@ -238,30 +277,48 @@ class GameViewController: UIViewController {
                         
                         let value = LessonInfo.init(slot: (lessonDataSnapshot.childSnapshot(forPath: "Info").value as! [String: AnyObject]))
                         
-                        if !value.delete {
+                        if !value.delete && value.status.contains("RELEASE") {
                             self.data.append(value)
                         }
                         
                         
                     }
                     
-                    self.data.sorted(by: { $0.number < $1.number })
                     
+                    
+                    self.data = self.data.sorted(by: { $0.number < $1.number })
+                    
+                    //self.hideLoadingAlert()
+                    
+
                     self.collectionView.reloadData()
                     self.dataCache = [:]
                     
-                    self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+                    if UIDevice().isPortrait(){
+                        self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+                    }else {
+                        self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+
+                    }
                     
                     
                     
                     
+                } else {
+                    notLoad = true
                 }
+                group.leave()
+
                 
             })
+            
+            
+            
         } else if(self.id == 10){
             ref.child("Lessons").child(lessonKey!).child("Words").observe(.value, with: {(snapshot) in
                 //self.stopLoadingDialog()
                 self.dataWord.removeAll()
+                
                 if(snapshot.hasChildren()){
                     
                     for lesson in snapshot.children {
@@ -278,18 +335,26 @@ class GameViewController: UIViewController {
                         
                     }
                     
-                    self.dataWord.sorted(by: { $0.number < $1.number })
+                    self.dataWord = self.dataWord.sorted(by: { $0.number < $1.number })
                     
+                    //self.hideLoadingAlert()
                     
                     self.collectionView.reloadData()
                     self.dataCache = [:]
                     
-                    self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+                    if UIDevice().isPortrait(){
+                        self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+                    }else {
+                        self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+                        
+                    }
                     
                     
-                    
+                }else {
+                    notLoad = true
                 }
-                
+                group.leave()
+
             })
         } else if(self.id == 11){
             ref.child("Lessons").child(lessonKey!).child("Tests").observe(.value, with: {(snapshot) in
@@ -313,7 +378,7 @@ class GameViewController: UIViewController {
                         
                     }
                     
-                    self.dataTest.sorted(by: { $0.number < $1.number })
+                    self.dataTest = self.dataTest.sorted(by: { $0.number < $1.number })
                     
                     let uid = "FyDDLisKFcgAifEAXbuILau40cC2"
                     //let uid = Auth.auth().currentUser!.uid
@@ -340,11 +405,17 @@ class GameViewController: UIViewController {
                             }
                             
                         }
+                        //self.hideLoadingAlert()
+                        
                         self.collectionView.reloadData()
                         self.dataCache = [:]
                         
-                        self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
-                        
+                        if UIDevice().isPortrait(){
+                            self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+                        }else {
+                            self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+                            
+                        }
                     })
                     
                     
@@ -352,9 +423,36 @@ class GameViewController: UIViewController {
                     
                     
                     
+                }else {
+                    notLoad = true
                 }
+                group.leave()
+
                 
             })
+        } else {
+            notLoad = true
+            group.leave()
+        }
+        group.notify(queue: .main) {
+            self.hideLoadingAlert()
+            if notLoad {
+                
+                if(LangCoreData.init().now() == LangCoreData.Language.Thai){
+                    //self.backBtn.titleLabel?.text = "ย้อนกลับ"
+                    self.showDialog(title: "ไม่พบข้อมูล", message: "กรุณาเช็คการเชื่อมต่ออีกครั้ง หรือ ติดต่อผู้ดูแลเพื่อขอคำแนะนำ", positiveString: "รับทราบ", completion: {
+                        self.dismissAction()
+                    })
+
+                }else {
+                    //self.backBtn.titleLabel?.text = "BACK"
+                    self.showDialog(title: "Data not found", message: "Please check the connection again or contact the administrator for advice", positiveString: "OK", completion: {
+                        self.dismissAction()
+                    })
+
+                }
+            }
+            //print("FINISH")
         }
     }
     
@@ -367,6 +465,7 @@ class GameViewController: UIViewController {
         
         if self.id == 11 {
             collectionView!.register(UINib.init(nibName: "TestCVCell", bundle: nil), forCellWithReuseIdentifier: "GameCVC")
+            collectionView!.register(UINib.init(nibName: "TestStarCVCell", bundle: nil), forCellWithReuseIdentifier: "GameCVCS")
         }else {
             collectionView!.register(UINib.init(nibName: "GameCVCell", bundle: nil), forCellWithReuseIdentifier: "GameCVC")
             
@@ -381,6 +480,13 @@ class GameViewController: UIViewController {
         //collectionView!.collectionViewLayout = layout
         //collectionView!.reloadData()
         
+    }
+    
+    func run(after second:Int,completion :@escaping () -> Void) {
+        let deadline = DispatchTime.now() + .seconds(second)
+        DispatchQueue.main.asyncAfter(deadline: deadline){
+            completion()
+        }
     }
     
     func configCollectionView() {
@@ -410,17 +516,19 @@ class GameViewController: UIViewController {
                 }
             } else if(!UIDevice().isIpad() && UIDevice().isLandscape()){
                 
-                if(UIDevice.isNotch){
+                if(UIDevice.hasNotch()){
+                    
                     layout.sectionInset = UIEdgeInsets(top: 20, left: 30, bottom: 30, right: 30)
-                    layout.itemSize = CGSize(width: 110, height: (collectionView!.bounds.height / 2) - 40)
+                    layout.itemSize = CGSize(width: 110, height: (collectionView!.bounds.height / 2.6))
                     
                 }else {
+                    
                     layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
-                    layout.itemSize = CGSize(width: 110, height: (collectionView!.bounds.height / 2) - 30)
+                    layout.itemSize = CGSize(width: 100, height: (collectionView!.bounds.height / 2.5))
                 }
                 
                 layout.scrollDirection = .horizontal
-                layout.minimumInteritemSpacing = 0
+                layout.minimumInteritemSpacing = 10
                 layout.minimumLineSpacing = 20
                 
             }else if(UIDevice().isIpad()) {
@@ -465,7 +573,7 @@ class GameViewController: UIViewController {
         }else {
             if(!UIDevice().isIpad() && UIDevice().isLandscape()){
                 
-                if(UIDevice.isNotch){
+                if(UIDevice.hasNotch()){
                     layout.sectionInset = UIEdgeInsets(top: 10, left: 30, bottom: 20, right: 30)
                     layout.itemSize = CGSize(width: 220, height: collectionView!.bounds.height - 25 - 30)
                     
@@ -520,8 +628,12 @@ class GameViewController: UIViewController {
         
         collectionView.isHidden = false
         
-        self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
-        
+        if UIDevice().isPortrait(){
+            self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+        }else {
+            self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+            
+        }
         
     }
     
@@ -529,13 +641,14 @@ class GameViewController: UIViewController {
         super.viewWillAppear(false)
         
         initBackBtn()
+        rotateOtherConfig()
+       
+        
+       
         
     }
     
-    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        //print("Life Cycle : didRotate")
-        configCollectionView()
-        
+    fileprivate func rotateOtherConfig() {
         if UIDevice().isIpad() || UIDevice().isLandscape(){
             if score == nil {
                 loadScore()
@@ -552,8 +665,21 @@ class GameViewController: UIViewController {
             self.backBtn.isHidden = true
             
         }
+    }
+    
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        //print("Life Cycle : didRotate")
+        configCollectionView()
         
-        self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+        rotateOtherConfig()
+        
+        if UIDevice().isPortrait(){
+            self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+        }else {
+            self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+            
+        }
+        
     }
     
     
@@ -596,6 +722,18 @@ class GameViewController: UIViewController {
         self.dismissAction()
     }
     
+    func showDialog(title :String,message :String,positiveString :String ,completion :@escaping () -> Void){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let actionPositive = UIAlertAction(title: positiveString, style: .cancel, handler: { (action) -> Void in
+            alert.dismissAction()
+            completion()
+        })
+        //let actionNegative = UIAlertAction(title: "English", style: .default, handler: { (action) -> Void in
+        //})
+        
+        alert.addAction(actionPositive)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
 }
@@ -603,15 +741,17 @@ class GameViewController: UIViewController {
 extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if(self.isInitCollectionView){
-            self.indicator.isHidden = true
-        }
+    
+        
         
         if self.id == 10 {
+            
             return dataWord.count
         }else if self.id == 11{
+            
             return dataTest.count
         }else {
+            
             return data.count
         }
     }
@@ -621,35 +761,40 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
         //let cell = menuCollectionView.dequeueReusableCell(withReuseIdentifier: "MenuCVC", for: indexPath) as! MenuCollectionViewCell
         
         if self.id == 11 {
-            var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCVC", for: indexPath) as! TestCVCell
+            
+            
+            var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCVC", for: indexPath)
             
             let slot = dataTest[indexPath.row]
             
-            cell = cellAction(cell: cell, action: .Close)
+            cell = cellAction(cell: cell, indexPath: indexPath, action: .Close)
             
             let a = dataCheck[slot.key]
             let bool :Bool = dataCheck[slot.key] == nil ? false : true
+            
+            //var type :Int = 0
             
             
             if indexPath.row == 0 {
                 if a != nil {
                     if a!.passed {
-                        cell = cellAction(cell: cell, action: .Passed)
-                        
+                        cell = cellPassed(cell: cell, indexPath: indexPath)
+                        //type = 1
                     }else if a!.opened {
-                        cell = cellAction(cell: cell, action: .Open)
-                        
+                        cell = cellAction(cell: cell, indexPath: indexPath, action: .Open)
+                        //type = 0
                     }else {
                         if a!.failed {
-                            cell = cellAction(cell: cell, action: .Open)
-                            
+                            cell = cellAction(cell: cell, indexPath: indexPath, action: .Open)
+                            //type = 0
                         } else {
-                            cell = cellAction(cell: cell, action: .Close)
-                            
+                            cell = cellAction(cell: cell, indexPath: indexPath, action: .Close)
+                            //type = 0
                         }
                     }
                 }else {
-                    cell = cellAction(cell: cell, action: .Open)
+                    cell = cellAction(cell: cell, indexPath: indexPath, action: .Open)
+                    //type = 0
                 }
             } else {
                 
@@ -666,7 +811,8 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                         
                         if co == 0 {
                             if lock {
-                                cell = cellAction(cell: cell, action: .Close)
+                                cell = cellAction(cell: cell, indexPath: indexPath, action: .Close)
+                                //type = 0
                             } else {
                                 let lastPositionKey :TestInfo? = dataTest[indexPath.row - 1]
                                 if lastPositionKey != nil {
@@ -676,31 +822,45 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                                     if bool {
                                         let it = dataCheck[slot.key]
                                         if it!.passed {
-                                            cell = cellAction(cell: cell, action: .Passed)
+                                            cell = cellPassed(cell: cell, indexPath: indexPath)
+                                            //type = 1
+                                            
                                         }else if it!.opened {
-                                            cell = cellAction(cell: cell, action: .Open)
+                                            cell = cellAction(cell: cell, indexPath: indexPath, action: .Open)
+                                            //type = 0
+                                            
                                         }else {
                                             if it!.failed {
-                                                cell = cellAction(cell: cell, action: .Open)
+                                                cell = cellAction(cell: cell, indexPath: indexPath, action: .Open)
+                                                //type = 0
+                                                
                                             }else {
-                                                cell = cellAction(cell: cell, action: .Close)
-
+                                                cell = cellAction(cell: cell, indexPath: indexPath, action: .Close)
+                                                // type = 0
+                                                
+                                                
                                             }
                                         }
                                     }else if lastBool {
                                         let it = dataCheck[lastPositionKey!.key]
                                         if !it!.passed {
-                                            cell = cellAction(cell: cell, action: .Close)
-
+                                            cell = cellAction(cell: cell, indexPath: indexPath, action: .Close)
+                                            //type = 0
+                                            
+                                            
                                         }else {
-                                            cell = cellAction(cell: cell, action: .Open)
-
+                                            cell = cellAction(cell: cell, indexPath: indexPath, action: .Open)
+                                            //type = 0
+                                            
+                                            
                                         }
                                     } else {
-                                        cell = cellAction(cell: cell, action: .Close)
-
+                                        cell = cellAction(cell: cell, indexPath: indexPath, action: .Close)
+                                        //type = 0
+                                        
+                                        
                                     }
-
+                                    
                                     
                                 }
                                 
@@ -733,22 +893,16 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
             //cell.viewBg.backgroundColor = bgColorDark
             //cell.titleLabel.textColor = UIColor.white.withAlphaComponent(1)
             
-            cell.titleLabel.text = "\(indexPath.row + 1)"
+            /*
+             if type == 0 {
+             
+             cell = cell as! TestCVCell
+             
+             
+             }
+             */
             
-            if(UIDevice.init().isIpad()){
-                
-                if(UIDevice.init().isPortrait()){
-                    cell.titleLabel.fontSize(size: Int((collectionView.bounds.height / 8 )/1))
-                }else {
-                    cell.titleLabel.fontSize(size: Int((collectionView.bounds.width / 9 )/1))
-                }
-            }else {
-                if(UIDevice.init().isPortrait()){
-                    cell.titleLabel.fontSize(size: Int((collectionView.bounds.height / 8 )/1))
-                }else {
-                    cell.titleLabel.fontSize(size: Int((collectionView.bounds.width / 10 )/1))
-                }
-            }
+
             
             
             
@@ -822,6 +976,7 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                             cell.imageView.image = image
                             
                             
+                            
                         }
                     }
                 }
@@ -854,6 +1009,8 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                             
                             cell.imageView.image = image
                             
+
+                            
                             
                         }
                         
@@ -874,26 +1031,72 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
         case Passed
     }
     
-    func cellAction(cell :TestCVCell,action :Action) -> TestCVCell{
+    func cellAction(cell :Any,indexPath :IndexPath,action :Action) -> TestCVCell{
         //0 = Close
         //1 = Open
         //2 = Passed
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCVC", for: indexPath) as! TestCVCell
+        
         if action == .Passed {
-            cell.viewBg.backgroundColor = UIColor.yellow
-            cell.titleLabel.textColor = UIColor.black
-            return cell
+            //cell.viewBg.backgroundColor = UIColor.yellow
+            //cell.titleLabel.textColor = UIColor.black
         }else if action == .Open {
             cell.viewBg.backgroundColor = UIColor.white
-            cell.titleLabel.textColor = bgColorDark
-            return cell
+            //cell.titleLabel.textColor = bgColorDark
             
         }else {
             cell.viewBg.backgroundColor = bgColorDark
             cell.titleLabel.textColor = UIColor.white
-            return cell
             
         }
         
+        cell.titleLabel.text = "\(indexPath.row + 1)"
+        
+        
+        
+        if(UIDevice.init().isIpad()){
+            
+            if(UIDevice.init().isPortrait()){
+                cell.titleLabel.fontSize(size: Int((collectionView.bounds.height / 8 )/1))
+            }else {
+                cell.titleLabel.fontSize(size: Int((collectionView.bounds.width / 9 )/1))
+            }
+        }else {
+            if(UIDevice.init().isPortrait()){
+                cell.titleLabel.fontSize(size: Int((collectionView.bounds.height / 8 )/1))
+            }else {
+                cell.titleLabel.fontSize(size: Int((collectionView.bounds.width / 10 )/1.2))
+            }
+        }
+        
+        return cell
+        
+    }
+    
+    
+    func cellPassed(cell :Any,indexPath :IndexPath) -> TestStarCVCell {
+        //var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCVC", for: indexPath)
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCVCS", for: indexPath) as! TestStarCVCell
+        
+        cell.titleLabel.text = "\(indexPath.row + 1)"
+        
+        if(UIDevice.init().isIpad()){
+            
+            if(UIDevice.init().isPortrait()){
+                cell.titleLabel.fontSize(size: Int((collectionView.bounds.height / 8 )/1))
+            }else {
+                cell.titleLabel.fontSize(size: Int((collectionView.bounds.width / 9 )/1))
+            }
+        }else {
+            if(UIDevice.init().isPortrait()){
+                cell.titleLabel.fontSize(size: Int((collectionView.bounds.height / 8 )/1))
+            }else {
+                cell.titleLabel.fontSize(size: Int((collectionView.bounds.width / 10 )/1.2))
+            }
+        }
+        
+        return cell
     }
     
     
@@ -902,6 +1105,9 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
         
         if self.id! == 0 || self.id! == 1 {
             let vc = AppConfig.init().requireViewController(storyboard: CallCenter.init().MainStoryboard, viewController: CallCenter.init().GameViewController) as! GameViewController
+            
+            self.titleLabel.hero.id = "BACK_\(self.id! + 10)"
+            //self.backBtn.hero.id = "BACK_\(CallCenter.init().GameViewController)"
             
             vc.bgColor = bgColor
             vc.bgColorDark = bgColorDark
@@ -914,6 +1120,48 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                 
             }else {
                 vc.titleText = data[indexPath.row].nameEng
+            }
+            
+            
+            self.actionVC(this: self, viewController: vc)
+            
+        } else if self.id! == 10 || self.id! == 11 {
+            
+            let vc = AppConfig.init().requireViewController(storyboard: CallCenter.init().MainStoryboard, viewController: CallCenter.init().LessonViewController) as! LessonViewController
+            
+            vc.view.backgroundColor = bgColorDark
+            vc.contentView.backgroundColor = bgColor
+            vc.contentViewSafe.backgroundColor = bgColor
+            
+            if(langCoreData!.now() == LangCoreData.Language.Thai){
+                //self.backBtn.titleLabel?.text = "ย้อนกลับ"
+                vc.backBtn.setTitle("ย้อนกลับ", for: .normal)
+                
+            }else {
+                //self.backBtn.titleLabel?.text = "BACK"
+                vc.backBtn.setTitle("BACK", for: .normal)
+                
+            }
+            
+            self.titleLabel.hero.id = "BACK_\(CallCenter.init().LessonViewController)"
+            
+            //vc.bgColor = data()[indexPath.row].color
+            //vc.bgColorDark = data()[indexPath.row].colorBg
+            //vc.toID = indexPath.row
+            //vc.id = indexPath.row
+            /* if(langCoreData?.now() == LangCoreData.Language.Thai){
+                vc.titleText = data()[indexPath.row].titleThai
+                
+            }else {
+                vc.titleText = data()[indexPath.row].titleEng
+            }*/
+            
+            if self.id! == 10 {
+                vc.choiceView.isHidden = true
+                vc.navigatorPageView.isHidden = false
+            }else if self.id! == 11 {
+                vc.choiceView.isHidden = false
+                vc.navigatorPageView.isHidden = true
             }
             
             

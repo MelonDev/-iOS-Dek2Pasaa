@@ -10,6 +10,10 @@
 		151D6990224FC9A80087D26E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D698F224FC9A80087D26E /* ViewController.swift */; };
 		151D6992224FCA4E0087D26E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D6991224FCA4E0087D26E /* GameViewController.swift */; };
 		151D6994224FCCD10087D26E /* CallCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D6993224FCCD10087D26E /* CallCenter.swift */; };
+		153D7C2D225DFD6600DC6AFD /* TestStarCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D7C2B225DFD6600DC6AFD /* TestStarCVCell.swift */; };
+		153D7C2E225DFD6600DC6AFD /* TestStarCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153D7C2C225DFD6600DC6AFD /* TestStarCVCell.xib */; };
+		153D7C302260DFB700DC6AFD /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D7C2F2260DFB700DC6AFD /* LessonViewController.swift */; };
+		153D7C32226165FD00DC6AFD /* LessonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D7C31226165FD00DC6AFD /* LessonTableViewCell.swift */; };
 		154CDE982253743C001DB159 /* NewMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154CDE972253743C001DB159 /* NewMainViewController.swift */; };
 		15504AB8224D00AB000BD2DC /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15504AB6224D00AB000BD2DC /* MenuCollectionViewCell.swift */; };
 		15504AB9224D00AB000BD2DC /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15504AB7224D00AB000BD2DC /* MenuCollectionViewCell.xib */; };
@@ -86,6 +90,10 @@
 		151D698F224FC9A80087D26E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		151D6991224FCA4E0087D26E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		151D6993224FCCD10087D26E /* CallCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallCenter.swift; sourceTree = "<group>"; };
+		153D7C2B225DFD6600DC6AFD /* TestStarCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStarCVCell.swift; sourceTree = "<group>"; };
+		153D7C2C225DFD6600DC6AFD /* TestStarCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestStarCVCell.xib; sourceTree = "<group>"; };
+		153D7C2F2260DFB700DC6AFD /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
+		153D7C31226165FD00DC6AFD /* LessonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTableViewCell.swift; sourceTree = "<group>"; };
 		154CDE972253743C001DB159 /* NewMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMainViewController.swift; sourceTree = "<group>"; };
 		15504AB6224D00AB000BD2DC /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		15504AB7224D00AB000BD2DC /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -311,6 +319,7 @@
 				15BB7FE12247FE7800221775 /* MainViewController.swift */,
 				151D6991224FCA4E0087D26E /* GameViewController.swift */,
 				154CDE972253743C001DB159 /* NewMainViewController.swift */,
+				153D7C2F2260DFB700DC6AFD /* LessonViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -388,6 +397,9 @@
 				15E63AD3225BA64E00B6AF33 /* ChoiceCVCell.xib */,
 				1593A3E7225D1CD20023CD6D /* TestCVCell.swift */,
 				1593A3E8225D1CD20023CD6D /* TestCVCell.xib */,
+				153D7C2B225DFD6600DC6AFD /* TestStarCVCell.swift */,
+				153D7C2C225DFD6600DC6AFD /* TestStarCVCell.xib */,
+				153D7C31226165FD00DC6AFD /* LessonTableViewCell.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -528,6 +540,7 @@
 				15E63AD1225BA63000B6AF33 /* GameCVCell.xib in Resources */,
 				15FFD7BF2248D08C00DCCB30 /* TS-Som tum-B-NP.ttf in Resources */,
 				15BB7FAF2247F84100221775 /* Assets.xcassets in Resources */,
+				153D7C2E225DFD6600DC6AFD /* TestStarCVCell.xib in Resources */,
 				15FFD7BE2248D08C00DCCB30 /* TS-Som tum -A-NP.ttf in Resources */,
 				15E63AD5225BA64E00B6AF33 /* ChoiceCVCell.xib in Resources */,
 				15BB7FAA2247F84000221775 /* Main.storyboard in Resources */,
@@ -712,6 +725,7 @@
 				15BB7FEC2248058700221775 /* UIColor.swift in Sources */,
 				15BB7FAD2247F84000221775 /* Dek2Pasaa.xcdatamodeld in Sources */,
 				151D6992224FCA4E0087D26E /* GameViewController.swift in Sources */,
+				153D7C302260DFB700DC6AFD /* LessonViewController.swift in Sources */,
 				15BB7FFA22480AF500221775 /* UIImageView.swift in Sources */,
 				15BB7FEE22480A1C00221775 /* UIView.swift in Sources */,
 				15BB7FA52247F84000221775 /* AppDelegate.swift in Sources */,
@@ -719,7 +733,9 @@
 				151D6990224FC9A80087D26E /* ViewController.swift in Sources */,
 				1593A3DD225BEDD70023CD6D /* LessonInfo.swift in Sources */,
 				1593A3EE225D3AEB0023CD6D /* TestCheck.swift in Sources */,
+				153D7C2D225DFD6600DC6AFD /* TestStarCVCell.swift in Sources */,
 				15FFD7B12248B40800DCCB30 /* MenuString.swift in Sources */,
+				153D7C32226165FD00DC6AFD /* LessonTableViewCell.swift in Sources */,
 				15504AB8224D00AB000BD2DC /* MenuCollectionViewCell.swift in Sources */,
 				159B7628225A3ADB00A88872 /* LangCoreData.swift in Sources */,
 				15BB7FE92248048100221775 /* Color.swift in Sources */,
