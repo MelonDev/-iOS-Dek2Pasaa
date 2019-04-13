@@ -41,6 +41,8 @@ class GameViewController: UIViewController {
     var dataCheck :[String :TestCheck] = [:]
     
     
+    
+    
     var dataCache :[Int :Image] = [:]
     
     @IBAction func backAction(_ sender: Any) {
@@ -50,7 +52,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
+        
         self.langCoreData = LangCoreData()
         initBackBtn()
         
@@ -78,7 +80,7 @@ class GameViewController: UIViewController {
         
         run(after: 1, completion: {
             self.loadFirebase()
-            })
+        })
         
         run(after: 5, completion: {
             self.hideLoadingAlert()
@@ -203,7 +205,7 @@ class GameViewController: UIViewController {
     
     func showLoadingAlert() {
         //print("asfjwaefijdfgsdafgk,")
-
+        
         loadingAlert = UIAlertController(title: nil , message:"Loading..", preferredStyle: .alert)
         
         if(LangCoreData().now() == LangCoreData.Language.Thai){
@@ -227,7 +229,7 @@ class GameViewController: UIViewController {
     }
     
     func hideLoadingAlert() {
-
+        
         loadingAlert?.dismissAction()
         
     }
@@ -247,7 +249,7 @@ class GameViewController: UIViewController {
         group.enter() // wait
         
         var notLoad = false
-
+        
         
         
         
@@ -264,7 +266,7 @@ class GameViewController: UIViewController {
                 
                 self.data.removeAll()
                 
-
+                
                 
                 if(snapshot.hasChildren()){
                     
@@ -290,15 +292,18 @@ class GameViewController: UIViewController {
                     
                     //self.hideLoadingAlert()
                     
-
+                    
                     self.collectionView.reloadData()
                     self.dataCache = [:]
                     
-                    if UIDevice().isPortrait(){
-                        self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
-                    }else {
-                        self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
-
+                    if !UIDevice.init().isIpad() {
+                        
+                        if UIDevice().isPortrait(){
+                            self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+                        }else {
+                            self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+                            
+                        }
                     }
                     
                     
@@ -308,7 +313,7 @@ class GameViewController: UIViewController {
                     notLoad = true
                 }
                 group.leave()
-
+                
                 
             })
             
@@ -342,11 +347,14 @@ class GameViewController: UIViewController {
                     self.collectionView.reloadData()
                     self.dataCache = [:]
                     
-                    if UIDevice().isPortrait(){
-                        self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
-                    }else {
-                        self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+                    if !UIDevice.init().isIpad() {
                         
+                        if UIDevice().isPortrait(){
+                            self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+                        }else {
+                            self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+                            
+                        }
                     }
                     
                     
@@ -354,7 +362,7 @@ class GameViewController: UIViewController {
                     notLoad = true
                 }
                 group.leave()
-
+                
             })
         } else if(self.id == 11){
             ref.child("Lessons").child(lessonKey!).child("Tests").observe(.value, with: {(snapshot) in
@@ -410,11 +418,14 @@ class GameViewController: UIViewController {
                         self.collectionView.reloadData()
                         self.dataCache = [:]
                         
-                        if UIDevice().isPortrait(){
-                            self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
-                        }else {
-                            self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
-                            
+                        
+                        if !UIDevice.init().isIpad() {
+                            if UIDevice().isPortrait(){
+                                self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+                            }else {
+                                self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+                                
+                            }
                         }
                     })
                     
@@ -427,7 +438,7 @@ class GameViewController: UIViewController {
                     notLoad = true
                 }
                 group.leave()
-
+                
                 
             })
         } else {
@@ -443,13 +454,13 @@ class GameViewController: UIViewController {
                     self.showDialog(title: "ไม่พบข้อมูล", message: "กรุณาเช็คการเชื่อมต่ออีกครั้ง หรือ ติดต่อผู้ดูแลเพื่อขอคำแนะนำ", positiveString: "รับทราบ", completion: {
                         self.dismissAction()
                     })
-
+                    
                 }else {
                     //self.backBtn.titleLabel?.text = "BACK"
                     self.showDialog(title: "Data not found", message: "Please check the connection again or contact the administrator for advice", positiveString: "OK", completion: {
                         self.dismissAction()
                     })
-
+                    
                 }
             }
             //print("FINISH")
@@ -610,7 +621,7 @@ class GameViewController: UIViewController {
                 layout.minimumLineSpacing = 30
             }else {
                 layout.sectionInset = UIEdgeInsets(top: 50, left: 0, bottom: 40, right: 0)
-                layout.itemSize = CGSize(width: collectionView!.bounds.width - 40, height: collectionView!.bounds.height * 0.6)
+                layout.itemSize = CGSize(width: collectionView!.bounds.width - 40, height: collectionView!.bounds.height * 0.4)
                 //layout.itemSize = CGSize(width: collectionView!.bounds.width - 20, height: 500)
                 //layout.itemSize = CGSize(width: 250, height: menuCollectionView.bounds.height - 10)
                 layout.scrollDirection = .vertical
@@ -628,11 +639,14 @@ class GameViewController: UIViewController {
         
         collectionView.isHidden = false
         
-        if UIDevice().isPortrait(){
-            self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
-        }else {
-            self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+        if !UIDevice.init().isIpad() {
             
+            if UIDevice().isPortrait(){
+                self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+            }else {
+                self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+                
+            }
         }
         
     }
@@ -642,9 +656,9 @@ class GameViewController: UIViewController {
         
         initBackBtn()
         rotateOtherConfig()
-       
         
-       
+        
+        
         
     }
     
@@ -673,11 +687,14 @@ class GameViewController: UIViewController {
         
         rotateOtherConfig()
         
-        if UIDevice().isPortrait(){
-            self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
-        }else {
-            self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+        if !UIDevice.init().isIpad() {
             
+            if UIDevice().isPortrait(){
+                self.collectionView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: false)
+            }else {
+                self.collectionView.setContentOffset(CGPoint.init(x: -40, y: 0), animated: false)
+                
+            }
         }
         
     }
@@ -741,7 +758,7 @@ class GameViewController: UIViewController {
 extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    
+        
         
         
         if self.id == 10 {
@@ -902,7 +919,7 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
              }
              */
             
-
+            
             
             
             
@@ -1009,7 +1026,7 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                             
                             cell.imageView.image = image
                             
-
+                            
                             
                             
                         }
@@ -1143,6 +1160,16 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                 
             }
             
+            vc.id = self.id! + 100
+            
+            if self.id! == 10 {
+                let slot = dataWord[indexPath.row]
+                vc.masterKey = slot.masterKey
+                vc.key = slot.key
+                vc.position = slot.number
+                
+            }
+            
             self.titleLabel.hero.id = "BACK_\(CallCenter.init().LessonViewController)"
             
             //vc.bgColor = data()[indexPath.row].color
@@ -1150,11 +1177,11 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
             //vc.toID = indexPath.row
             //vc.id = indexPath.row
             /* if(langCoreData?.now() == LangCoreData.Language.Thai){
-                vc.titleText = data()[indexPath.row].titleThai
-                
-            }else {
-                vc.titleText = data()[indexPath.row].titleEng
-            }*/
+             vc.titleText = data()[indexPath.row].titleThai
+             
+             }else {
+             vc.titleText = data()[indexPath.row].titleEng
+             }*/
             
             if self.id! == 10 {
                 vc.choiceView.isHidden = true

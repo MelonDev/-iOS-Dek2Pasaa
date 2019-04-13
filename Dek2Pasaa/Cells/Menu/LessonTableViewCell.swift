@@ -12,6 +12,8 @@ class LessonTableViewCell: UITableViewCell {
 
     @IBOutlet weak var circleA: UIView!
     @IBOutlet weak var circleB: UIView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var message: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

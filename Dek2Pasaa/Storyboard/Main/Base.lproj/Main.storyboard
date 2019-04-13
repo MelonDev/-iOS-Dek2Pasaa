@@ -585,10 +585,8 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MjW-Jh-t2K">
                                                 <rect key="frame" x="0.0" y="0.0" width="699" height="170"/>
-                                                <color key="backgroundColor" red="0.56348043680000004" green="0.8980392814" blue="0.4835785031" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.56348043680000004" green="0.8980392814" blue="0.4835785031" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="MjW-Jh-t2K" firstAttribute="top" secondItem="hGQ-Ng-8aG" secondAttribute="top" id="3V7-kH-Q4f"/>
                                             <constraint firstAttribute="bottom" secondItem="MjW-Jh-t2K" secondAttribute="bottom" id="DOc-EG-p4g"/>
@@ -883,6 +881,8 @@
                                                         <connections>
                                                             <outlet property="circleA" destination="egG-8q-Z5f" id="4Yc-g0-3yx"/>
                                                             <outlet property="circleB" destination="MgT-4a-CwH" id="QK1-19-kBY"/>
+                                                            <outlet property="message" destination="C6i-pE-ny6" id="pMG-v8-vrM"/>
+                                                            <outlet property="title" destination="Cch-Ph-oY3" id="MVL-77-m74"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
