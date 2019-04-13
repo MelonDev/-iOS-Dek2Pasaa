@@ -302,10 +302,30 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         constraint.constant = 200
                     }else {
                         //print("4")
-                        constraint.constant = 120
+                        constraint.constant = 150
                     }
                 }
             }
+        }
+        
+        for constraint in self.navigatorPageView.constraints {
+            if constraint.identifier == "nav_right_land" {
+                if UIDevice.hasNotch() {
+                    constraint.constant = 0
+                }else {
+                    constraint.constant = -10
+
+                }
+            }
+            if constraint.identifier == "nav_left_land" {
+                if UIDevice.hasNotch() {
+                    constraint.constant = 0
+                }else {
+                    constraint.constant = -10
+                    
+                }
+            }
+            
         }
         
         for constraint in self.choiceView.constraints {

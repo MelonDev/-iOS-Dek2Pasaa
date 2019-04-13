@@ -789,8 +789,8 @@
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="jwI-mi-sOu" secondAttribute="trailing" constant="20" id="8IE-RB-Wj9"/>
                                                     <constraint firstItem="SKW-zg-IEX" firstAttribute="leading" secondItem="fDk-S5-x9R" secondAttribute="leading" constant="20" id="GSG-O6-9Ny"/>
-                                                    <constraint firstItem="jwI-mi-sOu" firstAttribute="centerY" secondItem="fDk-S5-x9R" secondAttribute="centerY" id="aYz-kQ-gzH"/>
-                                                    <constraint firstItem="SKW-zg-IEX" firstAttribute="centerY" secondItem="fDk-S5-x9R" secondAttribute="centerY" id="jEV-HS-2zF"/>
+                                                    <constraint firstItem="jwI-mi-sOu" firstAttribute="centerY" secondItem="fDk-S5-x9R" secondAttribute="centerY" identifier="nav_right_land" id="aYz-kQ-gzH"/>
+                                                    <constraint firstItem="SKW-zg-IEX" firstAttribute="centerY" secondItem="fDk-S5-x9R" secondAttribute="centerY" identifier="nav_left_land" id="jEV-HS-2zF"/>
                                                     <constraint firstAttribute="height" constant="80" identifier="nav_page_height" id="qpl-oq-ite"/>
                                                 </constraints>
                                             </view>
@@ -806,10 +806,10 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t9J-v2-EpZ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="103.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="834" height="103.5"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egG-8q-Z5f">
-                                                                            <rect key="frame" x="257" y="40" width="40" height="40"/>
+                                                                            <rect key="frame" x="716" y="40" width="40" height="40"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker-filled-audio-tool" translatesAutoresizingMaskIntoConstraints="NO" id="OcX-nv-AuG">
                                                                                     <rect key="frame" x="7" y="7" width="26" height="26"/>
@@ -827,7 +827,7 @@
                                                                             </constraints>
                                                                         </view>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MgT-4a-CwH">
-                                                                            <rect key="frame" x="307" y="40" width="40" height="40"/>
+                                                                            <rect key="frame" x="766" y="40" width="40" height="40"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone-black-shape" translatesAutoresizingMaskIntoConstraints="NO" id="cou-24-BIe">
                                                                                     <rect key="frame" x="7" y="7" width="26" height="26"/>
