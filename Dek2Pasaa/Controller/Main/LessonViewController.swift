@@ -18,20 +18,6 @@ import Speech
 
 class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,SFSpeechRecognizerDelegate {
     
-    var loadingAlert :UIAlertController? = nil
-    var processing = false
-    
-    var audioLayer :AVPlayerLayer? = nil
-    
-    var speechDialog :UIAlertController? = nil
-    
-    var audioSession :AVAudioSession? = nil
-    
-    var word :String? = nil
-    
-    
-    
-    
     //var p: AVAudioPlayer?
     
     
@@ -69,6 +55,19 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var position :Int? = nil
     
     var id :Int? = nil
+    
+    
+    var loadingAlert :UIAlertController? = nil
+    var processing = false
+    
+    var audioLayer :AVPlayerLayer? = nil
+    
+    var speechDialog :UIAlertController? = nil
+    
+    var audioSession :AVAudioSession? = nil
+    
+    var word :String? = nil
+    
     
     var dataWord :[WordInfo] = []
     var dataTest :[TestInfo] = []
@@ -115,8 +114,12 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         header.backgroundColor = UIColor.clear
         header.frame = CGRect(x: 0, y: 0, width: windowWidth, height: windowHeight)
         
+        let footer = UIView()
+        footer.backgroundColor = UIColor.clear
+        footer.frame = CGRect(x: 0, y: 0, width: windowWidth, height: 90)
+        
         tableView.tableHeaderView = header
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = footer
         
         unknownImageLabel.isHidden = true
         navigationLeftView.isHidden = true
@@ -199,6 +202,15 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.audioEngine!.inputNode.removeTap(onBus: 0)
         recognitionTask!.cancel()
         
+        
+        do {
+            try audioSession!.setCategory(AVAudioSession.Category.playback)
+            try audioSession!.setMode(AVAudioSession.Mode.moviePlayback)
+            try audioSession!.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("audioSession properties weren't set because of an error.")
+        }
+ 
 
         
         //recognitionTask = nil
@@ -208,6 +220,10 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         //audioEngine = nil
         
         //audioSession = nil
+        audioEngine = nil
+        recognitionRequest = nil
+        recognitionTask = nil
+        
         
     }
     
@@ -333,11 +349,12 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
         
         
-        let audioSession = AVAudioSession.sharedInstance()
+        audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
-            try audioSession.setMode(AVAudioSession.Mode.measurement)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            //try audioSession!.setCategory(AVAudioSession.Category.playAndRecord)
+            try audioSession!.setCategory(AVAudioSession.Category.record)
+            try audioSession!.setMode(AVAudioSession.Mode.measurement)
+            try audioSession!.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
             print("audioSession properties weren't set because of an error.")
         }
@@ -345,7 +362,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         
         //self.audioEngine = nil
-        //self.audioEngine = AVAudioEngine()
+        self.audioEngine = AVAudioEngine()
         
         let inputNode = audioEngine!.inputNode
         
@@ -847,6 +864,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     
                     
                     player = AVPlayer(playerItem: playerItem)
+                    player?.volume = 1.0
                     
                     let playerLayer = AVPlayerLayer(player: player!)
                     
