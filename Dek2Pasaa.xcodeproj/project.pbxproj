@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1508FD302263E53D00043D45 /* PeopleCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1508FD2E2263E53C00043D45 /* PeopleCVCell.swift */; };
+		1508FD312263E53D00043D45 /* PeopleCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1508FD2F2263E53D00043D45 /* PeopleCVCell.xib */; };
 		151D6990224FC9A80087D26E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D698F224FC9A80087D26E /* ViewController.swift */; };
 		151D6992224FCA4E0087D26E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D6991224FCA4E0087D26E /* GameViewController.swift */; };
 		151D6994224FCCD10087D26E /* CallCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D6993224FCCD10087D26E /* CallCenter.swift */; };
@@ -89,6 +91,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1508FD2E2263E53C00043D45 /* PeopleCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCVCell.swift; sourceTree = "<group>"; };
+		1508FD2F2263E53D00043D45 /* PeopleCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleCVCell.xib; sourceTree = "<group>"; };
 		151D698F224FC9A80087D26E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		151D6991224FCA4E0087D26E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		151D6993224FCCD10087D26E /* CallCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallCenter.swift; sourceTree = "<group>"; };
@@ -406,6 +410,8 @@
 				153D7C2B225DFD6600DC6AFD /* TestStarCVCell.swift */,
 				153D7C2C225DFD6600DC6AFD /* TestStarCVCell.xib */,
 				153D7C31226165FD00DC6AFD /* LessonTableViewCell.swift */,
+				1508FD2E2263E53C00043D45 /* PeopleCVCell.swift */,
+				1508FD2F2263E53D00043D45 /* PeopleCVCell.xib */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -543,6 +549,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1508FD312263E53D00043D45 /* PeopleCVCell.xib in Resources */,
 				15BB7FB22247F84100221775 /* LaunchScreen.storyboard in Resources */,
 				15E63AD1225BA63000B6AF33 /* GameCVCell.xib in Resources */,
 				15FFD7BF2248D08C00DCCB30 /* TS-Som tum-B-NP.ttf in Resources */,
@@ -764,6 +771,7 @@
 				15FFD7B62248B4C500DCCB30 /* MenuCVCell.swift in Sources */,
 				15BB800422480E3F00221775 /* UIViewController.swift in Sources */,
 				1593A3E9225D1CD20023CD6D /* TestCVCell.swift in Sources */,
+				1508FD302263E53D00043D45 /* PeopleCVCell.swift in Sources */,
 				151D6994224FCCD10087D26E /* CallCenter.swift in Sources */,
 				1593A3E2225CF0810023CD6D /* Score.swift in Sources */,
 				15FFD7AE2248B29C00DCCB30 /* MenuStruct.swift in Sources */,

@@ -19,6 +19,7 @@ import Speech
 class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,SFSpeechRecognizerDelegate {
     
     //var p: AVAudioPlayer?
+    @IBOutlet weak var contentLabel: UILabel!
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -68,6 +69,10 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     var word :String? = nil
     
+    var yourAnswer :TestCheck? = nil
+    var isYourAnswer :Bool? = nil
+    
+    
     
     var dataWord :[WordInfo] = []
     var dataTest :[TestInfo] = []
@@ -104,62 +109,11 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         contentImageView.backgroundColor = UIColor.clear
         imageView.layer.cornerRadius = 10
         
-        tableView.delegate = self
-        tableView.dataSource = self
         
-        let windowHeight : CGFloat = 30
-        let windowWidth  : CGFloat = 30
-        
-        let header = UIView()
-        header.backgroundColor = UIColor.clear
-        header.frame = CGRect(x: 0, y: 0, width: windowWidth, height: windowHeight)
-        
-        let footer = UIView()
-        footer.backgroundColor = UIColor.clear
-        footer.frame = CGRect(x: 0, y: 0, width: windowWidth, height: 90)
-        
-        tableView.tableHeaderView = header
-        tableView.tableFooterView = footer
-        
-        unknownImageLabel.isHidden = true
-        navigationLeftView.isHidden = true
-        navigationRightView.isHidden = true
-        imageIndicator.isHidden = true
-        
-        configContentView()
-        
-        choiceA.backgroundColor = UIColor.white
-        choiceB.backgroundColor = UIColor.white
-        
-        choiceView.backgroundColor = UIColor.clear
-        contentViewSafe.backgroundColor = UIColor.clear
-        navigatorPageView.backgroundColor = UIColor.clear
-        
-        navigationLeftView.layer.cornerRadius = 30
-        navigationRightView.layer.cornerRadius = 30
-        
-        if(LangCoreData.init().now() == LangCoreData.Language.Thai){
-            navLeftLabel.text = "ก่อนหน้า"
-            navRightLabel.text = "ถัดไป"
-            unknownImageLabel.text = "ไม่พบรูปภาพ"
-        }else {
-            navLeftLabel.text = "Previous"
-            navRightLabel.text = "Next"
-            unknownImageLabel.text = "Image not found"
-            
-        }
-        
-        
-        
-        
-        configView()
-        
-        navigationLeftView.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(preLesson(_:))))
-        navigationRightView.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(nextLesson(_:))))
         
         
         // let device = UIDevice.init()
-        
+        //}
         
         
         
@@ -210,8 +164,8 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         } catch {
             print("audioSession properties weren't set because of an error.")
         }
- 
-
+        
+        
         
         //recognitionTask = nil
         //recognitionRequest = nil
@@ -232,12 +186,12 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
             if(LangCoreData.init().now() == LangCoreData.Language.Thai){
                 self.showDialog(title: "ถูกต้อง", message: "เยี่ยมมาก! พยายามต่อไปนะ", positiveString: "ปิด", completion: {
                     self.stopRecording()
-
+                    
                 })
             }else {
                 self.showDialog(title: "Correct", message: "Great! Keep trying", positiveString: "Close", completion: {
                     self.stopRecording()
-
+                    
                 })
             }
         }else {
@@ -251,21 +205,21 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     }else {
                         self.showDialog(title: "Not correct", message: "You said \(self.word!)", positiveString: "Close", completion: {
                             self.stopRecording()
-
+                            
                         })
                     }
-                
+                    
                 }else {
                     if(LangCoreData.init().now() == LangCoreData.Language.Thai){
                         
                         self.showDialog(title: "ไม่พบการพูด", message: "ขออภัยด้วย เราไม่สามารถตรวจสอบให้ได้", positiveString: "ปิด", completion: {
                             self.stopRecording()
-
+                            
                         })
                     }else {
                         self.showDialog(title: "Not found speaking", message: "Sorry, we can't check it", positiveString: "Close", completion: {
                             self.stopRecording()
-
+                            
                         })
                     }
                 }
@@ -274,12 +228,12 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     
                     self.showDialog(title: "ไม่พบการพูด", message: "ขออภัยด้วย เราไม่สามารถตรวจสอบให้ได้", positiveString: "ปิด", completion: {
                         self.stopRecording()
-
+                        
                     })
                 }else {
                     self.showDialog(title: "Not found speaking", message: "Sorry, we can't check it", positiveString: "Close", completion: {
                         self.stopRecording()
-
+                        
                     })
                 }
             }
@@ -339,7 +293,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         if languege == .thai {
             speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "th_TH"))
         }else if languege == .english {
-
+            
             speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
         }
         
@@ -381,7 +335,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 
                 //self.textView.text = result?.bestTranscription.formattedString
                 
-                print(result!.bestTranscription.formattedString)
+                //print(result!.bestTranscription.formattedString)
                 //self.speechDialog?.message = result!.bestTranscription.formattedString
                 self.word = result!.bestTranscription.formattedString
                 
@@ -390,7 +344,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
             }
             
             if error != nil || isFinal {
-                print("DEBUG: \(error.debugDescription) LOCAL: \(error!.localizedDescription)")
+                //print("DEBUG: \(error.debugDescription) LOCAL: \(error!.localizedDescription)")
                 if self.audioEngine != nil {
                     self.audioEngine!.stop()
                     inputNode.removeTap(onBus: 0)
@@ -406,9 +360,9 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         //inputNode.reset()
         inputNode.removeTap(onBus: 0)
         
-            let recordingFormat = inputNode.outputFormat(forBus: 0)
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
         
-       inputNode.installTap(onBus: 0, bufferSize: 4096, format: recordingFormat) { (buffer, when) in
+        inputNode.installTap(onBus: 0, bufferSize: 4096, format: recordingFormat) { (buffer, when) in
             self.recognitionRequest?.append(buffer)
         }
         
@@ -546,18 +500,26 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     }
                     
                     Alamofire.request(i.cover).responseImage { response in
-                        if let image = response.result.value {
-                            
-                            //self.dataCache.updateValue(image, forKey: indexPath.row)
-                            self.imageIndicator.isHidden = true
-                            
-                            self.imageView.image = image
-                            
-                            
-                            
+                        if response.error == nil {
+                            self.unknownImageLabel.isHidden = true
+
+                            if let image = response.result.value {
+                                
+                                //self.dataCache.updateValue(image, forKey: indexPath.row)
+                                self.imageIndicator.isHidden = true
+                                
+                                self.imageView.image = image
+                                
+                                
+                                
+                            }
+                        }else {
+                            self.imageView.image = nil
+                            self.unknownImageLabel.isHidden = false
                         }
                     }
                 } else {
+                    self.imageView.image = nil
                     unknownImageLabel.isHidden = false
                     
                     
@@ -569,12 +531,394 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
     }
     
+    
+    func loadTestFirebase() {
+        
+        
+        self.imageIndicator.isHidden = false
+        
+        
+        let ref = Database.database().reference()
+        ref.child("Lessons").child(masterKey!).child("Tests").observe(.value, with: {(snapshot) in
+            
+            
+            self.dataTest.removeAll()
+            
+            if(snapshot.hasChildren()){
+                
+                for test in snapshot.children {
+                    let lessonDataSnapshot = test as! DataSnapshot
+                    
+                    //let value = lessonDataSnapshot.childSnapshot(forPath: "Info").childSnapshot(forPath: "nameEng").value as! String
+                    
+                    let value = TestInfo.init(slot: (lessonDataSnapshot.value as! [String: AnyObject]))
+                    
+                    if !value.delete {
+                        self.dataTest.append(value)
+                    }
+                    
+                    
+                }
+                
+                self.dataTest = self.dataTest.sorted(by: { $0.number < $1.number })
+                
+                self.loadTest(key: self.key!)
+                
+                
+            }
+            
+        })
+    }
+    
+    
+    func loadTest(key :String) {
+        
+        
+        for i in dataTest {
+            if i.key.contains(key) {
+                
+                self.choiceALabel.isHidden = false
+                self.choiceBLabel.isHidden = false
+                self.contentLabel.isHidden = false
+                
+                self.choiceALabel.text = i.ansOne
+                self.choiceBLabel.text = i.ansTwo
+                
+                self.contentLabel.text = i.quesThai
+                
+                if(LangCoreData.init().now() == LangCoreData.Language.Thai){
+                    self.contentLabel.text = "ข้อที่ \(i.number) \n\(i.quesThai)"
+                }else {
+                    self.contentLabel.text = "Question \(i.number) \n\(i.quesThai)"
+                }
+                
+                if i.cover.count > 0 {
+                    Alamofire.request(i.cover).responseImage { response in
+                        if response.error == nil {
+                            self.unknownImageLabel.isHidden = true
+
+                            if let image = response.result.value {
+                                
+                                //self.dataCache.updateValue(image, forKey: indexPath.row)
+                                self.imageIndicator.isHidden = true
+                                
+                                self.imageView.image = image
+                                
+                                
+                            }
+                        }else {
+                            self.imageIndicator.isHidden = true
+                            self.unknownImageLabel.isHidden = false
+                            self.imageView.image = nil
+
+                        }
+                    }
+                    
+                    
+                    
+                }else {
+                    self.imageIndicator.isHidden = true
+                    self.unknownImageLabel.isHidden = false
+                    
+                    self.imageView.image = nil
+
+                    
+                }
+                
+                choiceA.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(choiceATapped(_:))))
+                choiceB.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(choiceBTapped(_:))))
+                
+                
+                
+                
+            }
+        }
+        
+    }
+    
+    func showCheckAlert() {
+        
+        //print("asfjwaefijdfgsdafgk,")
+        
+        loadingAlert = UIAlertController(title: nil , message:"Loading..", preferredStyle: .alert)
+        
+        if(LangCoreData().now() == LangCoreData.Language.Thai){
+            loadingAlert?.message = "กำลังตรวจคำตอบ.."
+            //loadingAlert = UIAlertController(title: nil , message:"กำลังโหลดข้อมูล", preferredStyle: .alert)
+        }else {
+            loadingAlert?.message = "Checking your answer.."
+            
+        }
+        
+        
+        loadingAlert!.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 10,y: 5,width: 50, height: 50)) as UIActivityIndicatorView
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        
+        loadingAlert!.view.addSubview(loadingIndicator)
+        self.present(loadingAlert!, animated: true)
+        
+    }
+    
+    func hideCheckAlert() {
+        
+        loadingAlert?.dismissAction()
+        
+    }
+    
+    func hideCheckAlertWithShow() {
+        
+        loadingAlert?.dismissAction()
+        
+    }
+    
+    enum Choice {
+        case A
+        case B
+    }
+    
+    func checkAnswer(choice :Choice) {
+        
+        let slot = dataTest[self.position! - 1]
+        
+        DispatchQueue.main.async {
+            self.showCheckAlert()
+        }
+        
+        if yourAnswer != nil {
+            
+            self.setTestToFirebase(test: slot, result: self.yourAnswer!, isCorrect: self.isYourAnswer!)
+        }else {
+            
+            let ref = Database.database().reference()
+            ref.child("Peoples").child(Auth.auth().currentUser!.uid).child("History").child(self.masterKey!).child(self.key!).observe(.value, with: {(snapshot) in
+                
+                //print(snapshot)
+                //print(snapshot.value)
+                
+                //let isNil = snapshot.value as? NSNull
+                //print(snapshot.value as? NSNull)
+                
+                if(snapshot.value as? NSNull == nil){
+                    //print("HELLO")
+                    //var answer = TestCheck.init(slot: (snapshot.value as! [String : AnyObject]))
+                    let value = snapshot.value as? NSDictionary
+                    
+                    var answer = TestCheck()
+                    
+                    answer.failed = value!["failed"] as! Bool
+                    answer.opened = value!["opened"] as! Bool
+                    answer.key = value!["key"] as! String
+                    answer.passed = value!["passed"] as! Bool
+                    
+                    //print((slot.answer == 0 && choice == Choice.A) || (slot.answer == 1 && choice == Choice.B))
+                    
+                    if (slot.answer == 0 && choice == Choice.A) || (slot.answer == 1 && choice == Choice.B) {
+                        answer.passed = true
+                        self.setTestToFirebase(test: slot, result: answer, isCorrect: true)
+                    }else {
+                        self.setTestToFirebase(test: slot, result: answer, isCorrect: false)
+                    }
+                    
+                }else {
+                    //print("HELLO2")
+                    
+                    var answer = TestCheck.init()
+                    answer.failed = false
+                    answer.opened = true
+                    answer.passed = false
+                    
+                    answer.key = slot.key
+                    
+                    if (slot.answer == 0 && choice == Choice.A) || (slot.answer == 1 && choice == Choice.B) {
+                        answer.passed = true
+                        self.setTestToFirebase(test: slot, result: answer, isCorrect: true)
+                    }else {
+                        answer.failed = true
+                        self.setTestToFirebase(test: slot, result: answer, isCorrect: false)
+                    }
+                }
+            })
+        }
+        
+    }
+    
+    func setTestToFirebase(test :TestInfo,result :TestCheck,isCorrect :Bool){
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        let ref = Database.database().reference().child("Peoples").child(uid).child("History").child(test.masterKey).child(test.key)
+        
+        let e :[String: Any] = ["failed": result.failed,"key" :result.key,"opened" :result.opened,"passed" :result.passed]
+        
+        //ref.setValue(e)
+        
+        ref.setValue(e, withCompletionBlock: {error,_ in
+            //self.hideCheckAlert()
+            if error == nil {
+                
+                self.yourAnswer = nil
+                self.isYourAnswer = nil
+                if result.passed && isCorrect {
+                    if test.number == self.dataTest.count {
+                        if(LangCoreData.init().now() == LangCoreData.Language.Thai){
+                            self.showDialogComplete(title: "ยินดีด้วยนะ", message: "ผ่านแบบทดสอบบทนี้แล้ว เก่งมาก", positiveString: "รับทราบ", completion: {
+                                self.dismissAction()
+                            })
+                            
+                        }else {
+                            self.showDialogComplete(title: "Congratulations", message: "Through this chapter test, you are very good", positiveString: "OK", completion: {
+                                self.dismissAction()
+                            })
+                        }
+                    }else {
+                        if(LangCoreData.init().now() == LangCoreData.Language.Thai){
+                            DispatchQueue.main.async {
+                                self.showDialogComplete(title: "ถูกต้องจ้า", message: "เก่งมาก ที่ตอบได้ถูกต้อง ไปข้อต่อไปกันเลย", positiveString: "ข้อต่อไป", completion: {
+                                    self.position = test.number + 1
+                                    let next = self.dataTest[self.position! - 1]
+                                    
+                                    self.key = next.key
+                                    
+                                    self.loadTest(key: self.key!)
+                                })
+                            }
+                            
+                        }else {
+                            self.showDialogComplete(title: "Correct", message: "Very good at answering correctly Go to the next question", positiveString: "Go", completion: {
+                                
+                                self.position = test.number + 1
+                                let next = self.dataTest[self.position! - 1]
+                                
+                                self.key = next.key
+                                
+                                self.loadTest(key: self.key!)
+                                
+                            })
+                        }
+                    }
+                }else {
+                    if(LangCoreData.init().now() == LangCoreData.Language.Thai){
+                        self.showDialogComplete(title: "ยังตอบไม่ถูกนะ", message: "ถึงข้อนี้จะไม่ได้คะแนน แต่พยายามเข้าล่ะ", positiveString: "โอเค", completion: {
+                            
+                        })
+                    }else {
+                        self.showDialogComplete(title: "Answer is not correct", message: "Until this question is not scored But trying to get in", positiveString: "Try again", completion: {
+                            
+                        })
+                    }
+                }
+                
+                
+            }else {
+                if(LangCoreData.init().now() == LangCoreData.Language.Thai){
+                    self.showDialogComplete(title: "เกิดข้อผิดพลาด", message: "กรุณาเชื่อมต่ออินเทอร์เน็ต", positiveString: "รับทราบ", completion: {
+                        self.yourAnswer = result
+                        self.isYourAnswer = isCorrect
+                    })
+                }else {
+                    self.showDialogComplete(title: "Error", message: "Please connect to the internet", positiveString: "Close", completion: {
+                        self.yourAnswer = result
+                        self.isYourAnswer = isCorrect
+                        
+                    })
+                }
+                
+            }
+        })
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configView()
         
+        self.contentLabel.isHidden = true
+        
+        
+        //print(self.id)
         if self.id! == 110 {
             loadLessonFirebase(actionId: 0)
+            
+            
+            tableView.delegate = self
+            tableView.dataSource = self
+            
+            let windowHeight : CGFloat = 30
+            let windowWidth  : CGFloat = 30
+            
+            let header = UIView()
+            header.backgroundColor = UIColor.clear
+            header.frame = CGRect(x: 0, y: 0, width: windowWidth, height: windowHeight)
+            
+            let footer = UIView()
+            footer.backgroundColor = UIColor.clear
+            footer.frame = CGRect(x: 0, y: 0, width: windowWidth, height: 90)
+            
+            tableView.tableHeaderView = header
+            tableView.tableFooterView = footer
+            
+            unknownImageLabel.isHidden = true
+            navigationLeftView.isHidden = true
+            navigationRightView.isHidden = true
+            imageIndicator.isHidden = true
+            
+            configContentView()
+            
+            choiceA.backgroundColor = UIColor.white
+            choiceB.backgroundColor = UIColor.white
+            
+            choiceView.backgroundColor = UIColor.clear
+            contentViewSafe.backgroundColor = UIColor.clear
+            navigatorPageView.backgroundColor = UIColor.clear
+            
+            navigationLeftView.layer.cornerRadius = 30
+            navigationRightView.layer.cornerRadius = 30
+            
+            if(LangCoreData.init().now() == LangCoreData.Language.Thai){
+                navLeftLabel.text = "ก่อนหน้า"
+                navRightLabel.text = "ถัดไป"
+                unknownImageLabel.text = "ไม่พบรูปภาพ"
+            }else {
+                navLeftLabel.text = "Previous"
+                navRightLabel.text = "Next"
+                unknownImageLabel.text = "Image not found"
+                
+            }
+            
+            
+            
+            
+            configView()
+            
+            navigationLeftView.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(preLesson(_:))))
+            navigationRightView.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(nextLesson(_:))))
+            
+            tableView.isHidden = false
+            
+            
+            
+        } else if self.id! == 111 {
+            
+            self.choiceALabel.isHidden = true
+            self.choiceBLabel.isHidden = true
+            self.contentLabel.isHidden = true
+            
+            unknownImageLabel.isHidden = true
+            navigationLeftView.isHidden = true
+            navigationRightView.isHidden = true
+            imageIndicator.isHidden = true
+            
+            choiceA.backgroundColor = UIColor.white
+            choiceB.backgroundColor = UIColor.white
+            
+            choiceView.backgroundColor = UIColor.clear
+            
+            tableView.isHidden = true
+            
+            loadTestFirebase()
         }
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -939,6 +1283,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     
     func showDialog(title :String,message :String?,positiveString :String ,completion :@escaping () -> Void){
+        print(title)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let actionPositive = UIAlertAction(title: positiveString, style: .cancel, handler: { (action) -> Void in
             alert.dismissAction()
@@ -949,6 +1294,30 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         alert.addAction(actionPositive)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showDialogComplete(title :String,message :String?,positiveString :String ,completion :@escaping () -> Void){
+        print(title)
+        
+        DispatchQueue.main.async{
+            self.loadingAlert!.dismiss(animated: false) {
+                OperationQueue.main.addOperation {
+                    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    let actionPositive = UIAlertAction(title: positiveString, style: .cancel, handler: { (action) -> Void in
+                        alert.dismissAction()
+                        completion()
+                    })
+                    //let actionNegative = UIAlertAction(title: "English", style: .default, handler: { (action) -> Void in
+                    //})
+                    
+                    alert.addAction(actionPositive)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }
+            }
+        }
+        
+        
     }
     
     
@@ -986,6 +1355,15 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         loadingAlert?.dismissAction()
         
+    }
+    
+    
+    @objc func choiceATapped(_ sender:UITapGestureRecognizer?) {
+        self.checkAnswer(choice: .A)
+    }
+    
+    @objc func choiceBTapped(_ sender:UITapGestureRecognizer?) {
+        self.checkAnswer(choice: .B)
     }
     
     

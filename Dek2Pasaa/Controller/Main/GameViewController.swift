@@ -40,6 +40,9 @@ class GameViewController: UIViewController {
     var dataTest :[TestInfo] = []
     var dataCheck :[String :TestCheck] = [:]
     
+    var dataPass :[String :Action] = [:]
+    
+    
     
     
     
@@ -388,10 +391,10 @@ class GameViewController: UIViewController {
                     
                     self.dataTest = self.dataTest.sorted(by: { $0.number < $1.number })
                     
-                    let uid = "FyDDLisKFcgAifEAXbuILau40cC2"
-                    //let uid = Auth.auth().currentUser!.uid
+                    //let uid = "FyDDLisKFcgAifEAXbuILau40cC2"
+                    let uid = Auth.auth().currentUser!.uid
                     
-                    ref.child("Peoples").child(uid).child("History").child(self.lessonKey!).observeSingleEvent(of: .value, with: {(snapshots) in
+                    ref.child("Peoples").child(uid).child("History").child(self.lessonKey!).observe(.value, with: {(snapshots) in
                         
                         self.dataCheck.removeAll()
                         
@@ -441,7 +444,12 @@ class GameViewController: UIViewController {
                 
                 
             })
-        } else {
+        } else if self.id == 2 {
+            
+            
+            
+            group.leave()
+        }else {
             notLoad = true
             group.leave()
         }
@@ -982,18 +990,21 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                 }else {
                     
                     Alamofire.request(slot.cover).responseImage { response in
-                        if let image = response.result.value {
-                            
-                            self.dataCache.updateValue(image, forKey: indexPath.row)
-                            //self.dataCache[indexPath.row] = image
-                            
-                            //self.updateCache(position: indexPath.row, value: image)
-                            
-                            
-                            cell.imageView.image = image
-                            
-                            
-                            
+                        
+                        if response.error == nil {
+                            if let image = response.result.value {
+                                
+                                self.dataCache.updateValue(image, forKey: indexPath.row)
+                                //self.dataCache[indexPath.row] = image
+                                
+                                //self.updateCache(position: indexPath.row, value: image)
+                                
+                                
+                                cell.imageView.image = image
+                                
+                                
+                                
+                            }
                         }
                     }
                 }
@@ -1017,17 +1028,20 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                 }else {
                     
                     Alamofire.request(slot.cover).responseImage { response in
-                        if let image = response.result.value {
-                            
-                            self.dataCache.updateValue(image, forKey: indexPath.row)
-                            //self.dataCache[indexPath.row] = image
-                            
-                            //self.updateCache(position: indexPath.row, value: image)
-                            
-                            cell.imageView.image = image
-                            
-                            
-                            
+                        if response.error == nil {
+                            if let image = response.result.value {
+                                
+                                self.dataCache.updateValue(image, forKey: indexPath.row)
+                                //self.dataCache[indexPath.row] = image
+                                
+                                //self.updateCache(position: indexPath.row, value: image)
+                                
+                                cell.imageView.image = image
+                                
+                                
+                                
+                                
+                            }
                             
                         }
                         
@@ -1086,6 +1100,8 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
             }
         }
         
+        dataPass.updateValue(action, forKey: dataTest[indexPath.row].key)
+        
         return cell
         
     }
@@ -1112,6 +1128,8 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                 cell.titleLabel.fontSize(size: Int((collectionView.bounds.width / 10 )/1.2))
             }
         }
+        
+        dataPass.updateValue(.Passed, forKey: dataTest[indexPath.row].key)
         
         return cell
     }
@@ -1162,12 +1180,18 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
             
             vc.id = self.id! + 100
             
+            
             if self.id! == 10 {
                 let slot = dataWord[indexPath.row]
                 vc.masterKey = slot.masterKey
                 vc.key = slot.key
                 vc.position = slot.number
                 
+            }else {
+                let slot = dataTest[indexPath.row]
+                vc.masterKey = slot.masterKey
+                vc.key = slot.key
+                vc.position = slot.number
             }
             
             self.titleLabel.hero.id = "BACK_\(CallCenter.init().LessonViewController)"
@@ -1191,8 +1215,29 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                 vc.navigatorPageView.isHidden = true
             }
             
-            
-            self.actionVC(this: self, viewController: vc)
+            if self.id! == 10 {
+                self.actionVC(this: self, viewController: vc)
+            }else if self.id! == 11 {
+                let test = dataTest[indexPath.row]
+                
+                //print(test.key)
+                let slot = dataPass[test.key]
+                //print(dataCheck)
+                
+                
+                if slot == Action.Open || slot == Action.Passed {
+                    self.actionVC(this: self, viewController: vc)
+                }else {
+                    if(langCoreData!.now() == LangCoreData.Language.Thai){
+                        showDialog(title: "คำถามนี้ถูกล็อค", message: "คุณต้องทำแบบทดสอบตามลำดับ ข้่ามไม่ได้", positiveString: "รับทราบ", completion: {})
+                        
+                    }else {
+                        showDialog(title: "This question is locked", message: "You have to do the test in the order that cannot be skipped", positiveString: "Close", completion: {})
+                        
+                    }
+                }
+                
+            }
             
         }
         
