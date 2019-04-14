@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class LessonTableViewCell: UITableViewCell {
 
@@ -15,11 +16,22 @@ class LessonTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var message: UILabel!
     
+    //var player: AVPlayer? = nil
+    
+    var actionBlockAudio: (() -> Void)? = nil
+    var actionBlockRecord: (() -> Void)? = nil
+
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         circleA.layer.cornerRadius = 20
         circleB.layer.cornerRadius = 20
+
+        circleA.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(audioTapped(_:))))
+        circleB.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(recordTapped(_:))))
+
 
         
     }
@@ -29,5 +41,34 @@ class LessonTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @objc func audioTapped(_ sender:UITapGestureRecognizer?){
+        
+        if self.actionBlockAudio != nil {
+            actionBlockAudio!()
+            //print("PLAY_")
 
+        }else {
+            //print("STOP")
+
+        }
+        //print("PLAY")
+        //player.play()
+    }
+    
+    @objc func recordTapped(_ sender:UITapGestureRecognizer?){
+        
+        if self.actionBlockRecord != nil {
+            actionBlockRecord!()
+            //print("PLAY_")
+            
+        }else {
+            //print("STOP")
+            
+        }
+        //print("PLAY")
+        //player.play()
+    }
+    
+    
 }

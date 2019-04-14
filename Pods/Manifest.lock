@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.8.0)
   - AlamofireImage (3.5.0):
     - Alamofire (~> 4.8)
+  - AudioPlayerSwift (1.6.1)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -124,6 +125,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - AlamofireImage (~> 3.3)
+  - AudioPlayerSwift
   - CenteredCollectionView
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -143,6 +145,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
+    - AudioPlayerSwift
     - Bolts
     - CenteredCollectionView
     - FBSDKCoreKit
@@ -174,6 +177,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  AudioPlayerSwift: 90b1bbd228bde3eca6bc59320091c3672486328d
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CenteredCollectionView: a32f1d57505be294ff6080251384a38ffd1e61f3
   FBSDKCoreKit: aa42f1c384775f8b075f53a43080474278e9701d
@@ -202,6 +206,6 @@ SPEC CHECKSUMS:
   TORoundedTableView: cd1437ef81ab3888dea8c06d2dfe4795bcaac768
   UPCarouselFlowLayout: 4c7d2c43a10ebb1597bde502a53699d378341dad
 
-PODFILE CHECKSUM: c99a460dcffbd1b84ca0376a65178f9dba9e9454
+PODFILE CHECKSUM: 5a56f08e7e7950985c7c1fd119bff36af932d018
 
 COCOAPODS: 1.5.3

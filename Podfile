@@ -15,6 +15,8 @@ pod 'Firebase/Auth'
 pod 'Firebase/Functions'
 pod 'GoogleSignIn'
 
+pod 'AudioPlayerSwift'
+
 pod 'AlamofireImage', '~> 3.3'
 pod 'Alamofire', '~> 4.7'
 pod 'TORoundedTableView'

@@ -18,6 +18,8 @@
 		15504AB8224D00AB000BD2DC /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15504AB6224D00AB000BD2DC /* MenuCollectionViewCell.swift */; };
 		15504AB9224D00AB000BD2DC /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15504AB7224D00AB000BD2DC /* MenuCollectionViewCell.xib */; };
 		15504ABB224D4D87000BD2DC /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15504ABA224D4D87000BD2DC /* Constraint.swift */; };
+		156AB9B022628010000D16BC /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156AB9AF22628010000D16BC /* AudioPlayer.swift */; };
+		156AB9B22262913A000D16BC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156AB9B12262913A000D16BC /* AVFoundation.framework */; };
 		15934D932248256600377349 /* SukhumvitSet.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 15934D912248256600377349 /* SukhumvitSet.ttc */; };
 		15934D942248256600377349 /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15934D922248256600377349 /* UPCarouselFlowLayout.swift */; };
 		15934D9622482A0600377349 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15934D9522482A0600377349 /* UILabel.swift */; };
@@ -98,6 +100,8 @@
 		15504AB6224D00AB000BD2DC /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		15504AB7224D00AB000BD2DC /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		15504ABA224D4D87000BD2DC /* Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
+		156AB9AF22628010000D16BC /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = Pods/AudioPlayerSwift/Sources/AudioPlayer.swift; sourceTree = SOURCE_ROOT; };
+		156AB9B12262913A000D16BC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		15934D912248256600377349 /* SukhumvitSet.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = SukhumvitSet.ttc; sourceTree = "<group>"; };
 		15934D922248256600377349 /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		15934D9522482A0600377349 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				156AB9B22262913A000D16BC /* AVFoundation.framework in Frameworks */,
 				6EC2B0EAA4A07CD07BD7D6FF /* Pods_Dek2Pasaa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +332,7 @@
 		15BB7FE5224801A800221775 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				156AB9AF22628010000D16BC /* AudioPlayer.swift */,
 				151D6993224FCCD10087D26E /* CallCenter.swift */,
 				15BB7FE6224801BC00221775 /* PrimaryColor.swift */,
 				15BB7FE82248048100221775 /* Color.swift */,
@@ -407,6 +413,7 @@
 		82C12DFF08A9E9D345CC97E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				156AB9B12262913A000D16BC /* AVFoundation.framework */,
 				46EFD267ADB3B36F0A8CE026 /* Pods_Dek2Pasaa.framework */,
 				6852145CDCAEE8F6E1445D70 /* Pods_Dek2PasaaTests.framework */,
 				B58466A3977A162E09B87DB2 /* Pods_Dek2PasaaUITests.framework */,
@@ -603,6 +610,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Dek2Pasaa/Pods-Dek2Pasaa-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/AudioPlayerSwift/AudioPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/CenteredCollectionView/CenteredCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -624,6 +632,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CenteredCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
@@ -758,6 +767,7 @@
 				151D6994224FCCD10087D26E /* CallCenter.swift in Sources */,
 				1593A3E2225CF0810023CD6D /* Score.swift in Sources */,
 				15FFD7AE2248B29C00DCCB30 /* MenuStruct.swift in Sources */,
+				156AB9B022628010000D16BC /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
