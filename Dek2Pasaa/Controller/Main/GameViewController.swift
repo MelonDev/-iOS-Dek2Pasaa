@@ -28,6 +28,8 @@ class GameViewController: UIViewController {
     
     var hideScore = false
     
+    var highScore :Int? = nil
+    
     var isInitCollectionView = false
     var lessonKey :String? = nil
     
@@ -41,6 +43,8 @@ class GameViewController: UIViewController {
     var dataCheck :[String :TestCheck] = [:]
     
     var dataPass :[String :Action] = [:]
+    
+    var dataPeople :[PeopleInfo] = []
     
     
     
@@ -204,6 +208,10 @@ class GameViewController: UIViewController {
                 self.scoreLabel.text = "Score: \(self.score ?? 0)"
             }
         })
+    }
+    
+    func loadPeople(){
+        
     }
     
     func showLoadingAlert() {
@@ -446,9 +454,98 @@ class GameViewController: UIViewController {
             })
         } else if self.id == 2 {
             
+            let ref = Database.database().reference()
+            
+            //let uid = Auth.auth().currentUser!.uid
+            //let uid = "FyDDLisKFcgAifEAXbuILau40cC2"
             
             
-            group.leave()
+            ref.child("Peoples").observe(.value, with: {(snapshot) in
+                //self.stopLoadingDialog()
+                
+                self.dataPeople.removeAll()
+                
+                if(snapshot.hasChildren()){
+                    for people in snapshot.children {
+                        
+                        let peopleS = people as! DataSnapshot
+                        let infoS = peopleS.childSnapshot(forPath: "Info")
+                        
+                        var info = PeopleInfo.init(slot: (infoS.value as! [String: AnyObject]))
+                        
+                        //print(info.key)
+                        
+                        ref.child("Peoples").child(info.key!).child("History").observe(.value, with: {(snapshot) in
+                            //self.stopLoadingDialog()
+                            self.score = 0
+                            
+                            if(snapshot.hasChildren()){
+                                
+                                
+                                for slot in snapshot.children {
+                                    
+                                    let slotDS = slot as! DataSnapshot
+                                    
+                                    if(slotDS.hasChildren()){
+                                        for subSlot in slotDS.children {
+                                            let subSlotDS = subSlot as! DataSnapshot
+                                            
+                                            let value = subSlotDS.value as! [String: AnyObject]
+                                            
+                                            let failed = value["failed"] as! Bool
+                                            let opened = value["opened"] as! Bool
+                                            let passed = value["passed"] as! Bool
+                                            
+                                            if !failed && opened && passed {
+                                                info.score! += 1
+                                            }
+                                            
+                                            
+                                            
+                                            
+                                                                        
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    
+                                }
+                                
+                                
+                                
+                                
+                            }
+                            
+                            self.dataPeople = self.dataPeople.sorted(by: { $0.score! > $1.score! })
+
+                            self.dataPeople.append(info)
+        
+                            self.collectionView.reloadData()
+                            
+                           
+                        })
+                        
+                        
+                        
+                        
+                        
+                        
+
+                        
+                    }
+                    group.leave()
+
+                }else {
+                    self.dataPeople.removeAll()
+                }
+                
+                self.dataCache = [:]
+
+                
+            })
+            
         }else {
             notLoad = true
             group.leave()
@@ -485,6 +582,8 @@ class GameViewController: UIViewController {
         if self.id == 11 {
             collectionView!.register(UINib.init(nibName: "TestCVCell", bundle: nil), forCellWithReuseIdentifier: "GameCVC")
             collectionView!.register(UINib.init(nibName: "TestStarCVCell", bundle: nil), forCellWithReuseIdentifier: "GameCVCS")
+        }else if self.id == 2 {
+            collectionView!.register(UINib.init(nibName: "PeopleCVCell", bundle: nil), forCellWithReuseIdentifier: "GameCVC")
         }else {
             collectionView!.register(UINib.init(nibName: "GameCVCell", bundle: nil), forCellWithReuseIdentifier: "GameCVC")
             
@@ -705,6 +804,8 @@ class GameViewController: UIViewController {
             }
         }
         
+        self.collectionView.reloadData()
+        
     }
     
     
@@ -775,7 +876,9 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
         }else if self.id == 11{
             
             return dataTest.count
-        }else {
+        }else if self.id == 2 {
+            return dataPeople.count
+        } else {
             
             return data.count
         }
@@ -933,7 +1036,96 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
             
             return cell
             
-        }else {
+        }else if self.id == 2 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCVC", for: indexPath) as! PeopleCVCell
+            
+            cell.viewBg.backgroundColor = bgColorDark
+            cell.circleImageBg.backgroundColor = bgColorDark
+            
+            cell.nameLabel.isHidden = false
+            cell.scoreLabel.isHidden = false
+            cell.nameTitle.isHidden = false
+            cell.scoreTitle.isHidden = false
+            
+            let slot = dataPeople[indexPath.row]
+            
+            cell.nameLabel.text = slot.name!
+
+            
+            if(LangCoreData.init().now() == LangCoreData.Language.Thai){
+                cell.scoreLabel.text = "\(slot.score!) แต้ม"
+                cell.nameTitle.text = "ชื่อผู้ใช้"
+                cell.scoreTitle.text = "คะแนน"
+                
+            }else {
+                cell.scoreLabel.text = "\(slot.score!) Point"
+                cell.nameTitle.text = "Name"
+                cell.scoreTitle.text = "Score"
+            }
+            
+            
+            let imageSource :Image? = dataCache[indexPath.row] != nil ? dataCache[indexPath.row] : nil
+            if imageSource != nil {
+                cell.circleImageProfile.image = imageSource
+            }else {
+            
+            
+            Alamofire.request(slot.image!).responseImage { response in
+                
+                if response.error == nil {
+                    if let image = response.result.value {
+                        
+                        self.dataCache.updateValue(image, forKey: indexPath.row)
+
+                        
+                       cell.circleImageProfile.image = image
+                        
+                    }
+                }else {
+                    cell.circleImageBg.backgroundColor = self.bgColor
+                }
+            }
+            
+            }
+            
+            cell.circleImageProfile.layer.cornerRadius = 40
+            
+            
+            if indexPath.row == 0 {
+                self.highScore = slot.score!
+                cell.highScore.isHidden = false
+                cell.setHighScore()
+            }else {
+                if slot.score! == self.highScore! {
+                    cell.highScore.isHidden = false
+                    cell.setHighScore()
+                }else {
+                    cell.highScore.isHidden = true
+                }
+            }
+            
+            if !UIDevice.init().isIpad() && UIDevice.init().isLandscape() {
+                cell.highScore.fontSize(size: 18)
+                cell.nameLabel.fontSize(size: 20)
+
+                
+            } else if UIDevice.init().isIpad() {
+                cell.highScore.fontSize(size: 15)
+                cell.nameLabel.fontSize(size: 20)
+            } else {
+                
+                cell.highScore.fontSize(size: 26)
+                cell.nameLabel.fontSize(size: 32)
+
+        
+            }
+            
+            
+            
+            
+            return cell
+            
+        } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCVC", for: indexPath) as! GameCVCell
             
             cell.imageView.image = nil

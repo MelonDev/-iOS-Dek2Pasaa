@@ -502,7 +502,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     Alamofire.request(i.cover).responseImage { response in
                         if response.error == nil {
                             self.unknownImageLabel.isHidden = true
-
+                            
                             if let image = response.result.value {
                                 
                                 //self.dataCache.updateValue(image, forKey: indexPath.row)
@@ -596,7 +596,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     Alamofire.request(i.cover).responseImage { response in
                         if response.error == nil {
                             self.unknownImageLabel.isHidden = true
-
+                            
                             if let image = response.result.value {
                                 
                                 //self.dataCache.updateValue(image, forKey: indexPath.row)
@@ -610,7 +610,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                             self.imageIndicator.isHidden = true
                             self.unknownImageLabel.isHidden = false
                             self.imageView.image = nil
-
+                            
                         }
                     }
                     
@@ -621,7 +621,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     self.unknownImageLabel.isHidden = false
                     
                     self.imageView.image = nil
-
+                    
                     
                 }
                 
@@ -1029,21 +1029,27 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         for constraint in self.choiceView.constraints {
             if constraint.identifier == "choiceViewHeight" {
-                if UIDevice().isPortrait(){
-                    if UIDevice.hasNotch() {
-                        constraint.constant = 180
+                if UIDevice().isIpad(){
+                    constraint.constant = 180
+                } else {
+                    if UIDevice().isPortrait(){
+                        if UIDevice.hasNotch() {
+                            constraint.constant = 180
+                            
+                        }else {
+                            constraint.constant = 150
+                        }
                         
                     }else {
-                        constraint.constant = 150
+                        constraint.constant = 80
                     }
                     
-                }else {
-                    constraint.constant = 80
                 }
                 
             }
             if constraint.identifier == "choiceA_center_port" {
-                if UIDevice().isLandscape() {
+                
+                if UIDevice().isLandscape() && !UIDevice.init().isIpad() {
                     
                     if UIDevice.hasNotch() {
                         constraint.constant = -122
@@ -1058,7 +1064,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
             }
             
             if constraint.identifier == "choiceB_center_port" {
-                if UIDevice().isLandscape() {
+                if UIDevice().isLandscape() && !UIDevice.init().isIpad() {
                     if UIDevice.hasNotch() {
                         constraint.constant = 122
                         
@@ -1103,13 +1109,18 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
             }
             if constraint.identifier == "choiceWidth" {
                 //print(contentViewSafe.bounds.width)
-                if UIDevice().isPortrait(){
+                
+                if UIDevice().isIpad(){
                     constraint.constant =  300
                 }else {
-                    if UIDevice.hasNotch() {
-                        constraint.constant =  230
+                    if UIDevice().isPortrait(){
+                        constraint.constant =  300
                     }else {
-                        constraint.constant =  200
+                        if UIDevice.hasNotch() {
+                            constraint.constant =  230
+                        }else {
+                            constraint.constant =  200
+                        }
                     }
                 }
                 

@@ -1,33 +1,35 @@
 
 import UIKit
-import FirebaseAuth
+import Firebase
 import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
+
 
 class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelegate{
     
     var loadingAlert :UIAlertController? = nil
     let alert = UIAlertController(title: nil, message: "กรุณารอสักครู่...", preferredStyle: .alert)
-
+    
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if(error != nil){
             showErrorAlert(title: "Alert", message: error.localizedDescription)
             //print(error.localizedDescription)
         }else {
+            
             guard let authentication = user.authentication else { return }
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                            accessToken: authentication.accessToken)
             
             Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
                 if error != nil {
-
+                    
                     self.showErrorAlert()
                     return
                 }else {
-
-                    self.showAlert()
+                    self.setUp()
+                    //self.showAlert()
                     
                 }
             }
@@ -37,7 +39,7 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
     
     func facebookLogin() {
         //self.showLoadingAlert()
-
+        
         let LoginManager = FBSDKLoginManager()
         LoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             //self.hideLoadingAlert()
@@ -58,7 +60,7 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
                         
                         return
                     }else {
-                        self.showAlert()
+                        self.setUp()
                     }
                     // self.performSegue(withIdentifier: self.signInSegue, sender: nil)
                 }
@@ -69,6 +71,11 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
     func goToMain(){
         //print("Hello")
         let vc = AppConfig.init().requireViewController(storyboard: CallCenter.init().MainStoryboard, viewController: CallCenter.init().MainViewController) as! MainViewController
+        
+    
+        
+        
+        
         
         
         self.actionVC(this: self, viewController: vc)
@@ -83,7 +90,7 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
         super.viewDidLoad()
         
         hero.isEnabled = true
-
+        
         
         //loginView.setStyle()
         loginView.layer.cornerRadius = 16
@@ -94,7 +101,9 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
         
         // super.viewDidLoad()
         if(Auth.auth().currentUser != nil){
-            goToMain()
+            setUp()
+            
+            
         }else {
             
             loginBtn!.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(login(_:))))
@@ -136,6 +145,55 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
         
         
         
+    }
+    
+    func setUp(){
+        let user = Auth.auth().currentUser!
+        
+        let ref = Database.database().reference().child("Peoples").child(user.uid).child("Info")
+        
+        let image :String = user.photoURL != nil ? user.photoURL!.absoluteString : ""
+        let key :String = user.uid
+        let name :String = user.displayName ?? ""
+        
+        //let e :[String: Any] = ["image": user.photoURL != nil ? user.photoURL! : "","key" :user.uid,"name" :user.displayName ?? "","score" :0]
+        let e :[String: Any] = ["image": image,"key" :key,"name" :name,"score" :0]
+
+        
+        //ref.setValue(e)
+        
+        DispatchQueue.main.async {
+            self.showLoadingAlert()
+        }
+        
+        ref.setValue(e, withCompletionBlock: {error,_ in
+            if error == nil {
+                self.loadingAlert?.dismiss(animated: false, completion: {
+                    self.showAlert()
+                    //self.goToMain()
+                })
+            }else {
+                self.loadingAlert?.dismiss(animated: false, completion: {
+                    self.showDialog(title: "Error", message: "กรุณาลองใหม่อีกครั้ง", positiveString: "รับทราบ", completion: {})
+                })
+            }
+            
+            
+        })
+    }
+    
+    func showDialog(title :String,message :String?,positiveString :String ,completion :@escaping () -> Void){
+        print(title)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let actionPositive = UIAlertAction(title: positiveString, style: .cancel, handler: { (action) -> Void in
+            alert.dismissAction()
+            completion()
+        })
+        //let actionNegative = UIAlertAction(title: "English", style: .default, handler: { (action) -> Void in
+        //})
+        
+        alert.addAction(actionPositive)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -257,7 +315,7 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
     
     func showLoadingAlert() {
         
-        loadingAlert = UIAlertController(title: "Updating data", message: "Please wait...", preferredStyle: .alert)
+        loadingAlert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         loadingAlert!.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 10,y: 5,width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.hidesWhenStopped = true
@@ -286,6 +344,8 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
     }
+    
+    
     
     
     
