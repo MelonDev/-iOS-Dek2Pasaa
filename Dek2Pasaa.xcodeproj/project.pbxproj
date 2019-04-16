@@ -58,7 +58,9 @@
 		15BB800022480BC500221775 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FFF22480BC500221775 /* AppConfig.swift */; };
 		15BB800222480C5C00221775 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB800122480C5C00221775 /* UIButton.swift */; };
 		15BB800422480E3F00221775 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB800322480E3F00221775 /* UIViewController.swift */; };
+		15C0742C2266901B00AFC1D1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C0742B2266901B00AFC1D1 /* AboutViewController.swift */; };
 		15D9C0062266513D00812724 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9C0052266513D00812724 /* SettingViewController.swift */; };
+		15D9C00822665E6400812724 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9C00722665E6300812724 /* SettingTableViewCell.swift */; };
 		15E63AD0225BA63000B6AF33 /* GameCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E63ACE225BA63000B6AF33 /* GameCVCell.swift */; };
 		15E63AD1225BA63000B6AF33 /* GameCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E63ACF225BA63000B6AF33 /* GameCVCell.xib */; };
 		15E63AD4225BA64E00B6AF33 /* ChoiceCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E63AD2225BA64D00B6AF33 /* ChoiceCVCell.swift */; };
@@ -150,7 +152,9 @@
 		15BB7FFF22480BC500221775 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		15BB800122480C5C00221775 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		15BB800322480E3F00221775 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		15C0742B2266901B00AFC1D1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		15D9C0052266513D00812724 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		15D9C00722665E6300812724 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		15E63ACE225BA63000B6AF33 /* GameCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCVCell.swift; sourceTree = "<group>"; };
 		15E63ACF225BA63000B6AF33 /* GameCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCVCell.xib; sourceTree = "<group>"; };
 		15E63AD2225BA64D00B6AF33 /* ChoiceCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCVCell.swift; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 				154CDE972253743C001DB159 /* NewMainViewController.swift */,
 				153D7C2F2260DFB700DC6AFD /* LessonViewController.swift */,
 				15D9C0052266513D00812724 /* SettingViewController.swift */,
+				15C0742B2266901B00AFC1D1 /* AboutViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -418,6 +423,7 @@
 				153D7C31226165FD00DC6AFD /* LessonTableViewCell.swift */,
 				1508FD2E2263E53C00043D45 /* PeopleCVCell.swift */,
 				1508FD2F2263E53D00043D45 /* PeopleCVCell.xib */,
+				15D9C00722665E6300812724 /* SettingTableViewCell.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -764,9 +770,11 @@
 				159B7628225A3ADB00A88872 /* LangCoreData.swift in Sources */,
 				15BB7FE92248048100221775 /* Color.swift in Sources */,
 				15BB7FE22247FE7800221775 /* MainViewController.swift in Sources */,
+				15C0742C2266901B00AFC1D1 /* AboutViewController.swift in Sources */,
 				15BB7FFE22480B3D00221775 /* StringProtocol.swift in Sources */,
 				15BB7FFC22480B1B00221775 /* UINavigationController.swift in Sources */,
 				15BB800022480BC500221775 /* AppConfig.swift in Sources */,
+				15D9C00822665E6400812724 /* SettingTableViewCell.swift in Sources */,
 				15BB800222480C5C00221775 /* UIButton.swift in Sources */,
 				15BB7FF822480AE200221775 /* UIScrollView.swift in Sources */,
 				15BB7FF022480A4800221775 /* UIDevice.swift in Sources */,

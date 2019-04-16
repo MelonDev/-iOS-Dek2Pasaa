@@ -466,8 +466,9 @@ class GameViewController: UIViewController {
                 self.dataPeople.removeAll()
                 
                 if(snapshot.hasChildren()){
+                    var count = 0
                     for people in snapshot.children {
-                        
+                        count += 1
                         let peopleS = people as! DataSnapshot
                         let infoS = peopleS.childSnapshot(forPath: "Info")
                         
@@ -503,7 +504,7 @@ class GameViewController: UIViewController {
                                             
                                             
                                             
-                                                                        
+                                            
                                         }
                                     }
                                     
@@ -519,30 +520,32 @@ class GameViewController: UIViewController {
                             }
                             
                             self.dataPeople = self.dataPeople.sorted(by: { $0.score! > $1.score! })
-
+                            
                             self.dataPeople.append(info)
-        
+                            
                             self.collectionView.reloadData()
                             
-                           
+                            
                         })
                         
                         
+                        if count == self.dataPeople.count {
+                            group.leave()
+                            
+                        }
                         
                         
                         
                         
-
                         
                     }
-                    group.leave()
-
+                    
                 }else {
                     self.dataPeople.removeAll()
                 }
                 
                 self.dataCache = [:]
-
+                
                 
             })
             
@@ -1050,7 +1053,7 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
             let slot = dataPeople[indexPath.row]
             
             cell.nameLabel.text = slot.name!
-
+            
             
             if(LangCoreData.init().now() == LangCoreData.Language.Thai){
                 cell.scoreLabel.text = "\(slot.score!) แต้ม"
@@ -1068,24 +1071,24 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
             if imageSource != nil {
                 cell.circleImageProfile.image = imageSource
             }else {
-            
-            
-            Alamofire.request(slot.image!).responseImage { response in
                 
-                if response.error == nil {
-                    if let image = response.result.value {
-                        
-                        self.dataCache.updateValue(image, forKey: indexPath.row)
-
-                        
-                       cell.circleImageProfile.image = image
-                        
+                
+                Alamofire.request(slot.image!).responseImage { response in
+                    
+                    if response.error == nil {
+                        if let image = response.result.value {
+                            
+                            self.dataCache.updateValue(image, forKey: indexPath.row)
+                            
+                            
+                            cell.circleImageProfile.image = image
+                            
+                        }
+                    }else {
+                        cell.circleImageBg.backgroundColor = self.bgColor
                     }
-                }else {
-                    cell.circleImageBg.backgroundColor = self.bgColor
                 }
-            }
-            
+                
             }
             
             cell.circleImageProfile.layer.cornerRadius = 40
@@ -1107,7 +1110,7 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
             if !UIDevice.init().isIpad() && UIDevice.init().isLandscape() {
                 cell.highScore.fontSize(size: 18)
                 cell.nameLabel.fontSize(size: 20)
-
+                
                 
             } else if UIDevice.init().isIpad() {
                 cell.highScore.fontSize(size: 15)
@@ -1116,8 +1119,8 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                 
                 cell.highScore.fontSize(size: 26)
                 cell.nameLabel.fontSize(size: 32)
-
-        
+                
+                
             }
             
             
