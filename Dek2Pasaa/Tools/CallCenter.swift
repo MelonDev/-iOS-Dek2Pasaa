@@ -24,6 +24,8 @@ class CallCenter {
 
     let LoginViewController :String = "LoginVC"
     
+    let SettingViewController :String = "SettingVC"
+    
     //let ScanViewController :String = "ScanVC"
     //let CategoryViewController :String = "CategoryVC"
     //let HistoryViewController :String = "HistoryVC"

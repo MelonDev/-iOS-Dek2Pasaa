@@ -58,6 +58,7 @@
 		15BB800022480BC500221775 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB7FFF22480BC500221775 /* AppConfig.swift */; };
 		15BB800222480C5C00221775 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB800122480C5C00221775 /* UIButton.swift */; };
 		15BB800422480E3F00221775 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB800322480E3F00221775 /* UIViewController.swift */; };
+		15D9C0062266513D00812724 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9C0052266513D00812724 /* SettingViewController.swift */; };
 		15E63AD0225BA63000B6AF33 /* GameCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E63ACE225BA63000B6AF33 /* GameCVCell.swift */; };
 		15E63AD1225BA63000B6AF33 /* GameCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E63ACF225BA63000B6AF33 /* GameCVCell.xib */; };
 		15E63AD4225BA64E00B6AF33 /* ChoiceCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E63AD2225BA64D00B6AF33 /* ChoiceCVCell.swift */; };
@@ -149,6 +150,7 @@
 		15BB7FFF22480BC500221775 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		15BB800122480C5C00221775 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		15BB800322480E3F00221775 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		15D9C0052266513D00812724 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		15E63ACE225BA63000B6AF33 /* GameCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCVCell.swift; sourceTree = "<group>"; };
 		15E63ACF225BA63000B6AF33 /* GameCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCVCell.xib; sourceTree = "<group>"; };
 		15E63AD2225BA64D00B6AF33 /* ChoiceCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceCVCell.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				151D6991224FCA4E0087D26E /* GameViewController.swift */,
 				154CDE972253743C001DB159 /* NewMainViewController.swift */,
 				153D7C2F2260DFB700DC6AFD /* LessonViewController.swift */,
+				15D9C0052266513D00812724 /* SettingViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -741,6 +744,7 @@
 				159B762B225A7C0700A88872 /* LoginViewController.swift in Sources */,
 				15934D9622482A0600377349 /* UILabel.swift in Sources */,
 				1593A3E6225D137B0023CD6D /* WordInfo.swift in Sources */,
+				15D9C0062266513D00812724 /* SettingViewController.swift in Sources */,
 				15BB7FE7224801BC00221775 /* PrimaryColor.swift in Sources */,
 				15BB7FEC2248058700221775 /* UIColor.swift in Sources */,
 				15BB7FAD2247F84000221775 /* Dek2Pasaa.xcdatamodeld in Sources */,

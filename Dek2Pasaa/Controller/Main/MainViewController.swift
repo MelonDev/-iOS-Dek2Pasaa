@@ -802,7 +802,26 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
              
              }*/
         else {
-            showActionSheet()
+            let vc = AppConfig.init().requireViewController(storyboard: CallCenter.init().MainStoryboard, viewController: CallCenter.init().SettingViewController) as! SettingViewController
+            
+            vc.bgColor = data()[indexPath.row].color
+            vc.bgColorDark = data()[indexPath.row].colorBg
+            vc.view.backgroundColor = vc.bgColorDark
+            vc.toID = indexPath.row
+            vc.titleLabel.hero.id = "TITLE_\(indexPath.row)"
+            vc.view.hero.id = "TITLE_\(indexPath.row)"
+
+
+            
+            if(langCoreData?.now() == LangCoreData.Language.Thai){
+                vc.titleLabel.text = data()[indexPath.row].titleThai
+            }else {
+                vc.titleLabel.text = data()[indexPath.row].titleEng
+            }
+            
+            
+            self.actionVC(this: self, viewController: vc)
+            
         }
         
         

@@ -42,6 +42,8 @@ class PeopleCVCell: UICollectionViewCell {
         scoreTitle.isHidden = true
     }
     
+    
+    
     func setHighScore(){
         
         
