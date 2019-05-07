@@ -6,7 +6,7 @@ class PrimaryColor {
     let facebookColor = UIColor.init(rgb: 0x3B5998)
     
     let colorText = UIColor.init(rgb: 0x939393 )
-    let colorTabInActiveText = UIColor.init(rgb: 0x99ffffff )
+    let colorTabInActiveText = UIColor.init(rgb: 0xffffff )
     //let  = UIColor.init(rgb: 0x )
     
     let colorStatusBarTran = UIColor.init(rgb: 0x3c000000 )

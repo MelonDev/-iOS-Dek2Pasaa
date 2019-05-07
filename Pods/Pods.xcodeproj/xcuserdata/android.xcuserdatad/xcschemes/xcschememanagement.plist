@@ -54,12 +54,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FirebaseFunctions.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseMessaging.xcscheme</key>
+		<key>FirebaseInstanceID.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -105,11 +100,6 @@
 			<false/>
 		</dict>
 		<key>Pods-Dek2PasaaUITests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8194AAFD4520C25E70A26B32DCB1F595"
+               BlueprintIdentifier = "285269E7ABE06FF589EA4DF713F6797A"
                BlueprintName = "TORoundedTableView"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "TORoundedTableView.framework">

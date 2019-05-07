@@ -10,9 +10,7 @@ target 'Dek2Pasaa' do
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
-pod 'Firebase/Messaging'
 pod 'Firebase/Auth'
-pod 'Firebase/Functions'
 pod 'GoogleSignIn'
 
 pod 'AudioPlayerSwift'

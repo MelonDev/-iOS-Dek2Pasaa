@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSCameraUsageDescription</key>
-    <string>This app wants to take pictures.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app wants to use your photos.</string>
-    
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -20,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -49,7 +44,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>FacebookAppID</key>
 	<string>321309408697404</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -59,10 +54,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>This app wants to take pictures.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string></string>
+	<string>This app wants to use your Microphone.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app wants to use your photos.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string></string>
+	<string>This app wants to use your Speech Recognition.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SukhumvitSet.ttc</string>
