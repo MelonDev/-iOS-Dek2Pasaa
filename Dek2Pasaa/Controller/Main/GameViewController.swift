@@ -1380,13 +1380,17 @@ extension GameViewController : UICollectionViewDelegate,UICollectionViewDataSour
                 let slot = dataWord[indexPath.row]
                 vc.masterKey = slot.masterKey
                 vc.key = slot.key
-                vc.position = slot.number
+                //vc.position = slot.number
+                
+                vc.position = indexPath.row + 1
                 
             }else {
                 let slot = dataTest[indexPath.row]
                 vc.masterKey = slot.masterKey
                 vc.key = slot.key
-                vc.position = slot.number
+                //vc.position = slot.number
+                
+                vc.position = indexPath.row + 1
             }
             
             self.titleLabel.hero.id = "BACK_\(CallCenter.init().LessonViewController)"

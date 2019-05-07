@@ -416,9 +416,11 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     
                     //let value = lessonDataSnapshot.childSnapshot(forPath: "Info").childSnapshot(forPath: "nameEng").value as! String
                     
-                    let value = WordInfo.init(slot: (lessonDataSnapshot.value as! [String: AnyObject]))
+                    var value = WordInfo.init(slot: (lessonDataSnapshot.value as! [String: AnyObject]))
                     
                     if !value.delete {
+                        value.number = self.dataWord.count + 1
+                        
                         self.dataWord.append(value)
                     }
                     
@@ -428,15 +430,27 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 
                 
                 self.dataWord = self.dataWord.sorted(by: { $0.number < $1.number })
+                
+                //print(actionId)
+                //print(self.position)
+
+                
                 if actionId == 0 {
                     self.loadLesson(keys: self.key!)
                 }else if actionId == 1 {
+                    
                     //PRE LESSON
                     if self.position! > 1 {
                         self.position = self.position! - 1
+                        //print(self.position)
+                        
                         
                         for i in self.dataWord {
+                            
+                            //print(i.number)
+                            
                             if i.number == self.position {
+                                print(self.dataWord[self.position! - 1].key)
                                 self.loadLesson(keys: self.dataWord[self.position! - 1].key)
                             }
                         }
@@ -551,9 +565,13 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     
                     //let value = lessonDataSnapshot.childSnapshot(forPath: "Info").childSnapshot(forPath: "nameEng").value as! String
                     
-                    let value = TestInfo.init(slot: (lessonDataSnapshot.value as! [String: AnyObject]))
+                    var value = TestInfo.init(slot: (lessonDataSnapshot.value as! [String: AnyObject]))
                     
                     if !value.delete {
+                        //print(value.key)
+                        
+                        value.number = self.dataTest.count + 1
+                        
                         self.dataTest.append(value)
                     }
                     
@@ -681,7 +699,11 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func checkAnswer(choice :Choice) {
         
+        //print(self.position)
+        
         let slot = dataTest[self.position! - 1]
+        //let slot = dataTest[self.position!]
+
         
         DispatchQueue.main.async {
             self.showCheckAlert()
@@ -777,9 +799,19 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         if(LangCoreData.init().now() == LangCoreData.Language.Thai){
                             DispatchQueue.main.async {
                                 self.showDialogComplete(title: "ถูกต้องจ้า", message: "เก่งมาก ที่ตอบได้ถูกต้อง ไปข้อต่อไปกันเลย", positiveString: "ข้อต่อไป", completion: {
+                                    //print(self.dataTest.count)
+                                    //print(self.position!)
+                                    //print(test.number)
+                                    //print(test.number + 1)
+
                                     self.position = test.number + 1
+                                    
+                                    //print(self.position! - 1)
+
+                                
                                     let next = self.dataTest[self.position! - 1]
                                     
+
                                     self.key = next.key
                                     
                                     self.loadTest(key: self.key!)
