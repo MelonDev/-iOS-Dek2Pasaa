@@ -14,9 +14,11 @@ import AVFoundation
 //import AudioPlayer
 import Speech
 
+import AVKit
 
 
-class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,SFSpeechRecognizerDelegate {
+
+class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,SFSpeechRecognizerDelegate,AVPlayerViewControllerDelegate {
     
     //var p: AVAudioPlayer?
     @IBOutlet weak var contentLabel: UILabel!
@@ -71,6 +73,8 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     var yourAnswer :TestCheck? = nil
     var isYourAnswer :Bool? = nil
+    
+    var videoUrl :String? = nil
     
     
     
@@ -419,7 +423,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     var value = WordInfo.init(slot: (lessonDataSnapshot.value as! [String: AnyObject]))
                     
                     if !value.delete {
-                        value.number = self.dataWord.count + 1
+                        //value.number = self.dataWord.count + 1
                         
                         self.dataWord.append(value)
                     }
@@ -427,9 +431,9 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     
                 }
                 
+                self.sort(id: 0)
                 
-                
-                self.dataWord = self.dataWord.sorted(by: { $0.number < $1.number })
+                //self.dataWord = self.dataWord.sorted(by: { $0.number < $1.number })
                 
                 //print(actionId)
                 //print(self.position)
@@ -474,6 +478,63 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         })
     }
     
+    
+    func playVideo(url: URL) {
+        
+        let player = AVPlayer(url: url)
+        
+        print(url.absoluteString)
+        
+        let vc = AVPlayerViewController()
+        vc.delegate = self
+        vc.player = player
+        
+        self.present(vc, animated: true) { vc.player?.play() }
+    }
+    
+    func sort(id :Int){
+        if id == 0 {
+            var dataDemo :[WordInfo] = []
+            
+            var count = 0
+            
+            while dataDemo.count < dataWord.count {
+                
+                for i in dataWord {
+                    if i.number == count {
+                        dataDemo.append(i)
+                    }
+                }
+                
+                if dataWord.count == dataDemo.count {
+                    dataWord = dataDemo
+                }
+                
+                count += 1
+            }
+            
+        }else if id == 1 {
+            var dataDemo :[TestInfo] = []
+            
+            var count = 0
+            
+            while dataDemo.count < dataTest.count {
+                
+                for i in dataTest {
+                    if i.number == count {
+                        dataDemo.append(i)
+                    }
+                }
+                
+                if dataTest.count == dataDemo.count {
+                    dataTest = dataDemo
+                }
+                
+                count += 1
+            }
+        }
+    }
+    
     func loadLesson(keys :String){
         for i in dataWord {
             if i.key.contains(keys){
@@ -485,6 +546,10 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 }
                 if i.nameEng.count > 0 {
                     dataTable.append(tableData.init(title: "ภาษาอังกฤษ", message: i.nameEng, audioURL: i.engSound, id: 2, languege: .english))
+                }
+                
+                if i.video.count > 0 {
+                    dataTable.append(tableData.init(title: "", message: "", audioURL: i.video, id: 3, languege: .none))
                 }
                 
                 self.tableView.reloadData()
@@ -569,7 +634,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     
                     if !value.delete {
                         //print(value.key)
-                        
+                    
                         value.number = self.dataTest.count + 1
                         
                         self.dataTest.append(value)
@@ -578,7 +643,9 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     
                 }
                 
-                self.dataTest = self.dataTest.sorted(by: { $0.number < $1.number })
+                //self.dataTest = self.dataTest.sorted(by: { $0.number < $1.number })
+                
+                self.sort(id: 1)
                 
                 self.loadTest(key: self.key!)
                 
@@ -1202,6 +1269,35 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let slot = dataTable[indexPath.row]
+
+        
+        if slot.id == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "videoTableViewCell", for: indexPath) as! VideoTableViewCell
+            
+            cell.viewBg.backgroundColor = UIColor.clear
+            
+            if(LangCoreData().now() == LangCoreData.Language.Thai){
+                cell.cellTitle.text = "วิดีโอ"
+                cell.cellViewBtnText.text = "เล่น"
+
+            }else {
+                cell.cellTitle.text = "Video"
+                cell.cellViewBtnText.text = "Play"
+
+            }
+            
+            videoUrl = slot.audioURL
+            
+            cell.cellViewBtn.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(play(_:))))
+
+            
+            return cell
+        }else {
+            
+            videoUrl = nil
+
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! LessonTableViewCell
         
         let slot = dataTable[indexPath.row]
@@ -1303,6 +1399,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
         
         return cell
+        }
     }
     
     enum Languege {
@@ -1407,6 +1504,14 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     @objc func choiceBTapped(_ sender:UITapGestureRecognizer?) {
         self.checkAnswer(choice: .B)
+    }
+    
+    @objc func play(_ sender:UITapGestureRecognizer?) {
+        if videoUrl != nil {
+            //print(videoUrl)
+            playVideo(url: URL.init(string: videoUrl!)!)
+
+        }
     }
     
     

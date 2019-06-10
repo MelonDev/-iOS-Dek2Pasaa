@@ -236,7 +236,7 @@ class MainViewController: UIViewController {
             appIconImageView = UIImageView()
             appIconImageView?.setStyleImage(cornerRadius: 25)
             
-            appIconImageView!.image = #imageLiteral(resourceName: "ImageIcon")
+            appIconImageView!.image = #imageLiteral(resourceName: "newIcon")
             appIconImageView?.backgroundColor = UIColor.clear
             appIconImageView?.contentMode = .scaleAspectFill
             

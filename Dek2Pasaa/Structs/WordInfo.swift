@@ -13,6 +13,7 @@ struct WordInfo {
     var number :Int
     var read :String
     var thaiSound :String
+    var video :String
     
     init(slot :[String :AnyObject]? = nil) {
         if(slot != nil){
@@ -30,6 +31,7 @@ struct WordInfo {
             self.number = slot!["number"] as! Int
             self.read = slot!["read"] as! String
             self.thaiSound = slot!["thaiSound"] as! String
+            self.video = (slot!["video"] != nil ? slot!["video"] as! String : "")
         }else {
             self.cover = ""
             self.delete = false
@@ -41,6 +43,7 @@ struct WordInfo {
             self.number = 0
             self.read = ""
             self.thaiSound = ""
+            self.video = ""
         }
     }
     
