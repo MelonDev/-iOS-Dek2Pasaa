@@ -103,6 +103,11 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 13.0, *) {
+            // Always adopt a light interface style.
+            overrideUserInterfaceStyle = .light
+        }
+        
         backView.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(backActions(_:))))
         self.initVC()
         
@@ -424,6 +429,8 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     
                     if !value.delete {
                         //value.number = self.dataWord.count + 1
+                        
+                        print(value)
                         
                         self.dataWord.append(value)
                     }
@@ -1308,10 +1315,100 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         if slot.id != 0 {
             
+            if slot.message!.count > 0 {
+                cell.circleA.isHidden = false
+                
+                cell.actionBlockAudio = {
+                    
+                    var url_raw = ""
+                                   
+                                   var player: AVPlayer? = nil
+                                   //let url  = URL.init(string:  "\(slot.audioURL!).mp3")
+                                   //let url = URL.init(string: "http://translate.google.com/translate_tts?ie=UTF-8&q=pin&tl=en&client=tw-ob")
+                                   //let url = URL.init(string: "http://translate.google.com/translate_tts?id=UTF-8&q=à¸ªà¸§à¸±à¸ªà¸à¸µ&tl=th-TH&client=tw-ob")
+                                   
+                    let strURL = slot.message!
+                    let utfURL = strURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+                                   
+                            print(utfURL)
+                    
+                    if slot.languege == .english {
+                        url_raw = "https://translate.google.com/translate_tts?ie=UTF-8&q=\(utfURL)&tl=en&client=tw-ob"
+                    }else {
+                        url_raw = "https://translate.google.com/translate_tts?ie=UTF-8&q=\(utfURL)&tl=th-TH&client=tw-ob"
+                    }
+                    
+                    let url = URL.init(string: url_raw)
+                                   
+                                   /*
+                                   if let url = URL(string: "http://translate.google.com/translate_tts?ie=UTF-8&q=hello&tl=en&client=tw-ob") {
+                                       print("TRUE")
+                                   } else {
+                                       print("could not open url, it was nil")
+                                   }
+                */
+                                   
+                                   //let audioUrl = NSURL(string: "https://translate.google.com/translate_tts?ie=UTF-8&q=สวัสดีครับ&tl=th-TH&client=tw-ob")
+                                  // print(audioUrl)
+                                   //let avAsset = AVURLAsset(url: audioUrl as! URL)
+                                   //let playerItem = AVPlayerItem(asset: avAsset)
+                                   
+                                   let playerItem: AVPlayerItem = AVPlayerItem(url: url!)
+                                   
+                                   NotificationCenter.default.addObserver(self, selector: #selector(self.playerDidFinishPlaying(sender:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+                                   
+                                   
+                                   player = AVPlayer(playerItem: playerItem)
+                                   
+                                   //player = AVPlayer(url: url!)
+                                   
+                                   player?.volume = 1.0
+                                   
+                                   let playerLayer = AVPlayerLayer(player: player!)
+                                   
+                                   //playerLayer.frame = CGRect(x: 0, y: 0, width: 10, height: 50)
+                                   self.view.layer.addSublayer(playerLayer)
+                                   
+                                   player!.play()
+                                   
+                                   self.run(after: 0, completion: {
+                                       self.showLoadingAudioAlert(playerLayer: playerLayer)
+                                       self.processing = true
+                                   })
+                                   
+                                   self.run(after: 30, completion: {
+                                       if self.processing {
+                                           self.processing = false
+                                           player!.pause()
+                                           self.hideLoadingAudioAlert()
+                                           self.audioLayer?.removeFromSuperlayer()
+                                           
+                                           if(LangCoreData().now() == LangCoreData.Language.Thai){
+                                               self.showDialog(title: "เกิดข้อผิดพลาด", message: "ข้อมูลไฟล์เสียงโหลดนานเกินไป อาจเกิดจากอินเทอร์เน็ตที่ไม่ดีหรือไฟล์ได้รับความเสียหาย กรุณาลองใหม่อีกครั้ง", positiveString: "รับทราบ", completion: {})
+                                               //loadingAlert = UIAlertController(title: nil , message:"กำลังโหลดข้อมูล", preferredStyle: .alert)
+                                           }else {
+                                               self.showDialog(title: "Error", message: "Audio data loaded for too long May be caused by poor internet or file being damaged ,Please try again", positiveString: "Close", completion: {})
+                                           }
+                                       }
+                                       
+                                       //print("PAUSE")
+                                   })
+                                   //print("TEST")
+                               }
+
+            }else {
+                cell.circleA.isHidden = true
+                cell.actionBlockAudio = nil
+                
+                
+            }
             
             
+            /*
             if slot.audioURL!.count > 0 {
                 cell.circleA.isHidden = false
+                
+                //print("Audio URL:"+slot.audioURL!)
                 
                 //print(slot.audioURL!)
                 
@@ -1338,8 +1435,26 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 cell.actionBlockAudio = {
                     
                     var player: AVPlayer? = nil
-                    let url  = URL.init(string:  "\(slot.audioURL!).mp3")
+                    //let url  = URL.init(string:  "\(slot.audioURL!).mp3")
+                    let url = URL.init(string: "http://translate.google.com/translate_tts?ie=UTF-8&q=pin&tl=en&client=tw-ob")
+                    //let url = URL.init(string: "http://translate.google.com/translate_tts?id=UTF-8&q=à¸ªà¸§à¸±à¸ªà¸à¸µ&tl=th-TH&client=tw-ob")
                     
+                    let strURL = "สวัสดี"
+                    
+                    print(strURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed))
+                    
+                    /*
+                    if let url = URL(string: "http://translate.google.com/translate_tts?ie=UTF-8&q=hello&tl=en&client=tw-ob") {
+                        print("TRUE")
+                    } else {
+                        print("could not open url, it was nil")
+                    }
+ */
+                    
+                    //let audioUrl = NSURL(string: "https://translate.google.com/translate_tts?ie=UTF-8&q=สวัสดีครับ&tl=th-TH&client=tw-ob")
+                   // print(audioUrl)
+                    //let avAsset = AVURLAsset(url: audioUrl as! URL)
+                    //let playerItem = AVPlayerItem(asset: avAsset)
                     
                     let playerItem: AVPlayerItem = AVPlayerItem(url: url!)
                     
@@ -1347,6 +1462,9 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     
                     
                     player = AVPlayer(playerItem: playerItem)
+                    
+                    //player = AVPlayer(url: url!)
+                    
                     player?.volume = 1.0
                     
                     let playerLayer = AVPlayerLayer(player: player!)
@@ -1387,6 +1505,7 @@ class LessonViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 
                 
             }
+ */
             
             cell.actionBlockRecord = {
                 self.checkRecordPermission(word: slot.message!, languege: slot.languege)

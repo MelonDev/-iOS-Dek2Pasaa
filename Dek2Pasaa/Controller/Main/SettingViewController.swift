@@ -42,7 +42,7 @@ class SettingViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         return [StringLang.init(thai: "เปลี่ยนรูปภาพประจำตัว", eng: "Change image profile")
             ,StringLang.init(thai: "เปลี่ยนชื่อผู้ใช้", eng: "Change user name")
-            ,StringLang.init(thai: "ติดต่อผู้ดูแล", eng: "Contact the admin")
+            //,StringLang.init(thai: "ติดต่อผู้ดูแล", eng: "Contact the admin")
             ,StringLang.init(thai: "ขอบคุณด้วยใจ", eng: "Acknowledgement")
             ,StringLang.init(thai: "ลงชื่อออก", eng: "Sign out")]
         
@@ -51,6 +51,11 @@ class SettingViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 13.0, *) {
+            // Always adopt a light interface style.
+            overrideUserInterfaceStyle = .light
+        }
         
         self.langCoreData = LangCoreData()
         
@@ -176,7 +181,7 @@ class SettingViewController: UIViewController,UITableViewDataSource,UITableViewD
                     
                 })
             }
-        case 2:
+        case 20:
             
             let id = "LanguageandApplication"
             if let url = URL(string: "fb-messenger://user-thread/\(id)") {
@@ -195,7 +200,7 @@ class SettingViewController: UIViewController,UITableViewDataSource,UITableViewD
                 })
             }
             
-        case 3:
+        case 2:
             let vc = AppConfig.init().requireViewController(storyboard: CallCenter.init().MainStoryboard, viewController: CallCenter.init().AboutViewController) as! AboutViewController
             
             vc.bgColor = bgColor
@@ -204,7 +209,7 @@ class SettingViewController: UIViewController,UITableViewDataSource,UITableViewD
             
             self.actionVC(this: self, viewController: vc)
             
-        case 4:
+        case 3:
             if(langCoreData!.now() == LangCoreData.Language.Thai){
                 showDialog(title: "ยืนยันการลงชื่อออก", message: "ท่านต้องการลงชื่อออกจากระบบใช่หรือไม่?", positiveString: "ยืนยัน", negativeString: "ยกเลิก", completion: {
                     do {

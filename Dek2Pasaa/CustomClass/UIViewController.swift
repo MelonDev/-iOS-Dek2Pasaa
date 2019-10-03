@@ -4,6 +4,8 @@ extension UIViewController {
 
     func actionVC(this :UIViewController , viewController :UIViewController){
         viewController.isHeroEnabled = true
+        viewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        viewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         this.present(viewController,animated: true,completion: nil)
     }
 

@@ -1,6 +1,7 @@
 import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
+import Firebase
 
 class MainViewController: UIViewController {
     
@@ -47,6 +48,69 @@ class MainViewController: UIViewController {
         self.hero.isEnabled = true
         
         self.langCoreData = LangCoreData()
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
+        
+        let currentDateTime = Date()
+
+        let userCalendar = Calendar.current
+        let requestedComponents: Set<Calendar.Component> = [
+            .year,
+            .month,
+            .day,
+            .hour,
+            .minute,
+            .second
+        ]
+
+        let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+        
+        let year = dateTimeComponents.year! > 2500 ? dateTimeComponents.year! - 543 : dateTimeComponents.year!
+        let month = dateTimeComponents.month!
+        let day = dateTimeComponents.day!
+        
+        let ref = Database.database().reference().child("Counter").child("\(year)").child("\(month)").child("\(day)")
+
+        
+        print("\(year) \(month) \(day)")
+        
+        
+        
+        ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            if(snapshot.value as? NSNull == nil){
+                let value = snapshot.value as? NSDictionary
+                
+                let count = value!["count"] as! Int
+                print("dsfjdsfjsjdfj \(count)")
+                
+                let e :[String: Any] = ["count": count+1]
+                
+                ref.setValue(e, withCompletionBlock: {error,_ in
+                    if error == nil {
+                        print("SETVALUED")
+                    }else {
+                        print("ERROR")
+                    }
+                    
+                })
+                
+            }else {
+                let e :[String: Any] = ["count": 1]
+                               
+                               ref.setValue(e, withCompletionBlock: {error,_ in
+                                   if error == nil {
+                                       print("SETVALUED")
+                                   }else {
+                                       print("ERROR")
+                                   }
+                                   
+                               })
+            }
+            
+        })
         
         
         
