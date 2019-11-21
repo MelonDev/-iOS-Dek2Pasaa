@@ -6,7 +6,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 
-class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelegate{
+class LoginViewController: UIViewController ,GIDSignInDelegate{
     
     var loadingAlert :UIAlertController? = nil
     let alert = UIAlertController(title: nil, message: "กรุณารอสักครู่...", preferredStyle: .alert)
@@ -40,16 +40,20 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
     func facebookLogin() {
         //self.showLoadingAlert()
         
-        let LoginManager = FBSDKLoginManager()
-        LoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+        
+        
+        //let LoginManager = LoginManager()
+        LoginManager().logIn(permissions: ["public_profile", "email"], from: self) { (result, error) in
             //self.hideLoadingAlert()
+            
+        
             if error != nil {
                 self.showErrorAlert(title: "Failed to login", message: error!.localizedDescription)
                 return
             } else if result!.isCancelled {
                 self.showErrorAlert(title: "Cancelled", message: "ยกเลิกเรียบร้อย")
             } else {
-                guard let accessToken = FBSDKAccessToken.current() else {
+                guard let accessToken = AccessToken.current else {
                     self.showErrorAlert(message: "Failed to get access token")
                     return
                 }
@@ -108,7 +112,7 @@ class LoginViewController: UIViewController ,GIDSignInUIDelegate,GIDSignInDelega
             
             loginBtn!.onClick(tap: UITapGestureRecognizer(target: self, action: #selector(login(_:))))
             
-            GIDSignIn.sharedInstance().uiDelegate = self
+            GIDSignIn.sharedInstance().presentingViewController = self
             GIDSignIn.sharedInstance().delegate = self
             
         }

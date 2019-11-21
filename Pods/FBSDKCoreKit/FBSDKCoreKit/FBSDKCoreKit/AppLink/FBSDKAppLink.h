@@ -22,16 +22,55 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*! The version of the App Link protocol that this library supports */
-FOUNDATION_EXPORT NSString *const FBSDKAppLinkVersion;
+/**
+  NS_ENUM(NSUInteger, FBSDKAutoAppLinkPresentationStyle)
+    Specifies display style of Auto App Link Content View
+ */
+typedef NS_ENUM(NSUInteger, FBSDKAutoAppLinkPresentationStyle)
+{
+  /**
+   * Automatically displayed by SDK
+   */
+  FBSDKAutoAppLinkPresentationStyleAuto = 0,
+  /**
+   * Presented by current top view controller
+   */
+  FBSDKAutoAppLinkPresentationStylePresent,
+  /**
+   * Push to current navigation controller or a new navigation controller
+   */
+  FBSDKAutoAppLinkPresentationStylePush,
+} NS_SWIFT_NAME(AutoAppLinkPresentationStyle);
 
-/*!
+/**
+ A Protocol that Auto App Link content view controller should implement
+*/
+NS_SWIFT_NAME(AutoAppLink)
+@protocol FBSDKAutoAppLink
+
+/**
+ Gets the data parsed from Auto App Link URL
+*/
+@required
+- (void)setAutoAppLinkData:(NSDictionary<NSString *, id> *)data;
+
+@end
+
+/** The version of the App Link protocol that this library supports */
+FOUNDATION_EXPORT NSString *const FBSDKAppLinkVersion
+NS_SWIFT_NAME(AppLinkVersion);
+
+/**
  Contains App Link metadata relevant for navigation on this device
  derived from the HTML at a given URL.
  */
+NS_SWIFT_NAME(AppLink)
 @interface FBSDKAppLink : NSObject
 
-/*!
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
+/**
  Creates a FBSDKAppLink with the given list of FBSDKAppLinkTargets and target URL.
 
  Generally, this will only be used by implementers of the FBSDKAppLinkResolving protocol,
@@ -42,20 +81,21 @@ FOUNDATION_EXPORT NSString *const FBSDKAppLinkVersion;
  from App Link metadata.
  @param webURL the fallback web URL, if any, for the app link.
  */
-+ (instancetype)appLinkWithSourceURL:(NSURL *)sourceURL
++ (instancetype)appLinkWithSourceURL:(nullable NSURL *)sourceURL
                              targets:(NSArray<FBSDKAppLinkTarget *> *)targets
-                              webURL:(nullable NSURL *)webURL;
+                              webURL:(nullable NSURL *)webURL
+NS_SWIFT_NAME(init(sourceURL:targets:webURL:));
 
-/*! The URL from which this FBSDKAppLink was derived */
-@property (nonatomic, strong, readonly) NSURL *sourceURL;
+/** The URL from which this FBSDKAppLink was derived */
+@property (nonatomic, strong, readonly, nullable) NSURL *sourceURL;
 
-/*!
+/**
  The ordered list of targets applicable to this platform that will be used
  for navigation.
  */
 @property (nonatomic, copy, readonly) NSArray<FBSDKAppLinkTarget *> *targets;
 
-/*! The fallback web URL to use if no targets are installed on this device. */
+/** The fallback web URL to use if no targets are installed on this device. */
 @property (nonatomic, strong, readonly, nullable) NSURL *webURL;
 
 @end
