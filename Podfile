@@ -13,6 +13,11 @@ pod 'Firebase/Storage'
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'
 
+pod 'Fabric', '~> 1.10.2'
+pod 'Crashlytics', '~> 3.14.0'
+
+pod 'Firebase/Analytics'
+
 pod 'AudioPlayerSwift'
 
 pod 'AlamofireImage', '~> 3.3'

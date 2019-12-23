@@ -92,7 +92,7 @@ class LoginViewController: UIViewController ,GIDSignInDelegate{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+                
         hero.isEnabled = true
         
         

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -470,6 +470,7 @@
 				15BB7F9F2247F84000221775 /* Resources */,
 				80FEDECDEFFB31DAA52DD2BA /* [CP] Embed Pods Frameworks */,
 				D22FBC5E95A8780319709DB9 /* [CP] Copy Pods Resources */,
+				D8074B9E23B071AE00331092 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -706,6 +707,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dek2Pasaa/Pods-Dek2Pasaa-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D8074B9E23B071AE00331092 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -939,7 +957,7 @@
 				CODE_SIGN_ENTITLEMENTS = Dek2Pasaa/Dek2Pasaa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = V72KR74AXB;
 				INFOPLIST_FILE = Dek2Pasaa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -947,7 +965,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = melondev.Dek2Pasaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -964,7 +982,7 @@
 				CODE_SIGN_ENTITLEMENTS = Dek2Pasaa/Dek2Pasaa.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = V72KR74AXB;
 				INFOPLIST_FILE = Dek2Pasaa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -972,7 +990,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = melondev.Dek2Pasaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
